@@ -1,0 +1,38 @@
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c}
+\hline
+ & Model 1 & Model 2 \\
+\hline
+(Intercept)         & $-0.77781^{*}$  & $-0.51461$      \\
+                    & $(0.38590)$     & $(0.26756)$     \\
+horsepower          & $0.00019$       &                 \\
+                    & $(0.00434)$     &                 \\
+squared\_horsepower & $0.00000$       &                 \\
+                    & $(0.00001)$     &                 \\
+age                 & $0.00852$       &                 \\
+                    & $(0.01433)$     &                 \\
+enghours            & $0.00003$       &                 \\
+                    & $(0.00004)$     &                 \\
+diesel              & $-0.97286^{**}$ & $-1.01766^{**}$ \\
+                    & $(0.35873)$     & $(0.34206)$     \\
+fwd                 & $0.16677$       &                 \\
+                    & $(0.24458)$     &                 \\
+manual              & $0.63033^{*}$   & $0.73176^{**}$  \\
+                    & $(0.29427)$     & $(0.27747)$     \\
+cab                 & $-0.67541^{*}$  & $-0.44114^{*}$  \\
+                    & $(0.30337)$     & $(0.21490)$     \\
+\hline
+AIC                 & $220.18598$     & $214.08158$     \\
+BIC                 & $252.76958$     & $228.56319$     \\
+Log Likelihood      & $-101.09299$    & $-103.04079$    \\
+Deviance            & $202.18598$     & $206.08158$     \\
+Num. obs.           & $276$           & $276$           \\
+\hline
+\multicolumn{3}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Probit Models for Brand Selection of Tractors}
+\label{tab:reg_probit}
+\end{center}
+\end{table}

@@ -1,0 +1,418 @@
+[1] "Summary of tractor_sales Dataset:"
+   saleprice        horsepower          age           enghours      
+ Min.   :  1500   Min.   : 16.00   Min.   : 2.00   Min.   :    1.0  
+ 1st Qu.:  7750   1st Qu.: 47.75   1st Qu.: 7.00   1st Qu.:  777.2  
+ Median : 12000   Median : 80.00   Median :15.00   Median : 2398.0  
+ Mean   : 20747   Mean   :101.06   Mean   :15.91   Mean   : 3530.2  
+ 3rd Qu.: 20925   3rd Qu.:108.50   3rd Qu.:24.00   3rd Qu.: 5409.8  
+ Max.   :200000   Max.   :535.00   Max.   :33.00   Max.   :18744.0  
+     diesel            fwd             manual         johndeere     
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:1.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :1.0000   Median :1.0000   Median :1.0000   Median :0.0000  
+ Mean   :0.9094   Mean   :0.5652   Mean   :0.7029   Mean   :0.1413  
+ 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+      cab             spring           summer           winter      
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :1.0000   Median :0.0000   Median :0.0000   Median :0.0000  
+ Mean   :0.5435   Mean   :0.2246   Mean   :0.2319   Mean   :0.1703  
+ 3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+null device 
+          1 
+null device 
+          1 
+
+Call:
+lm(formula = saleprice ~ horsepower + age + enghours + diesel + 
+    fwd + manual + johndeere + spring + summer + winter, data = tractor_sales)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-47155  -7094   -986   6322  94363 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept) 11670.4088  4519.2861   2.582   0.0103 *  
+horsepower    246.3983    13.9845  17.619  < 2e-16 ***
+age          -674.6358   148.9996  -4.528 9.02e-06 ***
+enghours       -1.7575     0.3956  -4.443 1.30e-05 ***
+diesel       2731.9735  3996.0465   0.684   0.4948    
+fwd          2570.5696  2427.5124   1.059   0.2906    
+manual      -3713.2828  2586.9553  -1.435   0.1524    
+johndeere   12194.2259  2979.9088   4.092 5.68e-05 ***
+spring      -1721.0059  2716.0344  -0.634   0.5269    
+summer      -5569.4559  2654.9363  -2.098   0.0369 *  
+winter      -1541.9875  2981.3104  -0.517   0.6054    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 16650 on 265 degrees of freedom
+Multiple R-squared:  0.6475,	Adjusted R-squared:  0.6342 
+F-statistic: 48.67 on 10 and 265 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + age + enghours + diesel + 
+    fwd + manual + johndeere + spring + summer + winter, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.40551 -0.32922  0.03705  0.36518  1.08651 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.770e+00  1.353e-01  64.825  < 2e-16 ***
+horsepower   6.536e-03  4.186e-04  15.615  < 2e-16 ***
+age         -2.754e-02  4.460e-03  -6.175 2.47e-09 ***
+enghours    -2.117e-05  1.184e-05  -1.788   0.0750 .  
+diesel       4.992e-01  1.196e-01   4.173 4.08e-05 ***
+fwd          3.567e-01  7.266e-02   4.909 1.60e-06 ***
+manual      -1.217e-01  7.744e-02  -1.571   0.1173    
+johndeere    1.725e-01  8.920e-02   1.934   0.0541 .  
+spring      -3.210e-02  8.130e-02  -0.395   0.6933    
+summer      -1.188e-01  7.947e-02  -1.494   0.1363    
+winter       4.009e-02  8.924e-02   0.449   0.6536    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4983 on 265 degrees of freedom
+Multiple R-squared:  0.6971,	Adjusted R-squared:  0.6857 
+F-statistic: 60.99 on 10 and 265 DF,  p-value: < 2.2e-16
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1500    7750   12000   20747   20925  200000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   2800    6300    9200   27973   30900  200000 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1500    8000   12500   19557   20700  135000 
+
+Call:
+lm(formula = log_saleprice ~ horsepower + age + enghours + diesel + 
+    fwd + manual + johndeere, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.40252 -0.35565  0.04023  0.36072  1.09886 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.756e+00  1.284e-01  68.168  < 2e-16 ***
+horsepower   6.556e-03  4.153e-04  15.785  < 2e-16 ***
+age         -2.781e-02  4.449e-03  -6.252 1.59e-09 ***
+enghours    -2.206e-05  1.182e-05  -1.867   0.0631 .  
+diesel       4.884e-01  1.192e-01   4.096 5.57e-05 ***
+fwd          3.492e-01  7.211e-02   4.843 2.17e-06 ***
+manual      -1.169e-01  7.731e-02  -1.512   0.1317    
+johndeere    1.858e-01  8.884e-02   2.091   0.0375 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4985 on 268 degrees of freedom
+Multiple R-squared:  0.6934,	Adjusted R-squared:  0.6853 
+F-statistic: 86.57 on 7 and 268 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + age + enghours + diesel + 
+    fwd + johndeere, data = tractor_sales)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.4367 -0.3389  0.0335  0.3558  1.0738 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  8.779e+00  1.279e-01  68.658  < 2e-16 ***
+horsepower   6.474e-03  4.127e-04  15.685  < 2e-16 ***
+age         -2.971e-02  4.280e-03  -6.941 2.92e-11 ***
+enghours    -2.263e-05  1.184e-05  -1.912  0.05695 .  
+diesel       4.246e-01  1.118e-01   3.798  0.00018 ***
+fwd          3.416e-01  7.210e-02   4.737 3.51e-06 ***
+johndeere    1.707e-01  8.848e-02   1.929  0.05481 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4997 on 269 degrees of freedom
+Multiple R-squared:  0.6907,	Adjusted R-squared:  0.6838 
+F-statistic: 100.1 on 6 and 269 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + johndeere, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.74258 -0.24449  0.02639  0.32457  0.85707 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.607e+00  1.123e-01  76.620  < 2e-16 ***
+horsepower          1.504e-02  9.721e-04  15.472  < 2e-16 ***
+squared_horsepower -2.088e-05  2.203e-06  -9.479  < 2e-16 ***
+age                -3.429e-02  3.742e-03  -9.163  < 2e-16 ***
+enghours           -3.641e-05  1.037e-05  -3.512 0.000521 ***
+diesel              2.007e-01  9.975e-02   2.012 0.045230 *  
+fwd                 3.129e-01  6.259e-02   4.999 1.04e-06 ***
+johndeere           2.384e-01  7.705e-02   3.094 0.002181 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4333 on 268 degrees of freedom
+Multiple R-squared:  0.7684,	Adjusted R-squared:  0.7623 
+F-statistic:   127 on 7 and 268 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + johndeere + cab + 
+    spring + summer + winter, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.69989 -0.23404  0.05332  0.29651  0.74608 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.726e+00  1.116e-01  78.212  < 2e-16 ***
+horsepower          1.115e-02  1.070e-03  10.422  < 2e-16 ***
+squared_horsepower -1.409e-05  2.261e-06  -6.231 1.83e-09 ***
+age                -3.206e-02  3.595e-03  -8.919  < 2e-16 ***
+enghours           -4.086e-05  9.607e-06  -4.253 2.93e-05 ***
+diesel              2.145e-01  9.854e-02   2.177   0.0304 *  
+fwd                 2.753e-01  5.876e-02   4.685 4.50e-06 ***
+manual             -1.531e-01  6.209e-02  -2.465   0.0143 *  
+johndeere           3.097e-01  7.236e-02   4.280 2.62e-05 ***
+cab                 4.779e-01  7.031e-02   6.796 7.17e-11 ***
+spring             -4.892e-02  6.506e-02  -0.752   0.4527    
+summer             -5.729e-02  6.379e-02  -0.898   0.3700    
+winter              4.596e-02  7.141e-02   0.644   0.5204    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3986 on 263 degrees of freedom
+Multiple R-squared:  0.8076,	Adjusted R-squared:  0.7988 
+F-statistic:    92 on 12 and 263 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + johndeere + cab, 
+    data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.63939 -0.22779  0.04313  0.27805  0.80619 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.728e+00  1.060e-01  82.327  < 2e-16 ***
+horsepower          1.112e-02  1.067e-03  10.423  < 2e-16 ***
+squared_horsepower -1.404e-05  2.255e-06  -6.223 1.89e-09 ***
+age                -3.233e-02  3.580e-03  -9.031  < 2e-16 ***
+enghours           -4.178e-05  9.569e-06  -4.367 1.81e-05 ***
+diesel              2.035e-01  9.805e-02   2.076   0.0389 *  
+fwd                 2.654e-01  5.820e-02   4.560 7.82e-06 ***
+manual             -1.502e-01  6.189e-02  -2.426   0.0159 *  
+johndeere           3.187e-01  7.186e-02   4.435 1.35e-05 ***
+cab                 4.834e-01  7.003e-02   6.903 3.72e-11 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3981 on 266 degrees of freedom
+Multiple R-squared:  0.8059,	Adjusted R-squared:  0.7993 
+F-statistic: 122.7 on 9 and 266 DF,  p-value: < 2.2e-16
+
+[1] "Test for exclusion of seasonal indicators"
+[1] "RSS_unconstrained:"
+[1] 41.78944
+[1] "RSS_constrained:"
+[1] 42.15882
+[1] "F-statistic:"
+[1] 0.7748937
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel * enghours + diesel + fwd + manual + 
+    johndeere + cab, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.63713 -0.22787  0.04247  0.27951  0.80465 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.737e+00  1.226e-01  71.247  < 2e-16 ***
+horsepower          1.111e-02  1.070e-03  10.391  < 2e-16 ***
+squared_horsepower -1.403e-05  2.260e-06  -6.209 2.05e-09 ***
+age                -3.232e-02  3.587e-03  -9.012  < 2e-16 ***
+enghours           -4.552e-05  2.661e-05  -1.711   0.0883 .  
+diesel              1.934e-01  1.190e-01   1.625   0.1054    
+fwd                 2.659e-01  5.840e-02   4.552 8.09e-06 ***
+manual             -1.506e-01  6.209e-02  -2.426   0.0159 *  
+johndeere           3.211e-01  7.367e-02   4.358 1.88e-05 ***
+cab                 4.831e-01  7.019e-02   6.882 4.24e-11 ***
+enghours:diesel     4.116e-06  2.736e-05   0.150   0.8805    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3988 on 265 degrees of freedom
+Multiple R-squared:  0.8059,	Adjusted R-squared:  0.7986 
+F-statistic:   110 on 10 and 265 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + johndeere + johndeere * 
+    enghours + cab, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64162 -0.22772  0.04467  0.27649  0.81385 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.729e+00  1.063e-01  82.116  < 2e-16 ***
+horsepower          1.111e-02  1.070e-03  10.386  < 2e-16 ***
+squared_horsepower -1.401e-05  2.266e-06  -6.182 2.39e-09 ***
+age                -3.234e-02  3.588e-03  -9.015  < 2e-16 ***
+enghours           -4.231e-05  1.016e-05  -4.164 4.23e-05 ***
+diesel              2.046e-01  9.849e-02   2.078  0.03871 *  
+fwd                 2.650e-01  5.837e-02   4.540 8.54e-06 ***
+manual             -1.495e-01  6.213e-02  -2.407  0.01678 *  
+johndeere           3.064e-01  1.070e-01   2.862  0.00454 ** 
+cab                 4.842e-01  7.033e-02   6.885 4.18e-11 ***
+enghours:johndeere  3.185e-06  2.050e-05   0.155  0.87663    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3988 on 265 degrees of freedom
+Multiple R-squared:  0.8059,	Adjusted R-squared:  0.7986 
+F-statistic:   110 on 10 and 265 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + johndeere + johndeere * 
+    age + cab, data = tractor_sales)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64511 -0.23046  0.04476  0.27609  0.80827 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.731e+00  1.072e-01  81.460  < 2e-16 ***
+horsepower          1.113e-02  1.071e-03  10.396  < 2e-16 ***
+squared_horsepower -1.405e-05  2.260e-06  -6.215 1.98e-09 ***
+age                -3.257e-02  3.770e-03  -8.640 5.38e-16 ***
+enghours           -4.197e-05  9.626e-06  -4.360 1.86e-05 ***
+diesel              2.020e-01  9.847e-02   2.052   0.0412 *  
+fwd                 2.653e-01  5.831e-02   4.550 8.19e-06 ***
+manual             -1.482e-01  6.267e-02  -2.366   0.0187 *  
+johndeere           2.930e-01  1.425e-01   2.055   0.0408 *  
+cab                 4.839e-01  7.018e-02   6.894 3.96e-11 ***
+age:johndeere       1.455e-03  6.952e-03   0.209   0.8344    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3988 on 265 degrees of freedom
+Multiple R-squared:  0.8059,	Adjusted R-squared:  0.7986 
+F-statistic: 110.1 on 10 and 265 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + johndeere + johndeere * 
+    horsepower + cab, data = tractor_sales)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-1.6358 -0.2268  0.0451  0.2773  0.8197 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)           8.745e+00  1.069e-01  81.801  < 2e-16 ***
+horsepower            1.100e-02  1.071e-03  10.276  < 2e-16 ***
+squared_horsepower   -1.420e-05  2.258e-06  -6.290 1.31e-09 ***
+age                  -3.209e-02  3.583e-03  -8.958  < 2e-16 ***
+enghours             -4.055e-05  9.618e-06  -4.216 3.41e-05 ***
+diesel                1.933e-01  9.835e-02   1.965   0.0505 .  
+fwd                   2.680e-01  5.820e-02   4.605 6.41e-06 ***
+manual               -1.526e-01  6.188e-02  -2.466   0.0143 *  
+johndeere             2.316e-01  1.028e-01   2.252   0.0251 *  
+cab                   4.827e-01  6.998e-02   6.898 3.88e-11 ***
+horsepower:johndeere  8.539e-04  7.212e-04   1.184   0.2375    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3978 on 265 degrees of freedom
+Multiple R-squared:  0.8069,	Adjusted R-squared:  0.7996 
+F-statistic: 110.8 on 10 and 265 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + cab, data = tractor_sales[tractor_sales[, 
+    "johndeere"] == 1, ])
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-0.6826 -0.2380  0.0132  0.2321  0.7259 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.867e+00  2.241e-01  39.568  < 2e-16 ***
+horsepower          1.502e-02  2.503e-03   6.000 1.39e-06 ***
+squared_horsepower -2.024e-05  4.990e-06  -4.056 0.000327 ***
+age                -3.038e-02  9.136e-03  -3.325 0.002342 ** 
+enghours           -5.821e-05  2.488e-05  -2.339 0.026178 *  
+diesel              8.485e-02  1.824e-01   0.465 0.645175    
+fwd                 1.288e-01  1.553e-01   0.830 0.413336    
+manual              6.749e-02  1.729e-01   0.390 0.699021    
+cab                 3.234e-01  1.756e-01   1.842 0.075318 .  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3563 on 30 degrees of freedom
+Multiple R-squared:  0.9199,	Adjusted R-squared:  0.8986 
+F-statistic: 43.09 on 8 and 30 DF,  p-value: 2.301e-14
+
+
+Call:
+lm(formula = log_saleprice ~ horsepower + squared_horsepower + 
+    age + enghours + diesel + fwd + manual + cab, data = tractor_sales[tractor_sales[, 
+    "johndeere"] == 0, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.64089 -0.22091  0.05576  0.28117  0.70713 
+
+Coefficients:
+                     Estimate Std. Error t value Pr(>|t|)    
+(Intercept)         8.773e+00  1.245e-01  70.468  < 2e-16 ***
+horsepower          1.032e-02  1.194e-03   8.640 9.93e-16 ***
+squared_horsepower -1.278e-05  2.564e-06  -4.983 1.24e-06 ***
+age                -3.164e-02  3.985e-03  -7.940 9.17e-14 ***
+enghours           -3.889e-05  1.070e-05  -3.635 0.000343 ***
+diesel              1.822e-01  1.198e-01   1.520 0.129870    
+fwd                 2.907e-01  6.308e-02   4.609 6.74e-06 ***
+manual             -1.792e-01  6.743e-02  -2.657 0.008435 ** 
+cab                 5.173e-01  7.696e-02   6.722 1.42e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.4047 on 228 degrees of freedom
+Multiple R-squared:  0.7799,	Adjusted R-squared:  0.7722 
+F-statistic:   101 on 8 and 228 DF,  p-value: < 2.2e-16
+
+[1] "Test for separate coefficients by brand"
+[1] "RSS_unconstrained:"
+[1] 41.1432
+[1] "RSS_constrained:"
+[1] 42.15882
+[1] "F-statistic:"
+[1] 0.7929991

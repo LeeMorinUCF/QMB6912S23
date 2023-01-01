@@ -1,0 +1,25 @@
+\begin{verbatim}
+Family: gaussian 
+Link function: identity 
+
+Formula:
+log_Price ~ Width + Diameter + Density + Sealed + Machined + 
+    made_in_USA + made_in_USA * Sealed
+
+Parametric coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
+Width                      0.33575    0.15622   2.149  0.03262 *  
+Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
+Density                    1.21296    0.21948   5.527 8.49e-08 ***
+SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
+MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
+made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
+SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+
+R-sq.(adj) =  0.742   Deviance explained = 74.9%
+GCV = 0.10913  Scale est. = 0.10561   n = 248
+\end{verbatim}

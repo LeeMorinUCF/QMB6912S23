@@ -1,0 +1,204 @@
+    obsn_num       house_price         income           in_cali   
+ Min.   :  1.00   Min.   :0.1911   Min.   :0.07612   Min.   :0.0  
+ 1st Qu.: 25.75   1st Qu.:0.5603   1st Qu.:0.09204   1st Qu.:0.0  
+ Median : 50.50   Median :0.6832   Median :0.09903   Median :0.5  
+ Mean   : 50.50   Mean   :0.6988   Mean   :0.09949   Mean   :0.5  
+ 3rd Qu.: 75.25   3rd Qu.:0.8288   3rd Qu.:0.10772   3rd Qu.:1.0  
+ Max.   :100.00   Max.   :1.0878   Max.   :0.12712   Max.   :1.0  
+   earthquake  
+ Min.   :0.00  
+ 1st Qu.:0.00  
+ Median :0.00  
+ Mean   :0.04  
+ 3rd Qu.:0.00  
+ Max.   :1.00  
+  house_price         income       
+ Min.   :0.1911   Min.   :0.07612  
+ 1st Qu.:0.5603   1st Qu.:0.09204  
+ Median :0.6832   Median :0.09903  
+ Mean   :0.6988   Mean   :0.09949  
+ 3rd Qu.:0.8288   3rd Qu.:0.10772  
+ Max.   :1.0878   Max.   :0.12712  
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Tue Mar 15 12:14:48 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlrr}
+  \hline
+ & Statistic & house\_price & income \\ 
+  \hline
+1 & Min. & 0.19 & 0.08 \\ 
+  2 & Mean & 0.70 & 0.10 \\ 
+  3 & S.D. & 0.18 & 0.01 \\ 
+  4 & Max. & 1.09 & 0.13 \\ 
+   \hline
+\end{tabular}
+\caption{Summary of Numeric Variables} 
+\label{tab:summary}
+\end{table}
+
+ 0  1 
+50 50 
+   
+     0  1
+  0 50  0
+  1 46  4
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Tue Mar 15 12:14:48 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & None & Earthquake \\ 
+  \hline
+Other &  50 &   0 \\ 
+  California &  46 &   4 \\ 
+   \hline
+\end{tabular}
+\caption{Earthquake Incidence by State} 
+\label{tab:earthquakes}
+\end{table}
+            house_price income in_cali earthquake
+house_price       1.000  0.139   0.530     -0.461
+income            0.139  1.000  -0.092      0.097
+in_cali           0.530 -0.092   1.000      0.204
+earthquake       -0.461  0.097   0.204      1.000
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Tue Mar 15 12:14:48 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & house\_price & income & in\_cali & earthquake \\ 
+  \hline
+house\_price & 1.000 & 0.139 & 0.530 & -0.461 \\ 
+  income & 0.139 & 1.000 & -0.092 & 0.097 \\ 
+  in\_cali & 0.530 & -0.092 & 1.000 & 0.204 \\ 
+  earthquake & -0.461 & 0.097 & 0.204 & 1.000 \\ 
+   \hline
+\end{tabular}
+\caption{Correlation Matrix} 
+\label{tab:corr}
+\end{table}
+
+Call:
+lm(formula = house_price ~ income + in_cali + earthquake, data = housing_data)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.275525 -0.065081 -0.007194  0.056779  0.250060 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.17299    0.09638   1.795   0.0758 .  
+income       4.30310    0.94871   4.536 1.66e-05 ***
+in_cali      0.24026    0.02069  11.611  < 2e-16 ***
+earthquake  -0.56216    0.05282 -10.643  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1006 on 96 degrees of freedom
+Multiple R-squared:  0.6866,	Adjusted R-squared:  0.6768 
+F-statistic: 70.09 on 3 and 96 DF,  p-value: < 2.2e-16
+
+[1] "lm"
+$names
+ [1] "coefficients"  "residuals"     "effects"       "rank"         
+ [5] "fitted.values" "assign"        "qr"            "df.residual"  
+ [9] "xlevels"       "call"          "terms"         "model"        
+
+$class
+[1] "lm"
+
+(Intercept)      income     in_cali  earthquake 
+  0.1729870   4.3031043   0.2402567  -0.5621560 
+  income 
+4.303104 
+  income 
+4.303104 
+(Intercept)      income     in_cali  earthquake 
+  0.1729870   4.3031043   0.2402567  -0.5621560 
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+ 0.2558  0.5975  0.6748  0.6988  0.8320  0.9306 
+$names
+ [1] "call"          "terms"         "residuals"     "coefficients" 
+ [5] "aliased"       "sigma"         "df"            "r.squared"    
+ [9] "adj.r.squared" "fstatistic"    "cov.unscaled" 
+
+$class
+[1] "summary.lm"
+
+[1] 0.6767687
+  house_price      predictions    
+ Min.   :0.1911   Min.   :0.2558  
+ 1st Qu.:0.5603   1st Qu.:0.5975  
+ Median :0.6832   Median :0.6748  
+ Mean   :0.6988   Mean   :0.6988  
+ 3rd Qu.:0.8288   3rd Qu.:0.8320  
+ Max.   :1.0878   Max.   :0.9306  
+pdf 
+  2 
+
+Call:
+lm(formula = house_price ~ income + in_cali + earthquake, data = housing_data)
+
+Residuals:
+      Min        1Q    Median        3Q       Max 
+-0.275525 -0.065081 -0.007194  0.056779  0.250060 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.17299    0.09638   1.795   0.0758 .  
+income       4.30310    0.94871   4.536 1.66e-05 ***
+in_cali      0.24026    0.02069  11.611  < 2e-16 ***
+earthquake  -0.56216    0.05282 -10.643  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1006 on 96 degrees of freedom
+Multiple R-squared:  0.6866,	Adjusted R-squared:  0.6768 
+F-statistic: 70.09 on 3 and 96 DF,  p-value: < 2.2e-16
+
+(Intercept)      income     in_cali  earthquake 
+  0.1729870   4.3031043   0.2402567  -0.5621560 
+pdf 
+  2 
+
+Call:
+lm(formula = house_price ~ income + in_cali, data = housing_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.58717 -0.06297  0.00881  0.08105  0.29518 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  0.29345    0.14059   2.087   0.0395 *  
+income       3.10428    1.38361   2.244   0.0271 *  
+in_cali      0.19291    0.02968   6.499 3.49e-09 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1478 on 97 degrees of freedom
+Multiple R-squared:  0.3167,	Adjusted R-squared:  0.3027 
+F-statistic: 22.48 on 2 and 97 DF,  p-value: 9.489e-09
+
+
+Call:
+lm(formula = house_price ~ income, data = housing_data)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.49523 -0.13641 -0.00946  0.15050  0.39092 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)   
+(Intercept)   0.4724     0.1643   2.875  0.00496 **
+income        2.2751     1.6422   1.385  0.16909   
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.1761 on 98 degrees of freedom
+Multiple R-squared:  0.01921,	Adjusted R-squared:  0.0092 
+F-statistic: 1.919 on 1 and 98 DF,  p-value: 0.1691
+

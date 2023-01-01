@@ -1,0 +1,26 @@
+
+\begin{table}
+\begin{center}
+\begin{tabular}{l c c c}
+\hline
+ & Model 1 & Model 2 & Model 3 \\
+\hline
+(Intercept) & $0.173$        & $0.293^{*}$   & $0.472^{**}$ \\
+            & $(0.096)$      & $(0.141)$     & $(0.164)$    \\
+income      & $4.303^{***}$  & $3.104^{*}$   & $2.275$      \\
+            & $(0.949)$      & $(1.384)$     & $(1.642)$    \\
+in\_cali    & $0.240^{***}$  & $0.193^{***}$ &              \\
+            & $(0.021)$      & $(0.030)$     &              \\
+earthquake  & $-0.562^{***}$ &               &              \\
+            & $(0.053)$      &               &              \\
+\hline
+R$^2$       & $0.687$        & $0.317$       & $0.019$      \\
+Adj. R$^2$  & $0.677$        & $0.303$       & $0.009$      \\
+Num. obs.   & $100$          & $100$         & $100$        \\
+\hline
+\multicolumn{4}{l}{\scriptsize{$^{***}p<0.001$; $^{**}p<0.01$; $^{*}p<0.05$}}
+\end{tabular}
+\caption{Several Regression Models}
+\label{tab:lm_all_models}
+\end{center}
+\end{table}

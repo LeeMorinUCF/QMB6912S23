@@ -1,0 +1,111 @@
+[1] "Summary of FlyReels Dataset:"
+     Name              Brand               Weight          Diameter    
+ Length:248         Length:248         Min.   : 2.100   Min.   :2.500  
+ Class :character   Class :character   1st Qu.: 4.800   1st Qu.:3.473  
+ Mode  :character   Mode  :character   Median : 6.144   Median :3.850  
+                                       Mean   : 6.564   Mean   :3.900  
+                                       3rd Qu.: 8.205   3rd Qu.:4.250  
+                                       Max.   :15.097   Max.   :5.500  
+     Width           Price            Sealed            Country         
+ Min.   :0.750   Min.   :  34.99   Length:248         Length:248        
+ 1st Qu.:0.970   1st Qu.: 239.00   Class :character   Class :character  
+ Median :1.080   Median : 360.00   Mode  :character   Mode  :character  
+ Mean   :1.098   Mean   : 397.24                                        
+ 3rd Qu.:1.250   3rd Qu.: 525.00                                        
+ Max.   :1.688   Max.   :1095.00                                        
+   Machined        
+ Length:248        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+[1] "FlyReels Dataset with Categorical Factors:"
+         Name                   Brand         Weight          Diameter    
+  SDF 4/5  :  1   Waterworks-Lamson: 32   Min.   : 2.100   Min.   :2.500  
+  SDF 5/6  :  1   Ross             : 28   1st Qu.: 4.800   1st Qu.:3.473  
+  SDF 6/7  :  1   Allen            : 25   Median : 6.144   Median :3.850  
+  SDS 11/12:  1   Galvan           : 23   Mean   : 6.564   Mean   :3.900  
+  SDS 7/8  :  1   TFO              : 16   3rd Qu.: 8.205   3rd Qu.:4.250  
+  SDS 9/10 :  1   3-TAND           : 15   Max.   :15.097   Max.   :5.500  
+ (Other)   :242   (Other)          :109                                   
+     Width           Price         Sealed     Country    Machined 
+ Min.   :0.750   Min.   :  34.99   No : 94   China: 27   No : 31  
+ 1st Qu.:0.970   1st Qu.: 239.00   Yes:154   Korea: 86   Yes:217  
+ Median :1.080   Median : 360.00             USA  :135            
+ Mean   :1.098   Mean   : 397.24                                  
+ 3rd Qu.:1.250   3rd Qu.: 525.00                                  
+ Max.   :1.688   Max.   :1095.00                                  
+                                                                  
+[1] "Name"     "Brand"    "Weight"   "Diameter" "Width"    "Price"    "Sealed"  
+[8] "Country"  "Machined"
+[1] "Plotting histogram and density of log_Price."
+null device 
+          1 
+[1] "Plotting figures by Country of Manufacture."
+
+China Korea   USA 
+   27    86   135 
+pdf 
+  2 
+[1] "Generating Scatterplot Matrices."
+pdf 
+  2 
+pdf 
+  2 
+      Machined
+Sealed  No Yes
+   No   20  74
+   Yes  11 143
+         Sealed
+Seal_Mach  No Yes
+      N_N  20   0
+      N_Y  74   0
+      Y_N   0  11
+      Y_Y   0 143
+         Machined
+Seal_Mach  No Yes
+      N_N  20   0
+      N_Y   0  74
+      Y_N  11   0
+      Y_Y   0 143
+pdf 
+  2 
+[1] "Generating Scatterplot Matrices"    "Colored by Country of Manufacture."
+pdf 
+  2 
+[1] "Generating Dot Charts"                       
+[2] "Ordered by Country of Manufacture and Brand."
+
+           3-TAND              Abel             Allen             Aspen 
+               15                15                25                 8 
+            Bauer            Cheeky              ECHO            Galvan 
+                2                11                12                23 
+            Hatch              Loop          Nautilus             Orvis 
+                8                14                15                 2 
+             Ross              Sage            Taylor               TFO 
+               28                 6                12                16 
+            Tibor Waterworks-Lamson 
+                4                32 
+                   
+                    China Korea USA
+  3-TAND               15     0   0
+  Abel                  0     0  15
+  Allen                 0    18   7
+  Aspen                 0     0   8
+  Bauer                 0     0   2
+  Cheeky               11     0   0
+  ECHO                  0    12   0
+  Galvan                0     0  23
+  Hatch                 0     0   8
+  Loop                  0    14   0
+  Nautilus              0     0  15
+  Orvis                 1     0   1
+  Ross                  0     0  28
+  Sage                  0     6   0
+  Taylor                0    12   0
+  TFO                   0    16   0
+  Tibor                 0     0   4
+  Waterworks-Lamson     0     8  24
+pdf 
+  2 

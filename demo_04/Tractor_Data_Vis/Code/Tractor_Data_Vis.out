@@ -1,0 +1,90 @@
+[1] "Summary of tractor_sales Dataset:"
+   saleprice        horsepower          age           enghours      
+ Min.   :  1500   Min.   : 16.00   Min.   : 2.00   Min.   :    1.0  
+ 1st Qu.:  7750   1st Qu.: 47.75   1st Qu.: 7.00   1st Qu.:  777.2  
+ Median : 12000   Median : 80.00   Median :15.00   Median : 2398.0  
+ Mean   : 20747   Mean   :101.06   Mean   :15.91   Mean   : 3530.2  
+ 3rd Qu.: 20925   3rd Qu.:108.50   3rd Qu.:24.00   3rd Qu.: 5409.8  
+ Max.   :200000   Max.   :535.00   Max.   :33.00   Max.   :18744.0  
+     diesel            fwd             manual         johndeere     
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:1.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :1.0000   Median :1.0000   Median :1.0000   Median :0.0000  
+ Mean   :0.9094   Mean   :0.5652   Mean   :0.7029   Mean   :0.1413  
+ 3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:1.0000   3rd Qu.:0.0000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+      cab             spring           summer           winter      
+ Min.   :0.0000   Min.   :0.0000   Min.   :0.0000   Min.   :0.0000  
+ 1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000   1st Qu.:0.0000  
+ Median :1.0000   Median :0.0000   Median :0.0000   Median :0.0000  
+ Mean   :0.5435   Mean   :0.2246   Mean   :0.2319   Mean   :0.1703  
+ 3rd Qu.:1.0000   3rd Qu.:0.0000   3rd Qu.:0.0000   3rd Qu.:0.0000  
+ Max.   :1.0000   Max.   :1.0000   Max.   :1.0000   Max.   :1.0000  
+[1] "Plotting histogram and density of log saleprice."
+null device 
+          1 
+[1] "Plotting figures by Brand."
+pdf 
+  2 
+[1] "Plotting figures by Season of Sale"
+pdf 
+  2 
+[1] "Plotting Sales Volume by Brand and Season of Sale"
+pdf 
+  2 
+        
+         John Deere Other
+  Fall           14    89
+  Spring          9    53
+  Summer          6    58
+  Winter         10    37
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Thu Feb 17 11:38:25 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrr}
+  \hline
+ & John Deere & Other \\ 
+  \hline
+Fall & 14 & 89 \\ 
+  Spring & 9 & 53 \\ 
+  Summer & 6 & 58 \\ 
+  Winter & 10 & 37 \\ 
+   \hline
+\end{tabular}
+\caption{Sales Volume by Brand and Season} 
+\label{tab:brand_and_season_sales}
+\end{table}
+[1] "Plotting Prices agains Numeric Variables"
+ [1] "saleprice"     "horsepower"    "age"           "enghours"     
+ [5] "diesel"        "fwd"           "manual"        "johndeere"    
+ [9] "cab"           "spring"        "summer"        "winter"       
+[13] "log_saleprice" "fall"          "season"        "JD"           
+[1] "log_saleprice" "horsepower"    "age"           "enghours"     
+pdf 
+  2 
+              Log. of Price Horsepower         Age Engine Hours
+Log. of Price    1.00000000 0.64850242 -0.44054234  -0.04583549
+Horsepower       0.64850242 1.00000000  0.03884978   0.37778287
+Age             -0.44054234 0.03884978  1.00000000   0.55903832
+Engine Hours    -0.04583549 0.37778287  0.55903832   1.00000000
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Thu Feb 17 11:38:25 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Log. of Price & Horsepower & Age & Engine Hours \\ 
+  \hline
+Log. of Price & 1.000 & 0.649 & -0.441 & -0.046 \\ 
+  Horsepower & 0.649 & 1.000 & 0.039 & 0.378 \\ 
+  Age & -0.441 & 0.039 & 1.000 & 0.559 \\ 
+  Engine Hours & -0.046 & 0.378 & 0.559 & 1.000 \\ 
+   \hline
+\end{tabular}
+\caption{Correlation Matrix of Numeric Variables} 
+\label{tab:correlation}
+\end{table}
+[1] "Plotting relationship between prices, horsepower and age"
+pdf 
+  2 

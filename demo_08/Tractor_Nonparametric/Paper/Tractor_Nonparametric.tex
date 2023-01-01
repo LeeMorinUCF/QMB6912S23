@@ -1,0 +1,514 @@
+\documentclass[11pt]{paper}
+\usepackage{palatino}
+\usepackage{amsfonts,amsmath,amssymb}
+% \usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=R,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+
+\ifx\pdftexversion\undefined
+    \usepackage[dvips]{graphicx}
+\else
+    \usepackage[pdftex]{graphicx}
+    \usepackage{epstopdf}
+    \epstopdfsetup{suffix=}
+\fi
+
+\usepackage{subfig}
+
+
+% This allows pdflatex to print the curly quotes in the
+% significance codes in the output of the GAM.
+\UseRawInputEncoding
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem Set 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+{\noindent\bf Spring 2021 \hfill Firstname M.~Lastname}
+\vskip 16pt
+\centerline{\bf University of Central Florida}
+\centerline{\bf College of Business}
+\vskip 16pt
+\centerline{\bf QMB 6911}
+\centerline{\bf Capstone Project in Business Analytics}
+\vskip 10pt
+\centerline{\bf Solutions:  Problem Set \#8}
+\vskip 32pt
+\noindent
+% 
+\section{Data Description}
+
+This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+The dataset includes the following variables.
+\begin{table}[h!]
+\begin{tabular}{l l l}
+
+$saleprice_i$ & = & the price paid for tractor $i$ in dollars \\
+% 
+$horsepower_i$ & = & the horsepower of tractor $i$ \\
+$age_i$ & = & the number of years since tractor $i$ was manufactured  \\
+$enghours_i$ & = & the number of hours of use recorded for tractor $i$  \\
+$diesel_i$ & = & an indicator of whether tractor $i$ runs on diesel fuel \\ %, $0$ otherwise \\
+$fwd_i$ & = & an indicator of whether tractor $i$ has four-wheel drive \\ %, $0$ otherwise \\
+$manual_i$ & = & an indicator of whether tractor $i$ has a manual transmission \\ %, $0$ otherwise \\
+$johndeere_i$ & = & an indicator of whether tractor $i$ is manufactured by John Deere \\ %, $0$ otherwise \\
+$cab_i$ & = & an indicator of whether tractor $i$ has an enclosed cab \\ %, $0$ otherwise \\
+% 
+$spring_i$ & = & an indicator of whether tractor $i$ was sold in April or May \\ %, $0$ otherwise \\
+$summer_i$ & = & an indicator of whether tractor $i$ was sold between June and September \\ %, $0$ otherwise \\
+$winter_i$ & = & an indicator of whether tractor $i$ was sold between December and March \\ %, $0$ otherwise \\
+
+\end{tabular}
+\end{table}
+%
+
+I will revisit the recommended linear model
+from Problem Set \#7, 
+which included a quadratic specification for horsepower.
+This allowed for an increasing relationship 
+between price and horsepower, 
+for tractors with low horsepower, 
+but a decreasing relationship for the tractors with high horsepower. 
+I will investigate this nonlinear relationship
+by incorporating a nonparametric specification
+for the value of horsepower. 
+Similarly, for the other continuous variables engine hours and age, 
+to investigate whether these forms of depreciation
+are best described with nonlinear forms. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Linear Regression Model}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+A natural staring point is the recommended linear model
+from Problem Set \#7. 
+
+\subsection{Quadratic Specification for Horsepower}
+
+Last week we considered the advice of
+a used tractor dealer who reported that overpowered used tractors are hard to sell, since they consume more fuel. 
+This implies that tractor prices often increase with horsepower, up to a point, but beyond that they decrease. 
+To incorporate this advice, I created and included a variable for squared horsepower. 
+A decreasing relationship for high values of horsepower
+is characterized by 
+a positive coefficient on the horsepower variable and
+a negative coefficient on the squared horsepower variable. 
+
+The results of this regression specification are shown in 
+Table \ref{tab:reg_sq_horse}. 
+% 
+\input{../Tables/reg_sq_horse}
+% 
+The squared horsepower variable has a coefficient of $-2.081e-05$, which is nearly ten times as large as the standard error of $2.199e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
+I conclude that the log of the sale price does decline for large values of horsepower. 
+
+
+With the squared horsepower variable, the $\bar{R}^2$ is $0.764$, indicating that it is a much stronger model than the others we considered. 
+The $F$-statistic is large, indicating that it is a better candidate than the simple average log sale price. 
+The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
+This new model is much improved over the previous models with a linear specification for horsepower.
+Next, I will attempt to improve on this specification. 
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\clearpage
+\section{Nonlinear Specifications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \clearpage
+\subsection{Nonparametric Specification for Horsepower}
+
+
+The specification in 
+Table \ref{tab:reg_sq_horse}
+assumes a quadratic functional form for
+the relationship between price and horsepower. 
+To consider the horsepower variable alone, 
+while accounting for the effects of other variables, 
+one can fit a nonparametric model to the residuals 
+from a model of tractor prices, 
+after regressing tractor prices on the other variables. 
+This leaves only the variation in tractor prices that is not explained by the other variables. 
+Going one step further, perform the same transformation to the horsepower variable:
+take the residuals from a model of horsepower, 
+after regressing horsepower on the other variables. 
+This allows a model that would fit exactly the same as if it were estimated within a full model with all variables included. 
+
+The models shown in
+Table \ref{tab:reg_sq_horse_fwl}
+illustrate this possibility. 
+Model 1 is the original model in 
+Table \ref{tab:reg_sq_horse}. 
+Model 2 is a regression omitting the horsepower variables. 
+Model 3 is a regression to predict horsepower with the other explanatory variables in Model 2.
+Finally, Model 4 shows the coefficients for horsepower
+from a regression of the residuals of Model 2
+on the residuals from Model 3. 
+Notice that these coefficients match those in Model 1. 
+You might notice a slight difference in the standard errors, however, 
+because these are calculated assuming coefficients 
+for two variables, horsepower and squared horsepower,
+rather than the full suite of ten parameters.
+This equivalence of the coefficients can be used to fit
+nonlinear models between a pair of variables by 
+partialing out the effect of the other variables, 
+using a mathematical result called the Frisch-Waugh-Lovell (FWL) theorem, 
+maned after early statisticians and econometricians who used these methods. 
+
+\input{../Tables/reg_sq_horse_fwl}
+
+\pagebreak 
+To illustrate the fit of the model, 
+Figure \ref{fig:dev_vs_horse} shows a scatter plot 
+of the residual log prices on horsepower. 
+The observations are shown in blue
+and the fitted values are shown in red.
+The variation in the fitted values results from the 
+fact that it is not plotted against the transformed excess horsepower variable used in the regressions.
+Still, the quadratic pattern is apparent
+and appears to match the data. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_vs_horse}
+  \caption{Linear-Quadratic Model for Tractor Prices} \label{fig:dev_vs_horse}
+\end{figure}
+
+
+
+\pagebreak
+As a comparison, Figure \ref{fig:dev_vs_horse_dev} 
+augments the above by showing the plot against the 
+residuals from the regression for horsepower:
+the ``excess horsepower'' compared to what would be 
+expected given the other characteristics of a tractor. 
+The quadratic function is more clear from this perspective. 
+This time, the variation in the fitted values results from the 
+two-dimensional nature of the horsepower variable
+when we consider the quadratic form.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_vs_horse_dev}
+  \caption{Linear-Quadratic Model for Tractor Prices: Excess Horsepower} \label{fig:dev_vs_horse_dev}
+\end{figure}
+
+\clearpage
+Now consider a nonparametric specification for 
+the relationship between prices and horsepower.
+Figure \ref{fig:dev_np_vs_horse_dev} 
+overlays the nonparametric estimate (shown in green) with the above in 
+Figure \ref{fig:dev_vs_horse_dev}.
+The pattern has more variation in slope but 
+closely follows the prediction from the quadratic model. 
+So far, it appears that the quadratic form
+is close enough.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_horse_dev}
+  \caption{Nonparametric Model for Tractor Prices: Excess Horsepower} \label{fig:dev_np_vs_horse_dev}
+\end{figure}
+
+ 
+
+\clearpage
+Finally, consider a set of nonparametric specifications for 
+the relationship between prices and horsepower.
+Figure \ref{fig:dev_np_vs_horse_dev_bw} 
+overlays other nonparametric estimates with the above in 
+Figure \ref{fig:dev_np_vs_horse_dev}.
+The points in orange and in magenta represent
+alternate models with different degrees of smoothing. 
+%
+When we estimated probability densities,
+we adjusted the bandwidth parameter to fit
+with different degrees of smoothness.
+The \texttt{loess} method used for the nonparametric method has a span parameter for this function.
+The default smoother \texttt{span} (bandwidth parameter) is 0.75.
+
+In the magenta points, with \texttt{span} parameter 0.1, the pattern has more variation in slope but 
+closely follows the prediction from the quadratic model. 
+The smoother curve in orange 
+even more closely represents a quadratic line. 
+Again, it appears that the quadratic form
+is close enough.
+Perhaps the result will be different for other continuous variables in the model.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_horse_dev_bw}
+  \caption{Nonparametric Model for Tractor Prices: Excess Horsepower} \label{fig:dev_np_vs_horse_dev_bw}
+\end{figure}
+
+
+
+
+
+\clearpage
+\subsection{Nonparametric Specification for Age}
+
+As above, first conduct FWL regressions 
+to reduce the problem to two dimensions. 
+The models shown in
+Table \ref{tab:reg_age_fwl}
+illustrate this possibility. 
+Model 1 is the same original model in 
+Table \ref{tab:reg_sq_horse}. 
+Model 2 is a regression omitting the age variable. 
+Model 3 is a regression to predict age with the other explanatory variables in Model 2.
+Finally, Model 4 shows the coefficient for age
+from a regression of the residuals of Model 2
+on the residuals from Model 3. 
+Notice that these coefficients match those in Model 1. 
+
+\input{../Tables/reg_age_fwl}
+
+\pagebreak 
+To illustrate the fit of the model, 
+Figure \ref{fig:dev_vs_age} shows a scatter plot 
+of the residual log prices on age. 
+The observations are shown in blue
+and the fitted values are shown in red.
+The variation in the fitted values results from the 
+fact that it is not plotted against the transformed excess age variable used in the regressions.
+Still, the linear pattern is apparent
+and appears to match the data. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_vs_age}
+  \caption{Linear-Quadratic Model for Tractor Prices} \label{fig:dev_vs_age}
+\end{figure}
+
+
+
+\pagebreak
+As a comparison, Figure \ref{fig:dev_vs_age_dev} 
+augments the above by showing the plot against the 
+residuals from the regression for age:
+the ``excess age'' of a tractor compared to what would be 
+expected given the other characteristics of the tractor. 
+Notice that this time the fit follows a straight line,
+since we have a single variable with no
+quadratic transformation.
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_vs_age_dev}
+  \caption{Linear-Quadratic Model for Tractor Prices: Excess Age} \label{fig:dev_vs_age_dev}
+\end{figure}
+
+\clearpage
+Now consider a nonparametric specification for 
+the relationship between prices and age.
+Figure \ref{fig:dev_np_vs_age_dev} 
+overlays the nonparametric estimate (shown in green) with the above in 
+Figure \ref{fig:dev_vs_age_dev}.
+The pattern has more variation in slope but 
+closely follows the prediction from the linear model. 
+Although the nonparametric estimate varies around the linear estimate,
+it appears that the linear form
+is a close enough approximation without the added complexity.
+Next, I will explore the remaining continuous variable.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_age_dev}
+  \caption{Nonparametric Model for Tractor Prices: Excess Age} \label{fig:dev_np_vs_age_dev}
+\end{figure}
+
+
+
+
+
+\clearpage
+\subsection{Nonparametric Specification for Engine Hours}
+
+As above, first conduct FWL regressions 
+to reduce the problem to two dimensions. 
+The models shown in
+Table \ref{tab:reg_eng_fwl}
+illustrate this possibility. 
+Model 1 is the same original model in 
+Table \ref{tab:reg_sq_horse}. 
+Model 2 is a regression omitting the age variable. 
+Model 3 is a regression to predict engine hours with the other explanatory variables in Model 2.
+Finally, Model 4 shows the coefficient for engine hours
+from a regression of the residuals of Model 2
+on the residuals from Model 3. 
+Notice that these coefficients match those in Model 1. 
+
+\input{../Tables/reg_eng_fwl}
+
+\pagebreak 
+To illustrate the fit of the model, 
+Figure \ref{fig:dev_vs_eng} shows a scatter plot 
+of the residual log prices on engine hours. 
+The observations are shown in blue
+and the fitted values are shown in red.
+The variation in the fitted values results from the 
+fact that it is not plotted against the transformed excess engine hours variable used in the regressions.
+Still, the linear pattern is apparent
+and appears to match the data. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_vs_eng}
+  \caption{Linear-Quadratic Model for Tractor Prices} \label{fig:dev_vs_eng}
+\end{figure}
+
+
+
+\pagebreak
+As a comparison, Figure \ref{fig:dev_np_vs_eng_dev} 
+augments the above by showing the plot against the 
+residuals from the regression for engine hours:
+the ``excess engine hours'' of a tractor compared to what would be 
+expected given the other characteristics of the tractor. 
+As with age, the fit follows a straight line,
+since we have a single variable with no
+quadratic transformation.
+% 
+I move directly to the nonparametric specification for 
+the relationship between prices and engine hours.
+Figure \ref{fig:dev_np_vs_eng_dev} 
+overlays the nonparametric estimate, shown in green. 
+The pattern has more variation in slope but 
+closely follows the prediction from the linear model. 
+Although the nonparametric estimate varies around the linear estimate,
+it appears that the linear form
+is also a close enough approximation, 
+just as was found for the age variable.
+
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_eng_dev}
+  \caption{Nonparametric Model for Tractor Prices: Excess Engine Hours} \label{fig:dev_np_vs_eng_dev}
+\end{figure}
+
+ 
+
+\pagebreak
+\section{Semiparametric Estimates}
+
+As I was building the above nonparametric models, 
+I stored the predictions and will now use them as variables in 
+linear models. 
+Table \ref{tab:reg_semipar} 
+shows the estimates from a set of models. 
+Model 1 is the benchmark linear model in 
+Table \ref{tab:reg_sq_horse}. 
+Model 2 is a semi-parametric model
+with a nonparametric fit on horsepower
+substituted in for the horsepower variables.
+Models 3 and 4 are semi-parametric models
+with nonparametric fits on age and engine hours, respectively.
+Model 5 is a maximally semiparametric model, 
+with nonparametric fits for all continuous variables. 
+For each of the single-variable semiparametric models, 
+the coefficients are near one
+and the fits are similar to the linear model. 
+Even with maximal flexibility, the fit of Model 5
+is not much better than the benchmark linear model. 
+Across all models, the adjusted $\bar{R}^2$ values are all hovering around 0.80. 
+All things considered, these are excellent models
+and the linear model is sufficient.
+
+\input{../Tables/reg_semipar}
+
+
+
+
+
+\pagebreak
+\section{Generalized Additive Model}
+
+\subsection{Linear Model}
+
+As an example of the output from the GAM specification, 
+I first estimated the model with no nonlinear terms, 
+which is essentially a linear regression. 
+
+\input{../Tables/reg_GAM_lin}
+
+\pagebreak
+\subsection{Semiparametric Model}
+
+
+Further investigating the results of the full semiparametric specification
+in Model 5 of Table \ref{tab:reg_semipar},
+I estimated the model with all three continuous variables specified as nonparametric functions. 
+The result was that 
+almost all the variables---both linear and nonlinear---were 
+statistically significant. 
+The only exception was a loss in significance of the diesel indicator. 
+
+
+\input{../Tables/reg_GAM_full}
+
+On the other hand, 
+the adjusted R-squared has not increased very much, 
+from 0.799 to 0.819 under this specification, 
+which may not justify the added complexity of the model.
+Perhaps more importantly, the coefficients on the 
+linear terms are very similar across models, 
+indicating that the models support similar conclusions relating to any business decision involving
+the John Deere premium. 
+With this second model, we have even more support for those conclusions
+and are certain that the conclusions are not 
+coincidental results of the
+functional form decisions for previous models.
+
+
+Perhaps as a middle ground, we can estimate a model with a 
+nonparametric specification for the horsepower variable alone, 
+since it seems to have a nonlinear relationship with value in either case. 
+This retains most of the predictive value of the maximally 
+semiparametric model and accommodates the 
+nonlinear relationship with value of horsepower. 
+
+\input{../Tables/reg_GAM_hp}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
