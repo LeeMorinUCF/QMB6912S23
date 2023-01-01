@@ -1,0 +1,116 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+{\noindent\bf Spring 2021 \hfill First Last}
+\vskip 16pt
+\centerline{\bf University of Central Florida}
+\centerline{\bf College of Business }
+\vskip 16pt
+\centerline{\bf QMB 6912}
+\centerline{\bf Capstone Project in Business Analytics}
+\vskip 10pt
+\centerline{\bf Problem Set \#3}
+\vskip 32pt
+\noindent
+% 
+\section{Data Description}
+% 
+By engaging an industry consultant to gather relevant and appropriate 
+information, your firm has been able to put together data concerning 248 
+different fly-fishing reels, over one-half of which are produced in the 
+United States, with the remainder being produced in Asia---either in China 
+or Korea.  These data are contained in the file {\tt FlyReels.csv}, which is
+available in the {\tt Data} folder.
+Each fly-fishing reel in the data set is a row, while the columns correspond 
+to the variables whose names and definitions are the following:
+\bigskip
+\begin{table}[ht]
+\centering
+\begin{tabular}{ll}
+  \hline
+    Variable & Definition \\
+  \hline
+
+    {\tt Name}        &product name (a string) \\ 
+    {\tt Brand}       &brand name (a string) \\ 
+    {\tt Weight}      &weight of reel in ounces (a real number) \\ 
+    {\tt Diameter}    &diameter of reel in inches (a real number) \\ 
+    {\tt Width}       &width of reel in inches (a real number) \\ 
+    {\tt Price}       &price of reel in dollars (a real number) \\ 
+    {\tt Sealed}      &whether the reel is sealed; {\tt "Yes"} versus
+                        {\tt "No"} (a string) \\ 
+    {\tt Country}     &country of manufacture, (a string) \\ 
+    {\tt Machined}    &whether the reel is machined versus cast;
+                        machined={\tt "Yes"}, \\ 
+                      &while cast={\tt "No"} (a string) \\ 
+  \hline
+\end{tabular}
+%\caption{Summary of Numeric Variables}
+%\label{tab:summary}
+\end{table}
+
+\bigskip
+\noindent
+I have downloaded the file {\tt FlyReels.csv}, 
+loaded the data described above into 
+\textsf{R}, 
+calculated the summary statistics for these data, 
+and finally, presented 
+these statistics in \LaTeX\ tables.
+These operations are all performed by the script 
+{\tt FlyReel\_Tables.R} in the {\tt Code} folder. 
+The script uses an \textsf{R} package called {\tt xtable} 
+to automate the
+production of the tables from a data frames in \textsf{R}.)
+
+\medskip
+\noindent
+I analyze the data in subsets, according to country of manufacture, 
+calculating the summary statistics for each subset and present these 
+statistics in the \LaTeX\ tables that follow.
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Summary by Country of Manufacture}
+
+Table \ref{tab:summ_by_country} lists summary statistics for numeric variables
+in separate columns for subsamples defined by the country of manufacture. 
+
+\input{../Tables/summ_by_country}
+
+
+\pagebreak
+\section{Country of Manufacture by Brand of Fly Reel}
+
+Table \ref{tab:country_by_brand} lists the frequencies of observations of 
+each brand of fly reel by country of manufacture. 
+
+\input{../Tables/country_by_brand}
+
+\pagebreak
+\section{Reel Design by Brand of Fly Reel}
+
+Table \ref{tab:design_by_brand} lists the frequencies of observations of 
+each brand of fly reel across two categorical variables:
+whether the reel is sealed
+and whether the reel is machined versus cast. 
+
+
+\input{../Tables/design_by_brand}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

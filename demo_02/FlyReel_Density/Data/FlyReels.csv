@@ -1,0 +1,248 @@
+Tyro 300,Cheeky,4.6,3,0.8,129,No,China,No
+Tyro 350,Cheeky,5.3,3.5,1.1,139,No,China,No
+Tyro 375,Cheeky,5.6,3.75,1.2,149,No,China,No
+Limitless 325,Cheeky,5.8,3.25,0.8,325,Yes,China,Yes
+Limitless 375,Cheeky,6.6,3.75,1,375,Yes,China,Yes
+Limitless 425,Cheeky,7.5,4.25,1.1,425,Yes,China,Yes
+Limitless 475,Cheeky,10.9,4.75,1.3,475,Yes,China,Yes
+Limitless 525,Cheeky,12.8,5.25,1.4,525,Yes,China,Yes
+Boost 325,Cheeky,4.5,3.25,0.8,209,No,China,No
+Boost 350,Cheeky,5.1,3.5,1,219,No,China,No
+Boost 400,Cheeky,7,4,1.1,229,No,China,No
+Source 2,Allen,5.25,3.39,0.98,69,No,Korea,No
+ATS 1,Allen,4.1,2.95,0.79,99,No,Korea,Yes
+ATS 2,Allen,4.5,3.39,0.98,104,No,Korea,Yes
+ATS 3,Allen,4.8,3.68,1,109,No,Korea,Yes
+Trout II 1,Allen,5.1,3.23,1.06,139,No,Korea,Yes
+Trout II 2,Allen,5.4,3.68,1.06,144,No,Korea,Yes
+Alpha III 3,Allen,7.6,3.85,1,159,No,Korea,Yes
+Alpha III 4,Allen,8.1,4.25,1.2,164,No,Korea,Yes
+Kraken 2,Allen,5.7,3.56,1.12,219,Yes,Korea,Yes
+Kraken 3,Allen,6.25,3.81,1.18,229,Yes,Korea,Yes
+Kraken 4,Allen,8.05,4.1,1.38,239,Yes,Korea,Yes
+Kraken 5,Allen,8.9,4.45,1.58,249,Yes,Korea,Yes
+Atlas 2,Allen,5.5,3.5,1,329,Yes,Korea,Yes
+Atlas 3,Allen,6.35,4.2,1.1,339,Yes,Korea,Yes
+Atlas 4,Allen,7.4,4.4,1.2,349,Yes,Korea,Yes
+Kraken XLA 3,Allen,8.75,4.5,1.1,339,Yes,Korea,Yes
+Kraken XLA 4,Allen,9.15,5,1.1,349,Yes,Korea,Yes
+Kraken XLA 5,Allen,10.3,5.5,1.3,359,Yes,Korea,Yes
+Omega 2,Allen,5.7,3.5,1,525,Yes,USA,Yes
+Omega 3,Allen,7.98,4.17,1.1,575,Yes,USA,Yes
+Omega 4,Allen,8.71,4.4,1.18,625,Yes,USA,Yes
+Omega 5,Allen,9.17,4.54,1.32,675,Yes,USA,Yes
+Omega XLA 3,Allen,9.25,4.5,1.1,625,Yes,USA,Yes
+Omega XLA 4,Allen,9.85,5,1.1,675,Yes,USA,Yes
+Omega XLA 5,Allen,11.15,5.43,1.28,725,Yes,USA,Yes
+Speedster 1,Waterworks-Lamson,3.4,3.1,0.88,299.99,Yes,USA,Yes
+Speedster 1.5,Waterworks-Lamson,3.9,3.5,0.95,299.99,Yes,USA,Yes
+Speedster 2,Waterworks-Lamson,4.2,3.75,0.95,299.99,Yes,USA,Yes
+Speedster 3,Waterworks-Lamson,4.7,4,1.05,329.99,Yes,USA,Yes
+Speedster 3.5,Waterworks-Lamson,5.7,4.38,1.15,349.99,Yes,USA,Yes
+Speedster 4,Waterworks-Lamson,8.5,4.82,1.25,399.99,Yes,USA,Yes
+Guru 1,Waterworks-Lamson,3.87,3.09,0.9,229.99,Yes,USA,Yes
+Guru 1.5,Waterworks-Lamson,4.27,3.35,1.01,229.99,Yes,USA,Yes
+Guru 2,Waterworks-Lamson,4.58,3.5,1,229.99,Yes,USA,Yes
+Guru 3,Waterworks-Lamson,5.08,3.75,1.15,249.99,Yes,USA,Yes
+Guru 3.5,Waterworks-Lamson,5.59,4,1.19,259.99,Yes,USA,Yes
+Guru 4,Waterworks-Lamson,7.08,4.41,1.32,269.99,Yes,USA,Yes
+Cobalt 6,Waterworks-Lamson,5,3.79,1.07,629.99,Yes,USA,Yes
+Cobalt 8,Waterworks-Lamson,7,4.25,1,649.99,Yes,USA,Yes
+Cobalt 10,Waterworks-Lamson,10.3,4.53,1.08,749.99,Yes,USA,Yes
+Cobalt 12,Waterworks-Lamson,11.1,4.75,1.25,799.99,Yes,USA,Yes
+Force 1,Waterworks-Lamson,2.82,3.8,0.95,499.99,Yes,USA,Yes
+Force 2,Waterworks-Lamson,3.31,4.1,1,499.99,Yes,USA,Yes
+Force 3,Waterworks-Lamson,3.7,4.4,1.28,549.99,Yes,USA,Yes
+Liquid 1.5,Waterworks-Lamson,4.29,3.34,0.99,99.99,Yes,Korea,No
+Liquid 2,Waterworks-Lamson,4.54,3.61,1,99.99,Yes,Korea,No
+Liquid 3.5,Waterworks-Lamson,5.49,3.85,1.14,109.99,Yes,Korea,No
+Liquid 4,Waterworks-Lamson,7.07,4.65,1.37,129.99,Yes,Korea,No
+LS 1.5,Waterworks-Lamson,3.72,3.38,0.95,359.99,Yes,USA,Yes
+LS 2,Waterworks-Lamson,4.19,3.63,0.98,359.99,Yes,USA,Yes
+LS 3,Waterworks-Lamson,5.08,3.88,1.11,379.99,Yes,USA,Yes
+LS 3.5,Waterworks-Lamson,5.72,4.13,1.15,399.99,Yes,USA,Yes
+LS 4,Waterworks-Lamson,8.06,4.63,1.3,439.99,Yes,USA,Yes
+Remix 1.5,Waterworks-Lamson,4.29,3.34,0.99,179.99,Yes,Korea,No
+Remix 2,Waterworks-Lamson,4.54,3.61,1,179.99,Yes,Korea,No
+Remix 3.5,Waterworks-Lamson,5.49,3.85,1.14,189.99,Yes,Korea,No
+Remix 4,Waterworks-Lamson,7.07,4.65,1.37,199.99,Yes,Korea,No
+Brookie 0/1,Galvan,2.54,2.7,0.75,220,No,USA,Yes
+Brookie 2/3,Galvan,2.72,2.95,0.85,230,No,USA,Yes
+Brookie 3/4,Galvan,2.97,3.2,0.85,240,No,USA,Yes
+Brookie 4/5,Galvan,3.2,3.45,0.85,250,No,USA,Yes
+Rush Light 3,Galvan,4.5,3,0.85,240,No,USA,Yes
+Rush Light 4,Galvan,4.8,3.25,0.85,260,No,USA,Yes
+Rush Light 5,Galvan,5.2,3.5,0.9,280,No,USA,Yes
+Rush Light 6,Galvan,5.5,3.75,0.95,300,No,USA,Yes
+Rush Light 8,Galvan,8.1,4,1.25,345,No,USA,Yes
+Rush Light 10,Galvan,8.8,4.25,1.35,370,No,USA,Yes
+Rush Light 12,Galvan,9.2,4.5,1.35,400,No,USA,Yes
+Grip 8,Galvan,7.8,4,1.25,535,Yes,USA,Yes
+Grip 10,Galvan,8.7,4.25,1.35,585,Yes,USA,Yes
+Grip 12,Galvan,9.5,4.5,1.35,635,Yes,USA,Yes
+Torque 3,Galvan,4.2,3,0.85,345,No,USA,Yes
+Torque 4,Galvan,4.5,3.25,0.85,365,No,USA,Yes
+Torque 5,Galvan,4.8,3.5,0.9,385,No,USA,Yes
+Torque 6,Galvan,5.2,3.75,0.95,410,No,USA,Yes
+Torque 7,Galvan,6.3,3.875,1.1,420,No,USA,Yes
+Torque 8,Galvan,7.6,4,1.25,430,No,USA,Yes
+Torque 9,Galvan,7.9,4.125,1.25,455,No,USA,Yes
+Torque 10,Galvan,8.2,4.25,1.35,480,No,USA,Yes
+Torque 12,Galvan,8.6,4.5,1.35,535,No,USA,Yes
+V-50,3-TAND,4.6,3.625,0.95,319.95,Yes,China,Yes
+V-80,3-TAND,7.7,4.6,1.05,429.95,Yes,China,Yes
+V-130,3-TAND,11,5.25,1.1,489.95,Yes,China,Yes
+TF-20,3-TAND,3,2.5,0.79,199.95,Yes,China,Yes
+TF-40,3-TAND,3.5,3,0.83,209.95,Yes,China,Yes
+TF-50,3-TAND,3.9,3.38,0.91,219.95,Yes,China,Yes
+TF-70,3-TAND,4.6,3.75,0.98,229.95,Yes,China,Yes
+TX-80,3-TAND,7.6,4.25,1.05,324.95,Yes,China,Yes
+T-50,3-TAND,7.8,3.38,1.18,299.95,Yes,China,Yes
+T-70,3-TAND,8.3,3.8,1.18,349.95,Yes,China,Yes
+T-90,3-TAND,8.4,3.8,1.18,369.95,Yes,China,Yes
+T-100,3-TAND,9.5,4.25,1.35,449.95,Yes,China,Yes
+T-120,3-TAND,9.5,4.25,1.35,469.95,Yes,China,Yes
+T-130,3-TAND,11.6,4.9,1.47,549.95,Yes,China,Yes
+T-150,3-TAND,12.9,5,1.57,599.95,Yes,China,Yes
+T1 4/6,Taylor,4.5,3.622,0.944882,240,Yes,Korea,Yes
+T1 6/8,Taylor,5.45,4.09449,0.944882,260,Yes,Korea,Yes
+Revolution 4/6,Taylor,5.6,3.74016,0.984252,360,Yes,Korea,Yes
+Revolution 7/9,Taylor,7,4.33071,1.1811,380,Yes,Korea,Yes
+Revolution 10/12,Taylor,7.8,5,1.25984,400,Yes,Korea,Yes
+Array V2 2/4,Taylor,5,3.34646,0.984252,270,Yes,Korea,Yes
+Array V2 4/6,Taylor,5.55,3.622,1.02362,280,Yes,Korea,Yes
+Array V2 6/8,Taylor,6.5,3.85827,1.06299,290,Yes,Korea,Yes
+Array V2 8/10,Taylor,7,4.17323,1.10236,300,Yes,Korea,Yes
+Enigma 2/4,Taylor,4,3.34646,0.866142,179.99,Yes,Korea,Yes
+Enigma 4/6,Taylor,4.8,3.74016,0.984252,184.99,Yes,Korea,Yes
+Enigma 6/8,Taylor,5.6,4.17323,0.944882,189.99,Yes,Korea,Yes
+300 Mid Arbor,Aspen,5.6,3,0.94,200,No,USA,Yes
+325 Mid Arbor,Aspen,5.8,3.25,0.94,220,No,USA,Yes
+350 Mid Arbor,Aspen,6,3.5,0.94,240,No,USA,Yes
+400 Mid Arbor,Aspen,7,4,0.94,280,No,USA,Yes
+325 Large Arbor,Aspen,6.1,3.25,0.94,230,No,USA,Yes
+350 Large Arbor,Aspen,6.3,3.5,0.94,250,No,USA,Yes
+400 Large Arbor,Aspen,7.3,4,0.94,290,No,USA,Yes
+450 Large Arbor,Aspen,8.9,4.5,1.14,350,No,USA,Yes
+BASE 2/3,ECHO,4.7,3,0.9,34.99,No,Korea,No
+BASE 4/5,ECHO,5.1,3.5,0.9,34.99,No,Korea,No
+BASE 6/8,ECHO,6,3.9,1.1,34.99,No,Korea,No
+ION 2/3,ECHO,4.8,2.9,0.9,79.99,No,Korea,No
+ION 4/5,ECHO,5.3,3.4,1.2,79.99,No,Korea,No
+ION 6/7,ECHO,5.5,3.7,1.2,79.99,No,Korea,No
+ION 7/9,ECHO,7.9,3.9,1.3,99.99,No,Korea,No
+ION 8/10,ECHO,8.3,3.9,1.5,99.99,No,Korea,No
+ION 10/12,ECHO,9.3,4.7,1.5,99.99,No,Korea,No
+Bravo 7/9,ECHO,8.5,4.25,1.25,139.99,Yes,Korea,No
+Bravo 8/10,ECHO,8.8,4.5,1.35,139.99,Yes,Korea,No
+Bravo 10/12,ECHO,9.2,4.75,1.5,139.99,Yes,Korea,No
+2 Plus Gen 2 Finatic,Hatch,3.2,3,0.875,430,Yes,USA,Yes
+3 Plus Gen 2 Finatic,Hatch,4.8,3.25,0.825,450,Yes,USA,Yes
+4 Plus Gen 2 Finatic,Hatch,4.9,3.425,0.9,500,Yes,USA,Yes
+5 Plus Gen 2 Finatic ,Hatch,6.2,3.625,0.9375,550,Yes,USA,Yes
+7 Plus Gen 2 Finatic,Hatch,8.4,4,1.125,650,Yes,USA,Yes
+9 Plus Gen 2 Finatic,Hatch,10.3,4.25,1.375,800,Yes,USA,Yes
+11 Plus Gen 2 Finatic,Hatch,11.28,4.625,1.5,875,Yes,USA,Yes
+12 Plus Gen 2 Finatic,Hatch,14.8,5,1.6875,950,Yes,USA,Yes
+Power I,TFO,4.4,3.5,0.85,399.95,Yes,Korea,Yes
+Power II,TFO,7.7,3.8,0.95,449.95,Yes,Korea,Yes
+Power III,TFO,9.8,4.4,1.15,499.95,Yes,Korea,Yes
+BVK 0,TFO,2.1,2.75,1,159.95,Yes,Korea,Yes
+BVK I,TFO,4.6,3.3,1.3,239.95,Yes,Korea,Yes
+BVK II,TFO,4.9,3.75,1.3,249.95,Yes,Korea,Yes
+BVK III,TFO,5.2,4.1,1.3,259.95,Yes,Korea,Yes
+BVK III+,TFO,6.2,4.3,1.3,299.95,Yes,Korea,Yes
+Atoll I,TFO,7.6,3.9,1.3,399.95,Yes,Korea,Yes
+Atoll II,TFO,7.9,4.25,1.3,439.95,Yes,Korea,Yes
+Atoll III,TFO,8.6,4.5,1.3,469.95,Yes,Korea,Yes
+Atoll IV,TFO,9.15,4.75,1.5,499.95,Yes,Korea,Yes
+NXT LA I,TFO,4.7,3.37,1.37,79.95,No,Korea,No
+NXT LA II,TFO,5.3,3.68,1.37,84.95,No,Korea,No
+Prism 5/6,TFO,5.5,3,1.25,99.95,No,Korea,No
+Prism 7/8,TFO,5.8,3.38,1.12,99.95,No,Korea,No
+ TR 2/3,Abel,4.19,3.06,0.775,395,No,USA,Yes
+ TR 4/5,Abel,4.65,3.29,0.775,395,No,USA,Yes
+ SDS 7/8,Abel,9.07,3.86,1.06,895,Yes,USA,Yes
+ SDS 9/10,Abel,9.48,4.21,1.165,995,Yes,USA,Yes
+ SDS 11/12,Abel,9.95,4.54,1.165,1095,Yes,USA,Yes
+ SDF 4/5,Abel,5.02,3.26,1.12,695,Yes,USA,Yes
+ SDF 5/6,Abel,5.42,3.61,1.12,755,Yes,USA,Yes
+ SDF 6/7,Abel,5.63,3.735,1.15,795,Yes,USA,Yes
+ Super 4/5,Abel,5.92,3.3,0.8,595,No,USA,Yes
+ Super 5/6,Abel,6.23,3.65,0.825,655,No,USA,Yes
+ Super 6/7,Abel,6.56,3.775,0.85,695,No,USA,Yes
+ Super 7/8,Abel,6.74,3.9,0.915,795,No,USA,Yes
+ Super 9/10,Abel,8,4.22,0.975,895,No,USA,Yes
+ Super 11/12,Abel,10.05,4.7,1.075,995,No,USA,Yes
+ Super 12W,Abel,10.06,4.7,1.25,995,No,USA,Yes
+CCF-X2 6/8,Nautilus,7.6,4,1,435,Yes,USA,Yes
+CCF-X2 8/10,Nautilus,8.6,4.5,1,535,Yes,USA,Yes
+CCF-X2 10/12,Nautilus,8.9,4.5,1,550,Yes,USA,Yes
+CCF-X2 Silver King,Nautilus,9.1,5,1,695,Yes,USA,Yes
+X 3/4,Nautilus,3.8,3.25,1,275,No,USA,Yes
+X 4/5,Nautilus,4.1,3.5,1,295,No,USA,Yes
+X 6/7,Nautilus,4.7,4,1,345,No,USA,Yes
+X 8/9,Nautilus,4.7,4,1,395,No,USA,Yes
+NV-G 5/6,Nautilus,5.1,3.5,1.09,590,Yes,USA,Yes
+NV-G 6/7,Nautilus,5.7,3.75,1.09,635,Yes,USA,Yes
+NV-G 7/8,Nautilus,6.6,4,1.09,685,Yes,USA,Yes
+NV-G 8/9,Nautilus,7.2,4.25,1.09,725,Yes,USA,Yes
+NV-G 9/10,Nautilus,8.3,4.5,1.2,825,Yes,USA,Yes
+NV MONSTER,Nautilus,9.9,5,1.3,945,Yes,USA,Yes
+NV MONSTER G 10/11,Nautilus,9.9,5,1.3,945,Yes,USA,Yes
+Cimarron 3/4,Ross,4.77,3.125,0.97,215,No,USA,Yes
+Cimarron 4/5,Ross,4.85,3.25,0.97,220,No,USA,Yes
+Cimarron 5/6,Ross,5.11,3.5,1.01,225,No,USA,Yes
+Cimarron 7/8,Ross,6.82,3.875,1.09,265,No,USA,Yes
+Cimarron 9/10,Ross,7.54,4.25,1.17,295,No,USA,Yes
+Evolution LTX 3/4,Ross,4.2,3.42,0.97,385,No,USA,Yes
+Evolution LTX 4/5,Ross,4.29,3.48,0.97,385,No,USA,Yes
+Evolution LTX 5/6,Ross,4.65,3.83,1.08,395,No,USA,Yes
+Evolution LTX 7/8,Ross,4.91,4.03,1.1,395,No,USA,Yes
+Gunnison 4/5,Ross,6.29,3.48,0.97,385,No,USA,Yes
+Gunnison 5/6,Ross,6.7,3.83,1.08,395,No,USA,Yes
+Gunnison 7/8,Ross,7.36,4.03,1.1,395,No,USA,Yes
+Evolution R Salt 7/8,Ross,7.51,4.08,1.35,595,Yes,USA,Yes
+Evolution R Salt  9/10,Ross,8,4.43,1.42,695,Yes,USA,Yes
+Evolution R Salt  11/12,Ross,8.85,4.75,1.5,795,Yes,USA,Yes
+Evolution R 3/4,Ross,4.64,3.43,0.97,455,Yes,USA,Yes
+Evolution R 4/5,Ross,4.82,3.53,0.97,465,Yes,USA,Yes
+Evolution R 5/6,Ross,5.03,3.78,0.97,475,Yes,USA,Yes
+Evolution R 7/8,Ross,5.18,4.03,0.97,495,Yes,USA,Yes
+Colorado LT 0/3,Ross,2.86,3.2,0.87,285,No,USA,Yes
+Colorado LT 3/4,Ross,2.91,3.325,0.87,290,No,USA,Yes
+Colorado LT 4/5,Ross,2.98,3.45,0.87,295,No,USA,Yes
+Animas 3/4,Ross,4.3,3.125,0.97,250,No,USA,Yes
+Animas 4/5,Ross,4.5,3.25,0.97,260,No,USA,Yes
+Animas 5/6,Ross,4.9,3.5,1.01,275,No,USA,Yes
+Animas 7/8,Ross,7,3.875,1.09,310,No,USA,Yes
+Animas 9/10,Ross,8.5,4.25,1.17,335,No,USA,Yes
+Animas 11/12,Ross,9.5,4.625,1.19,365,No,USA,Yes
+Signature 5/6,Tibor,7,3.25,1.412,635,Yes,USA,Yes
+The Everglades,Tibor,8.5,3.75,0.88,585,No,USA,Yes
+The Gulfstream,Tibor,10.9,4.375,1.375,675,No,USA,Yes
+Tail Water CL,Tibor,4.5,3.125,1,350,No,USA,Yes
+Opti Creek,Loop,3.985962,3.3464585,0.787402,545,Yes,Korea,Yes
+Opti Dry Fly,Loop,4.40925,4.0157502,0.787402,585,Yes,Korea,Yes
+Opti Runner,Loop,8.218842,4.5275615,0.9842525,652,Yes,Korea,Yes
+Opti Speedrunner,Loop,9.100692,5.1574831,0.9842525,705,Yes,Korea,Yes
+Opti Megaloop,Loop,10.22946,5.1574831,1.2598432,732,Yes,Korea,Yes
+Opti Big,Loop,15.097272,4.9606326,1.4960638,839,Yes,Korea,Yes
+Evotec FW 3/5,Loop,4.86781,3.4252,1.082677,425,Yes,Korea,Yes
+Evotec FW 4/6,Loop,4.93835,3.4252,1.082677,439,Yes,Korea,Yes
+Evotec FW 5/7,Loop,4.93835,3.4252,1.082677,452,Yes,Korea,Yes
+Evotec LW 5/8,Loop,6.34931,3.8189,1.397638,479,Yes,Korea,Yes
+Evotec LW 6/8,Loop,7.93664,3.8189,1.397638,492,Yes,Korea,Yes
+Evotec LW 7/9,Loop,7.93664,3.8189,1.397638,505,Yes,Korea,Yes
+Evotec HD 8/10,Loop,8.71267,4.37008,1.397638,545,Yes,Korea,Yes
+Evotec HD 9/13,Loop,8.71267,4.37008,1.397638,559,Yes,Korea,Yes
+Mirage IV,Orvis,8.9,4.25,1.12,649,Yes,USA,Yes
+Hydros SL IV,Orvis,7.4,4.25,0.96,239,Yes,China,Yes
+RX 2,Bauer,3.8,3.25,1.218,525,Yes,USA,Yes
+RX 5,Bauer,7.8,4,1.08,755,Yes,USA,Yes
+Spectrum Max 7/8,Sage,7.5,4.125,1.09,499,Yes,Korea,Yes
+2250,Sage,5.25,3.625,0.99,139,No,Korea,Yes
+2280,Sage,6.625,4,1.05,149,No,Korea,Yes
+Domain 5/6,Sage,6.1875,3.625,0.94,349,Yes,Korea,Yes
+Spectrum 7/8,Sage,6.375,4,1.02,299,Yes,Korea,Yes
+Spectrum LT 7/8,Sage,6,4,1.03,399,Yes,Korea,Yes

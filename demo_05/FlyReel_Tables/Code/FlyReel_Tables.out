@@ -1,0 +1,229 @@
+[1] "Summary of FlyReels.csv dataset:"
+     Name              Brand               Weight          Diameter    
+ Length:248         Length:248         Min.   : 2.100   Min.   :2.500  
+ Class :character   Class :character   1st Qu.: 4.800   1st Qu.:3.473  
+ Mode  :character   Mode  :character   Median : 6.144   Median :3.850  
+                                       Mean   : 6.564   Mean   :3.900  
+                                       3rd Qu.: 8.205   3rd Qu.:4.250  
+                                       Max.   :15.097   Max.   :5.500  
+     Width           Price            Sealed            Country         
+ Min.   :0.750   Min.   :  34.99   Length:248         Length:248        
+ 1st Qu.:0.970   1st Qu.: 239.00   Class :character   Class :character  
+ Median :1.080   Median : 360.00   Mode  :character   Mode  :character  
+ Mean   :1.098   Mean   : 397.24                                        
+ 3rd Qu.:1.250   3rd Qu.: 525.00                                        
+ Max.   :1.688   Max.   :1095.00                                        
+   Machined        
+ Length:248        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+[1] "Summarizing Numeric Variables"
+[1] "Summary by Country of Manufacture:"
+              China    Korea    USA     
+Min. Weight   " 3.000" " 7.296" "12.900"
+Mean Weight   " 2.100" " 6.500" "15.097"
+Max. Weight   " 2.540" " 6.459" "14.800"
+Min. Diameter "2.500"  "3.935"  "5.250" 
+Mean Diameter "2.750"  "3.925"  "5.500" 
+Max. Diameter "2.700"  "3.878"  "5.430" 
+Min. Width    "0.790"  "1.093"  "1.570" 
+Mean Width    "0.7874" "1.1434" "1.5800"
+Max. Width    "0.750"  "1.070"  "1.688" 
+Min. Price    "129.0"  "331.6"  "600.0" 
+Mean Price    " 34.99" "280.22" "839.00"
+Max. Price    " 200.0" " 484.9" "1095.0"
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Thu Jan 27 21:16:18 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlll}
+  \hline
+ & China & Korea & USA \\ 
+  \hline
+Min. Weight &  3.000 &  7.296 & 12.900 \\ 
+  Mean Weight &  2.100 &  6.500 & 15.097 \\ 
+  Max. Weight &  2.540 &  6.459 & 14.800 \\ 
+  Min. Diameter & 2.500 & 3.935 & 5.250 \\ 
+  Mean Diameter & 2.750 & 3.925 & 5.500 \\ 
+  Max. Diameter & 2.700 & 3.878 & 5.430 \\ 
+  Min. Width & 0.790 & 1.093 & 1.570 \\ 
+  Mean Width & 0.7874 & 1.1434 & 1.5800 \\ 
+  Max. Width & 0.750 & 1.070 & 1.688 \\ 
+  Min. Price & 129.0 & 331.6 & 600.0 \\ 
+  Mean Price &  34.99 & 280.22 & 839.00 \\ 
+  Max. Price &  200.0 &  484.9 & 1095.0 \\ 
+   \hline
+\end{tabular}
+\caption{Summary by Country of Manufacture} 
+\label{tab:summ_by_country}
+\end{table}
+[1] "Summarizing Categorical Variables"
+
+           3-TAND              Abel             Allen             Aspen 
+               15                15                25                 8 
+            Bauer            Cheeky              ECHO            Galvan 
+                2                11                12                23 
+            Hatch              Loop          Nautilus             Orvis 
+                8                14                15                 2 
+             Ross              Sage            Taylor               TFO 
+               28                 6                12                16 
+            Tibor Waterworks-Lamson 
+                4                32 
+
+ No Yes 
+ 94 154 
+
+China Korea   USA 
+   27    86   135 
+
+ No Yes 
+ 31 217 
+                   
+                    No Yes
+  3-TAND             0  15
+  Abel               9   6
+  Allen              8  17
+  Aspen              8   0
+  Bauer              0   2
+  Cheeky             6   5
+  ECHO               9   3
+  Galvan            20   3
+  Hatch              0   8
+  Loop               0  14
+  Nautilus           4  11
+  Orvis              0   2
+  Ross              21   7
+  Sage               2   4
+  Taylor             0  12
+  TFO                4  12
+  Tibor              3   1
+  Waterworks-Lamson  0  32
+                   
+                    China Korea USA
+  3-TAND               15     0   0
+  Abel                  0     0  15
+  Allen                 0    18   7
+  Aspen                 0     0   8
+  Bauer                 0     0   2
+  Cheeky               11     0   0
+  ECHO                  0    12   0
+  Galvan                0     0  23
+  Hatch                 0     0   8
+  Loop                  0    14   0
+  Nautilus              0     0  15
+  Orvis                 1     0   1
+  Ross                  0     0  28
+  Sage                  0     6   0
+  Taylor                0    12   0
+  TFO                   0    16   0
+  Tibor                 0     0   4
+  Waterworks-Lamson     0     8  24
+                   
+                    No Yes
+  3-TAND             0  15
+  Abel               0  15
+  Allen              1  24
+  Aspen              0   8
+  Bauer              0   2
+  Cheeky             6   5
+  ECHO              12   0
+  Galvan             0  23
+  Hatch              0   8
+  Loop               0  14
+  Nautilus           0  15
+  Orvis              0   2
+  Ross               0  28
+  Sage               0   6
+  Taylor             0  12
+  TFO                4  12
+  Tibor              0   4
+  Waterworks-Lamson  8  24
+[1] "Country of Manufacture by Brand of Fly Reel"
+                  Total China Korea USA Unsealed Sealed Cast Machined
+3-TAND               15    15     0   0        0     15    0       15
+Abel                 15     0     0  15        9      6    0       15
+Allen                25     0    18   7        8     17    1       24
+Aspen                 8     0     0   8        8      0    0        8
+Bauer                 2     0     0   2        0      2    0        2
+Cheeky               11    11     0   0        6      5    6        5
+ECHO                 12     0    12   0        9      3   12        0
+Galvan               23     0     0  23       20      3    0       23
+Hatch                 8     0     0   8        0      8    0        8
+Loop                 14     0    14   0        0     14    0       14
+Nautilus             15     0     0  15        4     11    0       15
+Orvis                 2     1     0   1        0      2    0        2
+Ross                 28     0     0  28       21      7    0       28
+Sage                  6     0     6   0        2      4    0        6
+Taylor               12     0    12   0        0     12    0       12
+TFO                  16     0    16   0        4     12    4       12
+Tibor                 4     0     0   4        3      1    0        4
+Waterworks-Lamson    32     0     8  24        0     32    8       24
+Totals              248    27    86 135       94    154   31      217
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Thu Jan 27 21:16:18 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & China & Korea & USA & Total \\ 
+  \hline
+3-TAND & 15 & 0 & 0 & 15 \\ 
+  Abel & 0 & 0 & 15 & 15 \\ 
+  Allen & 0 & 18 & 7 & 25 \\ 
+  Aspen & 0 & 0 & 8 & 8 \\ 
+  Bauer & 0 & 0 & 2 & 2 \\ 
+  Cheeky & 11 & 0 & 0 & 11 \\ 
+  ECHO & 0 & 12 & 0 & 12 \\ 
+  Galvan & 0 & 0 & 23 & 23 \\ 
+  Hatch & 0 & 0 & 8 & 8 \\ 
+  Loop & 0 & 14 & 0 & 14 \\ 
+  Nautilus & 0 & 0 & 15 & 15 \\ 
+  Orvis & 1 & 0 & 1 & 2 \\ 
+  Ross & 0 & 0 & 28 & 28 \\ 
+  Sage & 0 & 6 & 0 & 6 \\ 
+  Taylor & 0 & 12 & 0 & 12 \\ 
+  TFO & 0 & 16 & 0 & 16 \\ 
+  Tibor & 0 & 0 & 4 & 4 \\ 
+  Waterworks-Lamson & 0 & 8 & 24 & 32 \\ 
+  Totals & 27 & 86 & 135 & 248 \\ 
+   \hline
+\end{tabular}
+\caption{Country of Manufacture by Brand of Fly Reel} 
+\label{tab:country_by_brand}
+\end{table}
+[1] "Reel Design by Brand of Fly Reel"
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Thu Jan 27 21:16:18 2022
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrrr}
+  \hline
+ & Unsealed & Sealed & Cast & Machined & Total \\ 
+  \hline
+3-TAND & 0 & 15 & 0 & 15 & 15 \\ 
+  Abel & 9 & 6 & 0 & 15 & 15 \\ 
+  Allen & 8 & 17 & 1 & 24 & 25 \\ 
+  Aspen & 8 & 0 & 0 & 8 & 8 \\ 
+  Bauer & 0 & 2 & 0 & 2 & 2 \\ 
+  Cheeky & 6 & 5 & 6 & 5 & 11 \\ 
+  ECHO & 9 & 3 & 12 & 0 & 12 \\ 
+  Galvan & 20 & 3 & 0 & 23 & 23 \\ 
+  Hatch & 0 & 8 & 0 & 8 & 8 \\ 
+  Loop & 0 & 14 & 0 & 14 & 14 \\ 
+  Nautilus & 4 & 11 & 0 & 15 & 15 \\ 
+  Orvis & 0 & 2 & 0 & 2 & 2 \\ 
+  Ross & 21 & 7 & 0 & 28 & 28 \\ 
+  Sage & 2 & 4 & 0 & 6 & 6 \\ 
+  Taylor & 0 & 12 & 0 & 12 & 12 \\ 
+  TFO & 4 & 12 & 4 & 12 & 16 \\ 
+  Tibor & 3 & 1 & 0 & 4 & 4 \\ 
+  Waterworks-Lamson & 0 & 32 & 8 & 24 & 32 \\ 
+  Totals & 94 & 154 & 31 & 217 & 248 \\ 
+   \hline
+\end{tabular}
+\caption{Reel Design by Brand of Fly Reel} 
+\label{tab:design_by_brand}
+\end{table}
