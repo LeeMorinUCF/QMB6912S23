@@ -14,8 +14,8 @@
 #
 ##################################################
 #
-# Tractor_Price_Density analyzes the prices of fly reels,
-# the dependent variable in the FlyReels.csv dataset.
+# Tractor_Price_Density analyzes the prices of used tractors,
+# the dependent variable in the TRACTOR7.csv dataset.
 # The output includes plots of the histogram
 # and kernel-smoothed density plots.
 #
@@ -35,7 +35,7 @@ rm(list=ls(all=TRUE))
 
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S22/demo_04/Tractor_Density'
+# wd_path <- '~/GitHub/QMB6912S23/demo_02/Tractor_Density'
 # setwd(wd_path)
 
 # Set data directory.
