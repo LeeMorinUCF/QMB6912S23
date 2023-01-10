@@ -36,6 +36,7 @@ rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
 # wd_path <- '~/GitHub/QMB6912S23/demo_04/Tractor_Tables'
+# wd_path <- '~/Teaching/UCF_BA_Capstones/QMB6912_Spring_2023/GitHub/QMB6912S23/demo_04/Tractor_Tables'
 # setwd(wd_path)
 
 
@@ -70,20 +71,9 @@ print(summary(tractor_sales))
 # Make sure there are no problems with the data.
 
 
-
-
-##################################################
-##################################################
-##################################################
-# Change code to analyze tractor prices.
-##################################################
-##################################################
-##################################################
-
-
-
-
-
+# Inspect the types of variables.
+lapply(tractor_sales, class)
+# All are integer but many are logical or numeric but stored as integers.
 
 
 
@@ -100,21 +90,40 @@ print('Summary by make:')
 #--------------------------------------------------
 
 # Summarize numeric variables by make: John Deere or other.
-country_sum <- data.frame(Country = unique(tractor_sales$Country))
-for (var_name in colnames(flyreels)[lapply(flyreels, class) == 'numeric']) {
+johndeere_sum <- data.frame(johndeere = unique(tractor_sales$johndeere))
+
+# Select the list of numeric variables to analyze.
+# Inspect the types of variables.
+lapply(tractor_sales, class)
+# All are integer but many are logical or numeric but stored as integers.
+
+# For the purpose of tabulating data, we can select whatever variables are of interest.
+tab_var_list <- colnames(tractor_sales)[c(1:4)]
+# All numeric variables, excluding indicators and the seasons, which we will investigate separately.
+
+
+for (var_name in tab_var_list) {
 
   col_names <- sprintf('%s %s', c('Min.', 'Mean', 'Max.'), var_name)
-  # country_sum[, col_names] <- tapply(tractor_sales$Price, tractor_sales$Country,
-  #                                    function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
-  country_sum[, col_names] <- tapply(tractor_sales[, var_name], tractor_sales$Country,
-                                     function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
+
+  # Calculate the selected statistics.
+  tab_stats <- tapply(tractor_sales[, var_name], tractor_sales$johndeere,
+                      function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
+
+  # Assign them to the rows of the table.
+  for (rownum in 1:nrow(johndeere_sum)) {
+    johndeere_sum[rownum, col_names] <- tab_stats[[rownum]]
+  }
 
 }
 
 # Select values for output.
 # t(X) denotes the transpose of X.
-out_tab <- t(country_sum[, 2:ncol(country_sum)])
-colnames(out_tab) <- country_sum[, 1]
+# This exchanges the rows and columns.
+out_tab <- t(johndeere_sum[, 2:ncol(johndeere_sum)])
+colnames(out_tab) <- c('Other', 'John Deere')
+# Switch column order to focus on John Deere.
+out_tab <- out_tab[, c(2, 1)]
 print(out_tab)
 
 #--------------------------------------------------
@@ -141,36 +150,47 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 print('Summarizing Categorical Variables')
 #--------------------------------------------------
 
+tab_var_list <- colnames(tractor_sales)[c(5:7, 9)]
 
 # Inspect visually before creating tables.
-table(tractor_sales[, 'Brand'], useNA = 'ifany')
-table(tractor_sales[, 'Sealed'], useNA = 'ifany')
-table(tractor_sales[, 'Country'], useNA = 'ifany')
-table(tractor_sales[, 'Machined'], useNA = 'ifany')
+table(tractor_sales[, 'johndeere'], useNA = 'ifany')
+table(tractor_sales[, 'diesel'], useNA = 'ifany')
+table(tractor_sales[, 'fwd'], useNA = 'ifany')
+table(tractor_sales[, 'manual'], useNA = 'ifany')
+table(tractor_sales[, 'cab'], useNA = 'ifany')
 
 # Comparison across brand names.
-table(tractor_sales[, 'Brand'], tractor_sales[, 'Sealed'], useNA = 'ifany')
-table(tractor_sales[, 'Brand'], tractor_sales[, 'Country'], useNA = 'ifany')
-table(tractor_sales[, 'Brand'], tractor_sales[, 'Machined'], useNA = 'ifany')
+table(tractor_sales[, 'johndeere'], tractor_sales[, 'diesel'], useNA = 'ifany')
+table(tractor_sales[, 'johndeere'], tractor_sales[, 'fwd'], useNA = 'ifany')
+table(tractor_sales[, 'johndeere'], tractor_sales[, 'manual'], useNA = 'ifany')
+table(tractor_sales[, 'johndeere'], tractor_sales[, 'cab'], useNA = 'ifany')
 
 
 #--------------------------------------------------
-print('Make of Tractor by ...')
+print('Indicator Variables by Make of Tractor')
 #--------------------------------------------------
 
 
 # Assemble these into a table for output.
-out_tab <- cbind(table(tractor_sales[, 'Brand'], useNA = 'ifany'),
-                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Country'], useNA = 'ifany'),
-                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Sealed'], useNA = 'ifany'),
-                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Machined'], useNA = 'ifany')
+out_tab <- rbind(table(tractor_sales[, 'johndeere'], useNA = 'ifany'),
+                 table(tractor_sales[, 'diesel'], tractor_sales[, 'johndeere'], useNA = 'ifany'),
+                 table(tractor_sales[, 'fwd'], tractor_sales[, 'johndeere'], useNA = 'ifany'),
+                 table(tractor_sales[, 'manual'], tractor_sales[, 'johndeere'], useNA = 'ifany'),
+                 table(tractor_sales[, 'cab'], tractor_sales[, 'johndeere'], useNA = 'ifany')
 )
 
-# Specify column names and add totals.
-colnames(out_tab) <- c("Total", "China", "Korea", "USA",
-                       "Unsealed", "Sealed", "Cast", "Machined")
-out_tab <- rbind(out_tab, colSums(out_tab))
-rownames(out_tab)[length(rownames(out_tab))] <- "Totals"
+# Specify column and row names and add totals.
+colnames(out_tab) <- c("Other", "John Deere")
+rownames(out_tab) <- c("Total",
+                       "Gasoline", "Diesel",
+                       "2WD", "4WD",
+                       "Automatic", "Manual",
+                       "No Cab", "Has Cab")
+# Switch column order to focus on John Deere.
+out_tab <- out_tab[, c(2, 1)]
+# Add totals for rows.
+out_tab <- cbind(out_tab, rowSums(out_tab))
+colnames(out_tab)[length(colnames(out_tab))] <- "Totals"
 print(out_tab)
 
 
@@ -178,26 +198,53 @@ print(out_tab)
 # Output selected columns to TeX file.
 #--------------------------------------------------
 
-out_xtable <- xtable(out_tab[, c(2, 3, 4, 1)],
-                     digits = 0, label = 'tab:make_by_',
-                     caption = 'Country of Manufacture by Brand of Fly Reel')
+out_xtable <- xtable(out_tab[, ],
+                     digits = 0, label = 'tab:ind_by_make',
+                     caption = 'Indicator Variables by Make of Tractor')
 
-tab_file_name <- sprintf('make_by.tex')
+tab_file_name <- sprintf('ind_by_make.tex')
 tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 #--------------------------------------------------
-print('Reel Design by Brand of Fly Reel')
+print('Season Sold by Make of Tractor')
 #--------------------------------------------------
+
+# Indicators for season sold represent a single categorical variable.
+# Better to analyze these together.
+
+# First, create a single categorical variable for the seasons.
+tractor_sales[, 'season_sold'] <- 'Fall'
+tractor_sales[tractor_sales[, 'spring'] == 1, 'season_sold'] <- 'Spring'
+tractor_sales[tractor_sales[, 'summer'] == 1, 'season_sold'] <- 'Summer'
+tractor_sales[tractor_sales[, 'winter'] == 1, 'season_sold'] <- 'Winter'
+
+table(tractor_sales[, 'season_sold'], useNA = 'ifany')
+table(tractor_sales[, 'season_sold'], tractor_sales[, 'johndeere'], useNA = 'ifany')
+
+out_tab <- table(tractor_sales[, 'season_sold'], tractor_sales[, 'johndeere'], useNA = 'ifany')
+
+colnames(out_tab) <- c("Other", "John Deere")
+# Switch column order to focus on John Deere.
+out_tab <- out_tab[, c(2, 1)]
+# Add totals for rows.
+out_tab <- cbind(out_tab, rowSums(out_tab))
+colnames(out_tab)[length(colnames(out_tab))] <- "Totals"
+# Add totals for columns.
+out_tab <- rbind(out_tab, colSums(out_tab))
+rownames(out_tab)[length(rownames(out_tab))] <- "Totals"
+print(out_tab)
+
+
 
 
 # Output another set of columns to another TeX file.
-out_xtable <- xtable(out_tab[, c(5:8, 1)],
-                     digits = 0, label = 'tab:design_by_brand',
-                     caption = 'Reel Design by Brand of Fly Reel')
+out_xtable <- xtable(out_tab[, ],
+                     digits = 0, label = 'tab:season_sold_by_make',
+                     caption = 'Season Sold by Make of Tractor')
 
-tab_file_name <- sprintf('design_by_brand.tex')
+tab_file_name <- sprintf('season_sold_by_make.tex')
 tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
@@ -205,12 +252,55 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 
+#--------------------------------------------------
+print('Correlation Matrix')
+#--------------------------------------------------
+
+tab_var_list <- colnames(tractor_sales)[c(1:7, 9)]
+# All numeric variables, including indicators but not seasons, which we investigated separately.
+
+# Investigate relationship between prices, horsepower,
+# age and engine hours.
+
+# Use the log of prices, which had a better-behaved distribution.
+tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
+tab_var_list <- colnames(tractor_sales)[c(14, 2:4)]
+
+# Select values for output.
+out_tab <- cor(tractor_sales[, tab_var_list])
+colnames(out_tab) <- c('Log. of Price', 'Horsepower', 'Age', 'Engine Hours')
+rownames(out_tab) <- c('Log. of Price', 'Horsepower', 'Age', 'Engine Hours')
+print(out_tab)
 
 
+out_xtable <- xtable(out_tab[, ],
+                     digits = 3,
+                     label = 'tab:correlation_num',
+                     caption = 'Correlation Matrix of Log. Prices and Numeric Variables')
+
+tab_file_name <- sprintf('correlation_num.tex')
+tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
+# Investigate relationship between prices and indicator variables.
+tab_var_list <- colnames(tractor_sales)[c(14, 5:7,9)]
+
+# Select values for output.
+out_tab <- cor(tractor_sales[, tab_var_list])
+colnames(out_tab) <- c('Log. of Price', 'Diesel', 'FWD', 'Manual', 'Cab')
+rownames(out_tab) <- c('Log. of Price', 'Diesel', 'FWD', 'Manual', 'Cab')
+print(out_tab)
 
 
+out_xtable <- xtable(out_tab[, ],
+                     digits = 3,
+                     label = 'tab:correlation_ind',
+                     caption = 'Correlation Matrix of Log. Prices and Indicator Variables')
+
+tab_file_name <- sprintf('correlation_ind.tex')
+tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 

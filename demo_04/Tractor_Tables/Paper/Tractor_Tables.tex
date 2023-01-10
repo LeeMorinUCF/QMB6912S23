@@ -21,7 +21,9 @@
 % 
 \section{Data Description}
 
-This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+This analysis follows the script \texttt{Tractor\_Tables.R}. 
+The script tabulates various statistics from the variables that may be used to estimate a model for used tractor prices.  
+It uses the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
 The dataset includes the following variables.
 \begin{table}[h!]
 \begin{tabular}{l l l}
@@ -70,32 +72,70 @@ statistics in the \LaTeX\ tables that follow.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagebreak
-\section{Summary by Country of Manufacture}
+\section{Summary by Make of Tractors}
 
-Table \ref{tab:summ_by_country} lists summary statistics for numeric variables
-in separate columns for subsamples defined by the country of manufacture. 
+Table \ref{tab:summ_by_make} 
+lists summary statistics for numeric variables
+in separate rows for subsamples defined by the make of tractors, 
+according to whether they were manufactured by John Deere. 
 
-\input{../Tables/summ_by_country}
+\input{../Tables/summ_by_make}
 
 
 \pagebreak
-\section{Country of Manufacture by Brand of Fly Reel}
+\section{Indicator Variables by Make of Tractors}
 
-Table \ref{tab:country_by_brand} lists the frequencies of observations of 
-each brand of fly reel by country of manufacture. 
+Table \ref{tab:ind_by_make} lists the frequencies of observations of 
+each brand of tractor across a series of indicator variables, 
+which includes whether a tractor
+has a diesel engine, four-wheel-drive transmission, a manual transmission, 
+or an enclosed cab to protect the operator.
 
-\input{../Tables/country_by_brand}
+\input{../Tables/ind_by_make}
+
+
+
 
 \pagebreak
-\section{Reel Design by Brand of Fly Reel}
+\section{Season Sold by Make of Tractor}
 
-Table \ref{tab:design_by_brand} lists the frequencies of observations of 
-each brand of fly reel across two categorical variables:
-whether the reel is sealed
-and whether the reel is machined versus cast. 
+Table \ref{tab:season_sold_by_make} lists the frequencies of observations of 
+sales of the brand categories of tractors 
+over the four seasons. 
 
 
-\input{../Tables/design_by_brand}
+\input{../Tables/season_sold_by_make}
+
+
+
+
+
+
+
+\pagebreak
+\section{Correlation Matrices}
+To plot the correlation between variables, 
+we use the logarithm of prices, which had a better-behaved distribution, 
+according to our results in Problem Set \#3.
+We separate the analysis into numerica and indicator variables 
+
+
+Table \ref{tab:correlation_num} shows the correlation 
+between the log.~of tractor prices
+and the numeric variables horsepower, age and engine hours.
+
+
+\input{../Tables/correlation_num}
+
+
+Table \ref{tab:correlation_ind} shows the correlation 
+between the log.~of tractor prices
+and the indicators for whether a tractor
+has a diesel engine, four-wheel-drive transmission, a manual transmission, 
+or an enclosed cab to protect the operator. 
+
+
+\input{../Tables/correlation_ind}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
