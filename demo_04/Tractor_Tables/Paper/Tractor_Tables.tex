@@ -20,58 +20,48 @@
 \noindent
 % 
 \section{Data Description}
-% 
-By engaging an industry consultant to gather relevant and appropriate 
-information, your firm has been able to put together data concerning 248 
-different fly-fishing reels, over one-half of which are produced in the 
-United States, with the remainder being produced in Asia---either in China 
-or Korea.  These data are contained in the file {\tt FlyReels.csv}, which is
-available in the {\tt Data} folder.
-Each fly-fishing reel in the data set is a row, while the columns correspond 
-to the variables whose names and definitions are the following:
-\bigskip
-\begin{table}[ht]
-\centering
-\begin{tabular}{ll}
-  \hline
-    Variable & Definition \\
-  \hline
 
-    {\tt Name}        &product name (a string) \\ 
-    {\tt Brand}       &brand name (a string) \\ 
-    {\tt Weight}      &weight of reel in ounces (a real number) \\ 
-    {\tt Diameter}    &diameter of reel in inches (a real number) \\ 
-    {\tt Width}       &width of reel in inches (a real number) \\ 
-    {\tt Price}       &price of reel in dollars (a real number) \\ 
-    {\tt Sealed}      &whether the reel is sealed; {\tt "Yes"} versus
-                        {\tt "No"} (a string) \\ 
-    {\tt Country}     &country of manufacture, (a string) \\ 
-    {\tt Machined}    &whether the reel is machined versus cast;
-                        machined={\tt "Yes"}, \\ 
-                      &while cast={\tt "No"} (a string) \\ 
-  \hline
+This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+The dataset includes the following variables.
+\begin{table}[h!]
+\begin{tabular}{l l l}
+
+$saleprice_i$ & = & the price paid for tractor $i$ in dollars \\
+% 
+$horsepower_i$ & = & the horsepower of tractor $i$ \\
+$age_i$ & = & the number of years since tractor $i$ was manufactured  \\
+$enghours_i$ & = & the number of hours of use recorded for tractor $i$  \\
+$diesel_i$ & = & an indicator of whether tractor $i$ runs on diesel fuel \\ %, $0$ otherwise \\
+$fwd_i$ & = & an indicator of whether tractor $i$ has four-wheel drive \\ %, $0$ otherwise \\
+$manual_i$ & = & an indicator of whether tractor $i$ has a manual transmission \\ %, $0$ otherwise \\
+$johndeere_i$ & = & an indicator of whether tractor $i$ is manufactured by John Deere \\ %, $0$ otherwise \\
+$cab_i$ & = & an indicator of whether tractor $i$ has an enclosed cab \\ %, $0$ otherwise \\
+% 
+$spring_i$ & = & an indicator of whether tractor $i$ was sold in April or May \\ %, $0$ otherwise \\
+$summer_i$ & = & an indicator of whether tractor $i$ was sold between June and September \\ %, $0$ otherwise \\
+$winter_i$ & = & an indicator of whether tractor $i$ was sold between December and March \\ %, $0$ otherwise \\
+
 \end{tabular}
-%\caption{Summary of Numeric Variables}
-%\label{tab:summary}
 \end{table}
+%
 
 \bigskip
 \noindent
-I have downloaded the file {\tt FlyReels.csv}, 
+I have downloaded the file {\tt TRACTOR7.csv}, 
 loaded the data described above into 
 \textsf{R}, 
 calculated the summary statistics for these data, 
 and finally, presented 
 these statistics in \LaTeX\ tables.
 These operations are all performed by the script 
-{\tt FlyReel\_Tables.R} in the {\tt Code} folder. 
+{\tt Tractor\_Tables.R} in the {\tt Code} folder. 
 The script uses an \textsf{R} package called {\tt xtable} 
 to automate the
 production of the tables from a data frames in \textsf{R}.)
 
 \medskip
 \noindent
-I analyze the data in subsets, according to country of manufacture, 
+I analyze the data in subsets, according to the makes of tractors, 
 calculating the summary statistics for each subset and present these 
 statistics in the \LaTeX\ tables that follow.
 

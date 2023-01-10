@@ -9,7 +9,7 @@
 # College of Business
 # University of Central Florida
 #
-# January 26, 2022
+# January 9, 2023
 #
 ##################################################
 #
@@ -35,7 +35,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S23/demo_04/FlyReel_Tables'
+# wd_path <- '~/GitHub/QMB6912S23/demo_04/Tractor_Tables'
 # setwd(wd_path)
 
 
@@ -56,23 +56,38 @@ tab_dir <- 'Tables'
 # install.packages('xtable')
 library(xtable)
 
-
 ##################################################
 # Load Data
 ##################################################
 
-# Set parameters for flyreel dataset.
-in_file_name <- sprintf('%s/%s', data_dir, 'FlyReels.csv')
-fly_col_names <- c('Name', 'Brand', 'Weight', 'Diameter', 'Width',
-                   'Price', 'Sealed', 'Country', 'Machined')
+in_file_name <- sprintf('%s/%s', data_dir, 'TRACTOR7.csv')
+tractor_sales <- read.csv(file = in_file_name)
 
-# Load data.
-flyreels <- read.csv(file = in_file_name, header = FALSE,
-                     col.names = fly_col_names)
+# Inspect the contents.
+print('Summary of tractor_sales Dataset:')
+print(summary(tractor_sales))
 
-# Initial inspection.
-print("Summary of FlyReels.csv dataset:")
-print(summary(flyreels))
+# Make sure there are no problems with the data.
+
+
+
+
+##################################################
+##################################################
+##################################################
+# Change code to analyze tractor prices.
+##################################################
+##################################################
+##################################################
+
+
+
+
+
+
+
+
+
 
 ##################################################
 # Summarize numeric variables.
@@ -81,17 +96,17 @@ print(summary(flyreels))
 #--------------------------------------------------
 print('Summarizing Numeric Variables')
 
-print('Summary by Country of Manufacture:')
+print('Summary by make:')
 #--------------------------------------------------
 
-# Summarize numeric variables by country of manufacture.
-country_sum <- data.frame(Country = unique(flyreels$Country))
+# Summarize numeric variables by make: John Deere or other.
+country_sum <- data.frame(Country = unique(tractor_sales$Country))
 for (var_name in colnames(flyreels)[lapply(flyreels, class) == 'numeric']) {
 
   col_names <- sprintf('%s %s', c('Min.', 'Mean', 'Max.'), var_name)
-  # country_sum[, col_names] <- tapply(flyreels$Price, flyreels$Country,
+  # country_sum[, col_names] <- tapply(tractor_sales$Price, tractor_sales$Country,
   #                                    function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
-  country_sum[, col_names] <- tapply(flyreels[, var_name], flyreels$Country,
+  country_sum[, col_names] <- tapply(tractor_sales[, var_name], tractor_sales$Country,
                                      function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
 
 }
@@ -107,10 +122,10 @@ print(out_tab)
 #--------------------------------------------------
 
 out_xtable <- xtable(out_tab[, ],
-                     digits = 0, label = 'tab:summ_by_country',
-                     caption = 'Summary by Country of Manufacture')
+                     digits = 0, label = 'tab:summ_by_make',
+                     caption = 'Summary by Make of Tractor')
 
-tab_file_name <- sprintf('summ_by_country.tex')
+tab_file_name <- sprintf('summ_by_make.tex')
 tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
@@ -128,28 +143,28 @@ print('Summarizing Categorical Variables')
 
 
 # Inspect visually before creating tables.
-table(flyreels[, 'Brand'], useNA = 'ifany')
-table(flyreels[, 'Sealed'], useNA = 'ifany')
-table(flyreels[, 'Country'], useNA = 'ifany')
-table(flyreels[, 'Machined'], useNA = 'ifany')
+table(tractor_sales[, 'Brand'], useNA = 'ifany')
+table(tractor_sales[, 'Sealed'], useNA = 'ifany')
+table(tractor_sales[, 'Country'], useNA = 'ifany')
+table(tractor_sales[, 'Machined'], useNA = 'ifany')
 
 # Comparison across brand names.
-table(flyreels[, 'Brand'], flyreels[, 'Sealed'], useNA = 'ifany')
-table(flyreels[, 'Brand'], flyreels[, 'Country'], useNA = 'ifany')
-table(flyreels[, 'Brand'], flyreels[, 'Machined'], useNA = 'ifany')
+table(tractor_sales[, 'Brand'], tractor_sales[, 'Sealed'], useNA = 'ifany')
+table(tractor_sales[, 'Brand'], tractor_sales[, 'Country'], useNA = 'ifany')
+table(tractor_sales[, 'Brand'], tractor_sales[, 'Machined'], useNA = 'ifany')
 
 
 #--------------------------------------------------
-print('Country of Manufacture by Brand of Fly Reel')
+print('Make of Tractor by ...')
 #--------------------------------------------------
 
 
 # Assemble these into a table for output.
-out_tab <- cbind(table(flyreels[, 'Brand'], useNA = 'ifany'),
-                 table(flyreels[, 'Brand'], flyreels[, 'Country'], useNA = 'ifany'),
-                 table(flyreels[, 'Brand'], flyreels[, 'Sealed'], useNA = 'ifany'),
-                 table(flyreels[, 'Brand'], flyreels[, 'Machined'], useNA = 'ifany')
-                 )
+out_tab <- cbind(table(tractor_sales[, 'Brand'], useNA = 'ifany'),
+                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Country'], useNA = 'ifany'),
+                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Sealed'], useNA = 'ifany'),
+                 table(tractor_sales[, 'Brand'], tractor_sales[, 'Machined'], useNA = 'ifany')
+)
 
 # Specify column names and add totals.
 colnames(out_tab) <- c("Total", "China", "Korea", "USA",
@@ -164,10 +179,10 @@ print(out_tab)
 #--------------------------------------------------
 
 out_xtable <- xtable(out_tab[, c(2, 3, 4, 1)],
-                     digits = 0, label = 'tab:country_by_brand',
+                     digits = 0, label = 'tab:make_by_',
                      caption = 'Country of Manufacture by Brand of Fly Reel')
 
-tab_file_name <- sprintf('country_by_brand.tex')
+tab_file_name <- sprintf('make_by.tex')
 tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
@@ -189,6 +204,19 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
 ##################################################
 # End
 ##################################################
+

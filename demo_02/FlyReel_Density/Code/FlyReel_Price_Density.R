@@ -6,10 +6,10 @@
 # Lealand Morin, Ph.D.
 # Assistant Professor
 # Department of Economics
-# College of Business Administration
+# College of Business
 # University of Central Florida
 #
-# February 3, 2022
+# January 9, 2023
 #
 ##################################################
 #
@@ -35,7 +35,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S22/demo_04/FlyReel_Density'
+# wd_path <- '~/GitHub/QMB6912S23/demo_02/FlyReel_Density'
 # setwd(wd_path)
 
 
@@ -125,6 +125,52 @@ plot(density_log_price,
      main = 'Kernel-smoothed pdf of the Natural Log. of Fly Reel Prices',
      xlab = 'Price')
 dev.off()
+
+
+
+##################################################
+# Relative histogram and density of Price.
+print('Plotting figures by Country of Manufacture.')
+##################################################
+
+# Investigate the value of fly reels made in America.
+table(flyreels[, 'Country'], useNA = 'ifany')
+
+
+# The densities could be plotted separately.
+plot(density(flyreels[flyreels[, 'Country'] == 'USA', 'log_Price']),
+     col = 'blue',
+     lwd = 3,
+     xlim = c(2, 8))
+lines(density(flyreels[flyreels[, 'Country'] == 'China', 'log_Price']),
+      col = 'red',
+      lwd = 3)
+lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'log_Price']),
+      col = 'darkgreen',
+      lwd = 3)
+# This approach is useful because it clearly specifies
+# which is which.
+
+
+# Now plot them together with the sm package.
+# It appears as though it plots them in order of the values
+# of the Country indicator.
+fig_file_name <- 'dens_by_country.pdf'
+out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
+pdf(out_file_name)
+sm.density.compare(flyreels[, 'log_Price'],
+                   flyreels[, 'Country'],
+                   xlab = "Log. of Price",
+                   lwd = 3,
+                   col = c('red','darkgreen', 'blue'))
+title(main = 'Log. of Price by Country of Manufacture')
+legend('topright', c('USA', 'China', 'Korea'),
+       fill = c('blue', 'red','darkgreen'),
+       cex = 0.75)
+dev.off()
+
+
+
 
 
 

@@ -7,10 +7,10 @@
 # Lealand Morin, Ph.D.
 # Assistant Professor
 # Department of Economics
-# College of Business Administration
+# College of Business
 # University of Central Florida
 #
-# February 3, 2022
+# January 9, 2023
 #
 ##################################################
 #
@@ -80,8 +80,7 @@ print('Plotting relative histograms of saleprice.')
 # First plot a histogram with the default options.
 fig_file_name <- 'hist_saleprice.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 hist(tractor_sales[, 'saleprice'],
      main = 'Relative Histogram of Tractor Prices',
      xlab = 'Price',
@@ -96,8 +95,7 @@ tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
 # Now plot the histogram for log of saleprice:
 fig_file_name <- 'hist_log_saleprice.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'],
      main = 'Histogram of the Logarithm of Tractor Prices',
      xlab = 'Logarithm of Price',
@@ -112,8 +110,7 @@ dev.off()
 # it may not be very informative.
 fig_file_name <- 'hist_log_saleprice_br5.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'], breaks = 5,
      main = c('Histogram of the Logarithm of Tractor Prices',
               'Number of Breaks: 5'),
@@ -126,8 +123,7 @@ dev.off()
 # and jagged plot.
 fig_file_name <- 'hist_log_saleprice_br50.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'], breaks = 50,
      main = c('Histogram of the Logarithm of Tractor Prices',
               'Number of Breaks: 50'),
@@ -154,8 +150,7 @@ price_density <- density(tractor_sales[, 'saleprice'])
 
 fig_file_name <- 'density_saleprice.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(price_density,
      main = 'Kernel-Smoothed Density of Tractor Prices',
      xlab = 'Price')
@@ -173,8 +168,7 @@ price_density <- density(tractor_sales[, 'saleprice'],
 
 fig_file_name <- 'density_saleprice_bw10000.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(price_density,
      main = c('Kernel-Smoothed Density of Tractor Prices',
               'Bandwidth: 10,000'),
@@ -192,8 +186,7 @@ price_density <- density(tractor_sales[, 'saleprice'],
 
 fig_file_name <- 'density_saleprice_bw1000.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(price_density,
      main = c('Kernel-Smoothed Density of Tractor Prices',
               'Bandwidth: 1,000'),
@@ -216,8 +209,7 @@ log_price_density <- density(tractor_sales[, 'log_saleprice'],
 
 fig_file_name <- 'density_log_saleprice_bw020.eps'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(log_price_density,
      main = c('Density of the Logarithm of Tractor Prices',
               'Bandwidth: 0.20'),
@@ -225,6 +217,46 @@ plot(log_price_density,
 dev.off()
 
 # This is much better behaved and is a good place to start.
+
+
+
+
+##################################################
+# Relative histogram and density of saleprice.
+print('Plotting figures by Brand.')
+##################################################
+
+# Investigate the value of John Deere tractors.
+
+
+# The densities could be plotted separately.
+plot(density(tractor_sales[tractor_sales[, 'johndeere'] == 1, 'log_saleprice']),
+     col = 'green',
+     lwd = 3)
+lines(density(tractor_sales[tractor_sales[, 'johndeere'] == 0, 'log_saleprice']),
+      col = 'red',
+      lwd = 3)
+# This helps me verify which is which.
+
+
+# Now plot them both with the sm package.
+# It appears as though it plots them in order of the values
+# of the John Deere indicator.
+fig_file_name <- 'dens_by_brand.pdf'
+out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
+pdf(out_file_name)
+sm.density.compare(tractor_sales[, 'log_saleprice'],
+                   tractor_sales[, 'johndeere'],
+                   xlab = "Log. of Sale Price",
+                   lwd = 3,
+                   col = c('red','green'))
+title(main = 'Log. of Sale Price by Brand')
+legend('topright', c('Other', 'John Deere'),
+       fill = c('red','green'),
+       cex = 0.75)
+dev.off()
+
+
 
 
 ##################################################

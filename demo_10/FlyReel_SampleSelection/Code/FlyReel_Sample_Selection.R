@@ -35,7 +35,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S22/demo_10/FlyReel_SampleSelection'
+# wd_path <- '~/GitHub/QMB6912S23/demo_10/FlyReel_SampleSelection'
 # setwd(wd_path)
 
 
@@ -368,8 +368,7 @@ tobit_5_sel_probit1 <- glm(formula = lm_fmla,
                            family = binomial(link = "probit"))
 
 summary(tobit_5_sel_probit1)
-# John Deere tractors are more likely to be gasoline-powered,
-# have manual transmissions, and less likely to have an enclosed cab.
+
 
 # Estimate a reduced model.
 # Eliminating variables one-by-one, I estimated the following model.
@@ -399,8 +398,8 @@ summary(tobit_5_sel_probit2)
 
 
 # This should provide a concise but useful model to
-# indicate the tractor designs that would be favored by John Deere
-# engineers and customers.
+# indicate the fly reel characteristics that would be
+# valued differently depending on the country of manufacture.
 
 
 # Print the output to a LaTeX file.

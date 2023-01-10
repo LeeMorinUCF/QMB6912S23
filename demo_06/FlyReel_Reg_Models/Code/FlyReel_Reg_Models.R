@@ -8,7 +8,7 @@
 # Lealand Morin, Ph.D.
 # Assistant Professor
 # Department of Economics
-# College of Business Administration
+# College of Business
 # University of Central Florida
 #
 # March 15, 2022
@@ -18,7 +18,7 @@
 # Sample code for the problem sets in the course QMB 6912,
 # Capstone Project in Business Analytics, for the PMSM-BA
 # program.
-# FlyReel_Model_Spec gives examples of OLS regression models
+# FlyReel_Reg_Models gives examples of OLS regression models
 #   by considering a number of different model specifications.
 # In this example, the model specification choices
 #   have a parametric form.
@@ -40,7 +40,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S22/demo_07/FlyReel_Reg_Models'
+# wd_path <- '~/GitHub/QMB6912S23/demo_06/FlyReel_Reg_Models'
 # setwd(wd_path)
 
 

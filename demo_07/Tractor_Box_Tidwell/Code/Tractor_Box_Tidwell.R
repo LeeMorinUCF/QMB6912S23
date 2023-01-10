@@ -43,7 +43,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S22/demo_09/Tractor_Box_Tidwell'
+# wd_path <- '~/GitHub/QMB6912S23/demo_07/Tractor_Box_Tidwell'
 # setwd(wd_path)
 
 

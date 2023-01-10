@@ -20,7 +20,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \pagestyle{empty}
-{\noindent\bf Spring 2022 \hfill Firstname M.~Lastname}
+{\noindent\bf Spring 2023 \hfill Firstname M.~Lastname}
 \vskip 16pt
 \centerline{\bf University of Central Florida}
 \centerline{\bf College of Business}
@@ -41,6 +41,33 @@ the dependent variable in the \texttt{TRACTOR7.csv} dataset.
 The output includes plots of the histogram
 and kernel-smoothed densities,
 using a selection of tuning parameters.
+
+\section{Data Description}
+
+This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+The dataset includes the following variables.
+\begin{table}[h!]
+\begin{tabular}{l l l}
+
+$saleprice_i$ & = & the price paid for tractor $i$ in dollars \\
+% 
+$horsepower_i$ & = & the horsepower of tractor $i$ \\
+$age_i$ & = & the number of years since tractor $i$ was manufactured  \\
+$enghours_i$ & = & the number of hours of use recorded for tractor $i$  \\
+$diesel_i$ & = & an indicator of whether tractor $i$ runs on diesel fuel \\ %, $0$ otherwise \\
+$fwd_i$ & = & an indicator of whether tractor $i$ has four-wheel drive \\ %, $0$ otherwise \\
+$manual_i$ & = & an indicator of whether tractor $i$ has a manual transmission \\ %, $0$ otherwise \\
+$johndeere_i$ & = & an indicator of whether tractor $i$ is manufactured by John Deere \\ %, $0$ otherwise \\
+$cab_i$ & = & an indicator of whether tractor $i$ has an enclosed cab \\ %, $0$ otherwise \\
+% 
+$spring_i$ & = & an indicator of whether tractor $i$ was sold in April or May \\ %, $0$ otherwise \\
+$summer_i$ & = & an indicator of whether tractor $i$ was sold between June and September \\ %, $0$ otherwise \\
+$winter_i$ & = & an indicator of whether tractor $i$ was sold between December and March \\ %, $0$ otherwise \\
+
+\end{tabular}
+\end{table}
+%
+
 
 \vfill
 \pagebreak
@@ -271,6 +298,37 @@ The density plot
 shown in Figure \ref{fig:density_log_saleprice_bw020}
 is much better behaved and is a good starting point to
 analyze the data in a regression model.
+
+
+
+\clearpage
+\pagebreak
+\section{Separate Probability Density Function by Make}
+
+Now we investigate the value of John Deere tractors
+compared to other brands.
+We can analyze the log of sale prices because 
+prices are highly skewed.
+After taking logs, the distribution is
+approximately symmetric, with some bunching in the
+upper tail.
+Now separate the sample by make of tractor, 
+with John Deere tractors in one usbsample 
+and the rest in the other subsample. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dens_by_brand}
+  \caption{Densities of Log. Tractor Prices by Brand} \label{fig:dens_by_brand}
+\end{figure}
+
+
+Figure \ref{fig:dens_by_brand} shows the
+kernel density estimate of the sale prices of John Deere tractors
+in green and that of the other brands in red.
+%
+The distribution of sale prices of John Deere tractors has several modes and is skewed to the right,
+with the highest mode lower than that for other brands.
 
 
 
