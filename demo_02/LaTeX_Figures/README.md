@@ -1,4 +1,4 @@
-# Automatic Document Generation
+# Displaying Figures and Code Blocks with LaTeX
 
 
 ## Figures

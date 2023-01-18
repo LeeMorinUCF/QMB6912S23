@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  4 FEB 2022 12:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  17 JAN 2023 23:08
 entering extended mode
 **./Paper_w_Figure.tex
 (Paper_w_Figure.tex
@@ -232,11 +232,11 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [2]
 Package epstopdf Info: Source file: <../Figures/name_of_figure.eps>
-(epstopdf)                    date: 2022-02-04 12:55:29
-(epstopdf)                    size: 7032 bytes
+(epstopdf)                    date: 2023-01-17 23:08:41
+(epstopdf)                    size: 6884 bytes
 (epstopdf)             Output file: <../Figures/name_of_figure.pdf>
-(epstopdf)                    date: 2022-02-04 12:55:32
-(epstopdf)                    size: 11610 bytes
+(epstopdf)                    date: 2023-01-17 23:08:45
+(epstopdf)                    size: 11478 bytes
 (epstopdf)             Command: <miktex-epstopdf-unrestricted ../Figures/name_o
 f_figure.eps>
 (epstopdf)             \includegraphics on input line 138.
@@ -258,7 +258,7 @@ LaTeX Font Warning: Some font shapes were not available, defaults substituted.
  ) 
 Here is how much of TeX's memory you used:
  4558 strings out of 479163
- 66230 string characters out of 2852567
+ 66414 string characters out of 2852567
  553691 words of memory out of 3000000
  22141 multiletter control sequences out of 15000+600000
  408542 words of font info for 45 fonts, out of 8000000 for 9000
@@ -275,7 +275,7 @@ ta/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/le
 C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/
 cmtt10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/
 amsfonts/cm/cmtt9.pfb>
-Output written on Paper_w_Figure.pdf (3 pages, 118878 bytes).
+Output written on Paper_w_Figure.pdf (3 pages, 118746 bytes).
 PDF statistics:
  60 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

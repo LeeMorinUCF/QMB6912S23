@@ -53,7 +53,10 @@ fig_dir <- 'Figures'
 # Load libraries
 ##################################################
 
-# No libraries required.
+# Smoothing package for other ways of creating density plots.
+library(sm)
+
+# No other libraries required.
 # Otherwise would have a command like the following.
 # library(name_of_R_package)
 
@@ -83,10 +86,9 @@ print('Plotting ECDF.')
 ##################################################
 
 ecdf_price <- ecdf(flyreels[, 'Price'])
-fig_file_name <- 'ecdf_prices.eps'
+fig_file_name <- 'ecdf_prices.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(ecdf_price,
      main = 'Empirical Cumulative Distribution Function of Fly Reel Prices',
      xlab = 'Price',
@@ -99,10 +101,9 @@ dev.off()
 print('Plotting relative histogram of price.')
 ##################################################
 
-fig_file_name <- 'hist_prices.eps'
+fig_file_name <- 'hist_prices.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 hist(flyreels[, 'Price'],
      main = 'Relative Histogram of Fly Reel Prices',
      xlab = 'Price',
@@ -117,10 +118,9 @@ print('of the natural logarithm of price.')
 ##################################################
 
 density_log_price <- density(log(flyreels[, 'Price']))
-fig_file_name <- 'density_prices.eps'
+fig_file_name <- 'density_prices.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-setEPS()
-postscript(out_file_name)
+pdf(out_file_name)
 plot(density_log_price,
      main = 'Kernel-smoothed pdf of the Natural Log. of Fly Reel Prices',
      xlab = 'Price')
@@ -138,14 +138,16 @@ table(flyreels[, 'Country'], useNA = 'ifany')
 
 
 # The densities could be plotted separately.
-plot(density(flyreels[flyreels[, 'Country'] == 'USA', 'log_Price']),
+plot(density(flyreels[flyreels[, 'Country'] == 'USA', 'Price']),
      col = 'blue',
      lwd = 3,
-     xlim = c(2, 8))
-lines(density(flyreels[flyreels[, 'Country'] == 'China', 'log_Price']),
+     xlim = c(-100, 1300),
+     ylim = c(0, 0.003)
+     )
+lines(density(flyreels[flyreels[, 'Country'] == 'China', 'Price']),
       col = 'red',
       lwd = 3)
-lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'log_Price']),
+lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'Price']),
       col = 'darkgreen',
       lwd = 3)
 # This approach is useful because it clearly specifies
@@ -158,7 +160,7 @@ lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'log_Price']),
 fig_file_name <- 'dens_by_country.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
-sm.density.compare(flyreels[, 'log_Price'],
+sm.density.compare(log(flyreels[, 'Price']),
                    flyreels[, 'Country'],
                    xlab = "Log. of Price",
                    lwd = 3,

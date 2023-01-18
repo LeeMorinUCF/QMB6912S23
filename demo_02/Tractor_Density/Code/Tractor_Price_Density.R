@@ -51,7 +51,10 @@ fig_dir <- 'Figures'
 # Load libraries
 ##################################################
 
-# No libraries required.
+# Smoothing package for other ways of creating density plots.
+library(sm)
+
+# No other libraries required.
 # Otherwise would have a command like the following.
 # library(name_of_R_package)
 

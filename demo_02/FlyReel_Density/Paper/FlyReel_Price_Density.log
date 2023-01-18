@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  10 FEB 2022 20:55
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  17 JAN 2023 23:26
 entering extended mode
 **./FlyReel_Price_Density.tex
 (FlyReel_Price_Density.tex
@@ -219,45 +219,88 @@ LaTeX Font Info:    ... okay on input line 16.
 \makeMPintoPDFobject=\count272
 \everyMPtoPDFconversion=\toks23
 )
+LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 4
+1.
+ (C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
+File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
+)
+LaTeX Font Info:    Trying to load font information for U+msa on input line 48.
+
+
+(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 48.
+
+
+(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (7.70636pt too wide) in paragraph at lines 48--69
+ [][] 
+ []
+
 <../Figures/ecdf_prices.pdf, id=1, 505.89pt x 505.89pt>
 File: ../Figures/ecdf_prices.pdf Graphic file (type pdf)
 <use ../Figures/ecdf_prices.pdf>
-Package pdftex.def Info: ../Figures/ecdf_prices.pdf  used on input line 45.
+Package pdftex.def Info: ../Figures/ecdf_prices.pdf  used on input line 80.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
-<../Figures/hist_prices.pdf, id=2, 505.89pt x 505.89pt>
-File: ../Figures/hist_prices.pdf Graphic file (type pdf)
-<use ../Figures/hist_prices.pdf>
-Package pdftex.def Info: ../Figures/hist_prices.pdf  used on input line 57.
-(pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
+
+Underfull \vbox (badness 1454) has occurred while \output is active []
+
  [1
 
-{C:/Users/le279259/AppData/Local/MiKTeX/pdftex/config/pdftex.map} <../Figures/e
-cdf_prices.pdf>]
+{C:/Users/le279259/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
+<../Figures/hist_prices.pdf, id=9, 505.89pt x 505.89pt>
+File: ../Figures/hist_prices.pdf Graphic file (type pdf)
+<use ../Figures/hist_prices.pdf>
+Package pdftex.def Info: ../Figures/hist_prices.pdf  used on input line 92.
+(pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [2 <../Figures/hist_prices.pdf>]
-<../Figures/density_prices.pdf, id=32, 505.89pt x 505.89pt>
+ [2 <../Figures/ecdf_prices.pdf>]
+<../Figures/density_prices.pdf, id=19, 505.89pt x 505.89pt>
 File: ../Figures/density_prices.pdf Graphic file (type pdf)
 <use ../Figures/density_prices.pdf>
-Package pdftex.def Info: ../Figures/density_prices.pdf  used on input line 71.
+Package pdftex.def Info: ../Figures/density_prices.pdf  used on input line 106.
+
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
- [3 <../Figures/density_prices.pdf>]
-(FlyReel_Price_Density.aux) ) 
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[3 <../Figures/hist_prices.pdf>] [4 <../Figures/density_prices.pdf>]
+<../Figures/dens_by_country.pdf, id=38, 505.89pt x 505.89pt>
+File: ../Figures/dens_by_country.pdf Graphic file (type pdf)
+<use ../Figures/dens_by_country.pdf>
+Package pdftex.def Info: ../Figures/dens_by_country.pdf  used on input line 141
+.
+(pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
+ [5
+
+ <../Figures/dens_by_country.pdf>] (FlyReel_Price_Density.aux) ) 
 Here is how much of TeX's memory you used:
- 2913 strings out of 479163
- 43220 string characters out of 2852567
- 327490 words of memory out of 3000000
- 20509 multiletter control sequences out of 15000+600000
- 407237 words of font info for 35 fonts, out of 8000000 for 9000
+ 3009 strings out of 479163
+ 45098 string characters out of 2852567
+ 330498 words of memory out of 3000000
+ 20580 multiletter control sequences out of 15000+600000
+ 413516 words of font info for 57 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,6n,62p,236b,226s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/le279259/AppData/Local/Programs/MiKTeX/f
-onts/enc/dvips/base/8r.enc}<C:/Users/le279259/AppData/Local/Programs/MiKTeX/fon
-ts/type1/urw/palatino/uplb8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKT
-eX/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on FlyReel_Price_Density.pdf (3 pages, 83637 bytes).
+ 55i,8n,62p,236b,226s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/le279
+259/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/le27925
+9/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/le
+279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Us
+ers/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb>
+
+Output written on FlyReel_Price_Density.pdf (5 pages, 89397 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
+ 59 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 16 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

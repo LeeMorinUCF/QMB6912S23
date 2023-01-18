@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  8 FEB 2022 11:09
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  17 JAN 2023 23:28
 entering extended mode
 **./Tractor_Price_Density.tex
 (Tractor_Price_Density.tex
@@ -230,9 +230,24 @@ m/n/10.95 Tractor[]Price[]Density.R\OT1/ppl/m/n/10.95 ,
  []
 
 
-Overfull \hbox (38.4882pt too wide) in paragraph at lines 37--44
-\OT1/ppl/m/n/10.95 which an-a-lyzes the prices of fly reels, the de-pen-dent va
+Overfull \hbox (37.96246pt too wide) in paragraph at lines 37--44
+\OT1/ppl/m/n/10.95 which an-a-lyzes the prices of trac-tors, the de-pen-dent va
 ri-able in the \OT1/pcr/m/n/10.95 TRACTOR7.csv
+ []
+
+LaTeX Font Info:    Trying to load font information for U+msa on input line 50.
+
+(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+File: umsa.fd 2013/01/14 v3.01 AMS symbols A
+)
+LaTeX Font Info:    Trying to load font information for U+msb on input line 50.
+
+
+(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+File: umsb.fd 2013/01/14 v3.01 AMS symbols B
+)
+Overfull \hbox (92.95135pt too wide) in paragraph at lines 50--68
+[][] 
  []
 
 [1
@@ -241,19 +256,19 @@ ri-able in the \OT1/pcr/m/n/10.95 TRACTOR7.csv
 
 pdfTeX warning: pdflatex.exe (file ../Figures/hist_saleprice.pdf): PDF inclusio
 n: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/hist_saleprice.pdf, id=8, 505.89pt x 505.89pt>
+<../Figures/hist_saleprice.pdf, id=10, 505.89pt x 505.89pt>
 File: ../Figures/hist_saleprice.pdf Graphic file (type pdf)
 <use ../Figures/hist_saleprice.pdf>
-Package pdftex.def Info: ../Figures/hist_saleprice.pdf  used on input line 66.
+Package pdftex.def Info: ../Figures/hist_saleprice.pdf  used on input line 93.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
-Overfull \hbox (93.32945pt too wide) in paragraph at lines 77--77
+Overfull \hbox (93.32945pt too wide) in paragraph at lines 104--104
 []\OT1/pcr/m/n/10.95 tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 's
 aleprice'])[] 
  []
 
 
-Overfull \hbox (27.62953pt too wide) in paragraph at lines 87--87
+Overfull \hbox (27.62953pt too wide) in paragraph at lines 114--114
 []     \OT1/pcr/m/n/10.95 main = 'Histogram of the Logarithm of Tractor Prices'
 ,[] 
  []
@@ -262,14 +277,14 @@ Overfull \hbox (27.62953pt too wide) in paragraph at lines 87--87
 
 pdfTeX warning: pdflatex.exe (file ../Figures/hist_log_saleprice.pdf): PDF incl
 usion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/hist_log_saleprice.pdf, id=23, 505.89pt x 505.89pt>
+<../Figures/hist_log_saleprice.pdf, id=25, 505.89pt x 505.89pt>
 File: ../Figures/hist_log_saleprice.pdf Graphic file (type pdf)
 <use ../Figures/hist_log_saleprice.pdf>
 Package pdftex.def Info: ../Figures/hist_log_saleprice.pdf  used on input line 
-92.
+119.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
-Overfull \hbox (40.76952pt too wide) in paragraph at lines 111--111
+Overfull \hbox (40.76952pt too wide) in paragraph at lines 138--138
 []     \OT1/pcr/m/n/10.95 main = c('Histogram of the Logarithm of Tractor Price
 s',[] 
  []
@@ -278,28 +293,17 @@ s',[]
 
 pdfTeX warning: pdflatex.exe (file ../Figures/hist_log_saleprice_br5.pdf): PDF 
 inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/hist_log_saleprice_br5.pdf, id=24, 505.89pt x 505.89pt>
+<../Figures/hist_log_saleprice_br5.pdf, id=26, 505.89pt x 505.89pt>
 File: ../Figures/hist_log_saleprice_br5.pdf Graphic file (type pdf)
 <use ../Figures/hist_log_saleprice_br5.pdf>
 Package pdftex.def Info: ../Figures/hist_log_saleprice_br5.pdf  used on input l
-ine 116.
+ine 143.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 117
-.
-(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
-File: umsa.fd 2013/01/14 v3.01 AMS symbols A
-)
-LaTeX Font Info:    Trying to load font information for U+msb on input line 117
-.
-
-(C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
-File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [3 <../Figures/hist_log_saleprice.pdf>]
-Overfull \hbox (40.76952pt too wide) in paragraph at lines 132--132
+Overfull \hbox (40.76952pt too wide) in paragraph at lines 159--159
 []     \OT1/pcr/m/n/10.95 main = c('Histogram of the Logarithm of Tractor Price
 s',[] 
  []
@@ -308,11 +312,11 @@ s',[]
 
 pdfTeX warning: pdflatex.exe (file ../Figures/hist_log_saleprice_br50.pdf): PDF
  inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/hist_log_saleprice_br50.pdf, id=38, 505.89pt x 505.89pt>
+<../Figures/hist_log_saleprice_br50.pdf, id=40, 505.89pt x 505.89pt>
 File: ../Figures/hist_log_saleprice_br50.pdf Graphic file (type pdf)
 <use ../Figures/hist_log_saleprice_br50.pdf>
 Package pdftex.def Info: ../Figures/hist_log_saleprice_br50.pdf  used on input 
-line 136.
+line 163.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -324,7 +328,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5 <../Figures/hist_log_saleprice_br50.pdf>]
-Overfull \hbox (7.91956pt too wide) in paragraph at lines 167--167
+Overfull \hbox (7.91956pt too wide) in paragraph at lines 194--194
 []     \OT1/pcr/m/n/10.95 main = 'Kernel-Smoothed Density of Tractor Prices',[]
  
  []
@@ -333,23 +337,23 @@ Overfull \hbox (7.91956pt too wide) in paragraph at lines 167--167
 
 pdfTeX warning: pdflatex.exe (file ../Figures/density_saleprice.pdf): PDF inclu
 sion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/density_saleprice.pdf, id=66, 505.89pt x 505.89pt>
+<../Figures/density_saleprice.pdf, id=68, 505.89pt x 505.89pt>
 File: ../Figures/density_saleprice.pdf Graphic file (type pdf)
 <use ../Figures/density_saleprice.pdf>
 Package pdftex.def Info: ../Figures/density_saleprice.pdf  used on input line 1
-72.
+99.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 Underfull \vbox (badness 3557) has occurred while \output is active []
 
  [6 <../Figures/density_saleprice.pdf>]
-LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 1
-94.
+LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 2
+21.
 
 (C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 )
-Overfull \hbox (21.05954pt too wide) in paragraph at lines 205--205
+Overfull \hbox (21.05954pt too wide) in paragraph at lines 232--232
 []     \OT1/pcr/m/n/10.95 main = c('Kernel-Smoothed Density of Tractor Prices',
 [] 
  []
@@ -358,11 +362,11 @@ Overfull \hbox (21.05954pt too wide) in paragraph at lines 205--205
 
 pdfTeX warning: pdflatex.exe (file ../Figures/density_saleprice_bw10000.pdf): P
 DF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/density_saleprice_bw10000.pdf, id=83, 505.89pt x 505.89pt>
+<../Figures/density_saleprice_bw10000.pdf, id=84, 505.89pt x 505.89pt>
 File: ../Figures/density_saleprice_bw10000.pdf Graphic file (type pdf)
 <use ../Figures/density_saleprice_bw10000.pdf>
 Package pdftex.def Info: ../Figures/density_saleprice_bw10000.pdf  used on inpu
-t line 214.
+t line 241.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -371,7 +375,7 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [7]
-Overfull \hbox (21.05954pt too wide) in paragraph at lines 231--231
+Overfull \hbox (21.05954pt too wide) in paragraph at lines 258--258
 []     \OT1/pcr/m/n/10.95 main = c('Kernel-Smoothed Density of Tractor Prices',
 [] 
  []
@@ -380,11 +384,11 @@ Overfull \hbox (21.05954pt too wide) in paragraph at lines 231--231
 
 pdfTeX warning: pdflatex.exe (file ../Figures/density_saleprice_bw1000.pdf): PD
 F inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/density_saleprice_bw1000.pdf, id=88, 505.89pt x 505.89pt>
+<../Figures/density_saleprice_bw1000.pdf, id=89, 505.89pt x 505.89pt>
 File: ../Figures/density_saleprice_bw1000.pdf Graphic file (type pdf)
 <use ../Figures/density_saleprice_bw1000.pdf>
 Package pdftex.def Info: ../Figures/density_saleprice_bw1000.pdf  used on input
- line 236.
+ line 263.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
@@ -393,13 +397,13 @@ LaTeX Warning: `!h' float specifier changed to `!ht'.
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [8 <../Figures/density_saleprice_bw10000.pdf>]
-Overfull \hbox (47.33951pt too wide) in paragraph at lines 261--261
+Overfull \hbox (47.33951pt too wide) in paragraph at lines 288--288
 []\OT1/pcr/m/n/10.95 log_price_density <- density(tractor_sales[, 'log_salepric
 e'],[] 
  []
 
 
-Overfull \hbox (27.62953pt too wide) in paragraph at lines 261--261
+Overfull \hbox (27.62953pt too wide) in paragraph at lines 288--288
 []     \OT1/pcr/m/n/10.95 main = c('Density of the Logarithm of Tractor Prices'
 ,[] 
  []
@@ -408,36 +412,45 @@ Overfull \hbox (27.62953pt too wide) in paragraph at lines 261--261
 
 pdfTeX warning: pdflatex.exe (file ../Figures/density_log_saleprice_bw020.pdf):
  PDF inclusion: found PDF version <1.7>, but at most version <1.5> allowed
-<../Figures/density_log_saleprice_bw020.pdf, id=104, 505.89pt x 505.89pt>
+<../Figures/density_log_saleprice_bw020.pdf, id=105, 505.89pt x 505.89pt>
 File: ../Figures/density_log_saleprice_bw020.pdf Graphic file (type pdf)
 <use ../Figures/density_log_saleprice_bw020.pdf>
 Package pdftex.def Info: ../Figures/density_log_saleprice_bw020.pdf  used on in
-put line 265.
+put line 292.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
 [9 <../Figures/density_saleprice_bw1000.pdf>] [10 <../Figures/density_log_salep
-rice_bw020.pdf>] (Tractor_Price_Density.aux) ) 
+rice_bw020.pdf>]
+<../Figures/dens_by_brand.pdf, id=134, 505.89pt x 505.89pt>
+File: ../Figures/dens_by_brand.pdf Graphic file (type pdf)
+<use ../Figures/dens_by_brand.pdf>
+Package pdftex.def Info: ../Figures/dens_by_brand.pdf  used on input line 321.
+(pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
+ [11
+
+ <../Figures/dens_by_brand.pdf>] (Tractor_Price_Density.aux) ) 
 Here is how much of TeX's memory you used:
- 3072 strings out of 479163
- 47242 string characters out of 2852567
- 330533 words of memory out of 3000000
- 20635 multiletter control sequences out of 15000+600000
+ 3082 strings out of 479163
+ 47745 string characters out of 2852567
+ 332542 words of memory out of 3000000
+ 20644 multiletter control sequences out of 15000+600000
  412654 words of font info for 56 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 55i,7n,62p,238b,258s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Users/le279259/AppData/Local/
-Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/le279259/AppData/Local/Pr
-ograms/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/le279259/AppD
-ata/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/le
-279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Use
-rs/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><
-C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a
-.pfb>
-Output written on Tractor_Price_Density.pdf (10 pages, 183894 bytes).
+ 55i,9n,62p,248b,258s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/le27925
+9/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/le279259/
+AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Use
+rs/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.
+pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
+s/cm/cmr10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw
+/courier/ucrr8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/palatino/uplb8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/font
+s/type1/urw/palatino/uplr8a.pfb>
+Output written on Tractor_Price_Density.pdf (11 pages, 203836 bytes).
 PDF statistics:
- 151 PDF objects out of 1000 (max. 8388607)
+ 165 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 41 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 46 words of extra memory for PDF output out of 10000 (max. 10000000)
 
