@@ -1,0 +1,230 @@
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[11pt]{article}
+\usepackage{fullpage}
+\begin{document}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \Xpoint
+% \nopagenumbers
+% \autoeqnooff
+% \input LaTeX.tex
+{\noindent\bf Spring 2023 \hfill Lealand Morin}
+\vskip 16pt
+\centerline{\bf University of Central Florida}
+\centerline{\bf College of Business }
+\vskip 16pt
+\centerline{\bf QMB 6912}
+\centerline{\bf Capstone Project in Business Analytics}
+\vskip 10pt
+\centerline{\bf Problem Set \#2}
+\vskip 10pt
+\centerline{\bf Due Date: Sunday, 22 January 2023, at 11:59 PM.}
+\vskip 32pt
+\noindent
+
+
+
+
+A data engineer for several realtors has gathered relevant and appropriate 
+information, and organized a dataset concerning 1,862 sales of detached houses.
+The data engineer scraped data from many real estate Websites
+and combined it with the records from the realtors to identify
+the houses that were available for rent during the year after each sale.
+Around one third of the houses were identified as rental units, 
+while the other two thirds were not observed for rent
+and were presumably occupied by the owner.
+% 
+These data are contained in the file {\tt HomeSales.dat}, which is
+available in the {\tt Data} folder of the course repository
+and on the course Webpage under Module 2.
+% 
+
+Each house in the dataset is a row, while the columns correspond 
+to the variables whose names and definitions are the following:
+
+\bigskip
+\begin{table}[ht]
+\centering
+\begin{tabular}{ll}
+  \hline
+    Variable & Definition \\
+  \hline
+    {\tt year\_built}      & the year in which the house was constructed \cr
+    {\tt num\_beds}      & the number of bedrooms in the house \cr
+    {\tt num\_baths}      & the number of bathrooms in the house\cr
+    {\tt floor\_space}      & the area of floor space in the house, in square feet\cr
+    {\tt lot\_size}      & the area of lot on which the house was built, in square feet \cr
+    {\tt has\_garage}      & an indicator for whether the house has a garage \cr
+    {\tt has\_encl\_patio}      & an indicator for whether the house has an enclosed patio \cr
+    {\tt has\_security\_gate}      & an indicator for whether the property is accessed through a security gate \cr
+    {\tt has\_pool}      & an indicator for whether the property includes a pool \cr
+    {\tt transit\_score}      & an integer to represent the convenience of transportation options \cr
+    {\tt school\_score}      & an integer to represent the quality of the schools in the county  \cr
+    {\tt type\_of\_buyer}      & a categorical variable to indicate the type of buyer, \cr
+		& either ``Owner-Occupied'' or ``Rental''  \cr
+    {\tt price}      & the price at which the home was sold \cr
+  \hline
+\end{tabular}
+\end{table}
+
+\bigskip
+\noindent
+
+% \vfill
+
+
+\bigskip
+The first several variables are self-explanatory 
+but some of the variables above warrant some description.
+The last two integers, \texttt{transit\_score} and \texttt{school\_score}
+describe the amenities available to the residents in each house. 
+The {\tt transit\_score} is an integer from one to ten that indicates the 
+convenience of transportation options at the location of the house. 
+It factors in the availability of public transportation options, 
+as well as the proximity to business districts and major highways, 
+with a higher score indicating a higher level of convenience. 
+Similarly the {\tt school\_score} is an integer from one to ten that indicates the 
+quality of the schools in the county. 
+It is compiled from indicators of college attendance, test scores, 
+as well as other measures of school and student performance.
+As with the {\tt transit\_score}, a higher {\tt school\_score}
+indicates better school quality. 
+The variables listed above also include the dependent variable. 
+The {\tt price} variable is the price at which the home was sold. 
+
+
+
+\medskip
+Begin your analysis by focusing on the dependent variable, {\tt price},
+including all observations together, regardless of 
+whether the home is owner-occupied or used as a rental property.
+Calculate the relative histogram of home prices and plot a graph.
+Then, calculate the kernel-smoothed probability density function of 
+home prices. 
+Choose an appropriate bandwidth that strikes a balance between
+smoothness, for ease of interpretation, and flexibility, for fitting the data accurately. 
+Now graph these objects in \textsf{R} and output the relevant graphs in a format 
+that can be loaded into \LaTeX\ for further processing.
+
+
+\medskip
+Repeat the above procedures using 
+the natural logarithm of home prices.
+
+
+
+
+\medskip
+Next, recalculate the density of sale prices,
+this time disaggregating by type of owner.
+That is, create separate kernel-smoothed probability density functions
+for homes sold as rental properties and homes occupied by the owner. 
+Note that you might find that different bandwidths
+are appropriate for both subsamples, 
+so you might conduct the analysis separately for each subsample. 
+Next, depict these two objects on the same graph, labeling them appropriately
+so the reader can distinguish among them.
+
+
+\medskip
+Again, repeat the previous steps
+for the separate samples by type of owner using 
+the natural logarithm of home prices as the dependent variable.
+
+
+\medskip
+Describe any differences that you find between the densities by type of owner.
+Do the prices follow a different distribution for each type?
+Would you expect to find different distributions of the characteristics of homes?
+Would you expect to find different relationships between the characteristics of homes
+and their sale prices?
+We will investigate your conjectures through the next several problem sets.
+
+
+
+
+
+
+\pagebreak
+Prepare and compile your work in \LaTeX\
+and include scripts for any of the 
+calculations in \textsf{R}.
+In particular, create the following directory structure, separate from your
+existing work:
+
+\begin{itemize}
+\item {\tt Code/}
+\item {\tt Data/}
+\item {\tt Figures/}
+%\item {\tt Tables/}
+%\item {\tt Text/}
+\item {\tt Paper/}
+\item {\tt Misc/}
+\end{itemize}
+
+\bigskip\noindent
+In a file called {\tt README.md}, 
+which should also live in the directory
+containing the above folders, 
+provide the instructions concerning how to run the 
+executable shell script {\tt DoWork.sh} (in the same directory) 
+that will execute the code that 
+produced all of the answers collected and documented in 
+your report,
+which will live in the subdirectory {\tt Paper/}.
+In the subdirectory {\tt Code/}, keep the {\textsf R} code; 
+in {\tt Data/} keep the raw data file you downloaded, so that {\tt DoWork.sh} 
+can load it into {\textsf R}, 
+and in {\tt Figures/} keep any figures you created 
+for your answers.
+% Similarly, keep any \LaTeX\ scripts for tables in the {\tt Tables/} folder.
+% You may put any written text in the {\tt Text/} folder, 
+% if not already included in a \texttt{tex} file in your {\tt Paper/} folder. 
+Put anything else in the subdirectory {\tt Misc/}.
+I should then be able to replicate all of your work simply by 
+typing
+
+\medskip
+\begin{itemize}
+\item {\tt \$ ./DoWork.sh}
+\end{itemize}
+
+\medskip\noindent
+on the command line of a terminal window.
+
+\bigskip
+To provide you a template, which makes preparation easier for you and grading 
+easier for me, I have placed sample \LaTeX\ and \textsf{R} code 
+in the GitHub repository for the course: {\tt QMB6912S23},
+under my GitHub username {\tt LeeMorinUCF};
+pull this repository and use these files a framework within which to 
+create the answers for this problem set.
+Push the files to a folder on your GitHub repository
+and I will pull your submissions to my computer for grading. 
+
+
+
+\medskip
+Be sure to support your calculations with descriptions 
+of what you were trying to do (for example, in comments in your \textsf{R} code 
+as well as in the \LaTeX\ explanations) because partial credit will be given.
+
+
+
+\vfill
+\centerline{\bf Due Date: Sunday, 22 January 2023, at 11:59 PM.}
+
+\eject
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
