@@ -1,0 +1,239 @@
+\documentclass[11pt]{paper}
+\usepackage{palatino}
+\usepackage{amsfonts,amsmath,amssymb}
+% \usepackage{graphicx}
+
+
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=R,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+\ifx\pdftexversion\undefined
+    \usepackage[dvips]{graphicx}
+\else
+    \usepackage[pdftex]{graphicx}
+    % \usepackage{epstopdf}
+    % \epstopdfsetup{suffix=}
+    \usepackage[outdir=./]{epstopdf}
+\fi
+
+\usepackage{subfig}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem Set 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+{\noindent\bf Spring 2023 \hfill Firstname M.~Lastname}
+\vskip 16pt
+\centerline{\bf University of Central Florida}
+\centerline{\bf College of Business}
+\vskip 16pt
+\centerline{\bf QMB 6911}
+\centerline{\bf Capstone Project in Business Analytics}
+\vskip 10pt
+\centerline{\bf Solutions:  Problem Set \#6}
+\vskip 32pt
+\noindent
+
+
+% \pagebreak
+\section{Analyzing the Dependent Variable}
+
+\subsection{Probability Density Function of Fly Reel Prices}
+
+Figure \ref{fig:density_prices} is the kernel-smoothed probability density function of the natural logarithm of
+price:
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/density_prices}
+  \caption{Probability Density Function of Fly Reel Prices} \label{fig:density_prices}
+\end{figure}
+
+
+\subsection{Probability Density Function of the Log. of Fly Reel Prices}
+
+Figure \ref{fig:density_log_prices} is the kernel-smoothed probability density function of the natural logarithm of
+price:
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/density_log_prices}
+  \caption{Probability Density Function of Fly Reel Prices} \label{fig:density_log_prices}
+\end{figure}
+
+
+
+\pagebreak
+\subsection{Probability Density Function of the Box-Cox Transformation of Fly Reel Prices}
+
+Figure \ref{fig:density_trans_prices} is the kernel-smoothed probability density function of the natural logarithm of
+price. 
+Although the transformed model does look closest to normal,
+all three distributions are reasonably symmetric, 
+indicating that the use of the transformation is subject to judgment.
+Whether it is worth using the transformation
+can be settled by analyzing the results of regression models 
+with different forms of the dependent variable. 
+
+\begin{figure}[h!]
+  \centering
+  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/density_trans_prices}
+  \caption{Probability Density Function of Transformed Fly Reel Prices} \label{fig:density_trans_prices}
+\end{figure}
+
+
+\pagebreak
+\section{Regression Models for Fly Reel Prices}
+
+
+For the regression analysis, I create new variables.
+The first is the volume of each reel, 
+calculated as the volume of a cylinder: 
+the value $\pi$ times the square of the radius of the reel,
+times the width of the reel. 
+The density is then calculated as the weight 
+divided by the volume. 
+
+\begin{lstlisting}[language=R]
+R> flyreels[, 'Volume'] <- 
+	pi * (flyreels[, 'Diameter']/2)^2 * flyreels[, 'Width']
+R> flyreels[, 'Density'] <- 
+	flyreels[, 'Weight'] / flyreels[, 'Volume']
+\end{lstlisting}
+
+
+
+% \pagebreak
+\subsection{Comparison by Transformation of Dependent Variable}
+
+Table \ref{tab:reg_by_dep_var} shows the results of 
+a series of regression models with different definitions of the dependent variable.
+Model 1 uses the fly reel prices without transformation, 
+Model 2 uses the logarithm of the fly reel prices, 
+and Model 3 uses the Box-Cox transformation of fly reel prices, 
+with the optimal value of the parameter in the exponent.
+% 
+Although the model built on the original price levels
+has statistically significant coefficients, 
+the two transformed models have a better fit, 
+with higher values of $\bar{R}^2$. 
+Since the difference between the latter two models is marginal, 
+it is better to model the logarithm of fly reel prices, 
+which has the added advantage of interpretability 
+of the coefficients, 
+which approximately represent percentage changes in fly reel prices. 
+
+\input{../Tables/reg_by_dep_var}
+
+\pagebreak
+\subsection{Comparison by Country of Manufacture}
+
+Table \ref{tab:reg_by_country} shows the results of 
+a series of regression models 
+on different samples by country of manufacture.
+Model 1 shows the results for the sample of fly reels made in the USA
+and Model 2 shows the remaining fly reels made in China or Korea.
+
+\input{../Tables/reg_by_country}
+
+The width of the reel is insignificant in both samples
+and the coefficients are qualitatively similar across the samples, as well as matching in significance. 
+This suggests that one model might be sufficient. 
+
+To test this statistically, I conduct an $F$-test. 
+This compares a single model with only an
+indicator for the country of manufacture
+(the restricted model)
+with a separate model for each country.
+In this case, the full, unrestricted model has 
+$K = 2\times6 = 12$ parameters, one for each variable in two models. 
+The test that all of the coefficients are the same has 
+$M = 6 - 1 = 5$
+restrictions. 
+The one restriction fewer accounts for the made-in-USA indicator
+in the full model, 
+which allows for two separate intercepts. 
+% 
+The $F$-statistic has a value of 
+
+$$ 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K - 1)} = \frac{(26.24962 - 25.2235)/5}{25.2235/235} = 1.912007. 
+$$
+
+This value is greater than 1, so we can compare it to the critical value
+of the $F$-statistic at the specified degrees of freedom for
+a conventional level of significance.
+These critical values are 
+3.095, 2.252, and 1.872
+at the 1\%, 5\%, and 10\%
+levels of significance, respectively.
+
+This places the F-statistic between the critical values for the
+5 and 10 percent levels of significance.
+Conclude that fly reel prices may have some difference by
+country of manufacture but the difference is marginal.
+This suggests little justification for separate models by
+country of manufacture.
+We can investigate small differences between the models.
+
+
+In the next section, 
+I will consider a hybrid model with some interaction terms
+with separate coefficients by country of manufacture. 
+
+
+\pagebreak
+\subsection{Models with Interaction Terms}
+
+Table \ref{tab:reg_interactions} shows the results of 
+a series of regression models with different 
+specifications of interaction terms by country of manufacture. 
+% 
+The interaction with sealed and country of manufacture is significant in both specifications Model 1 and Model 3.
+In contrast, the interaction with density was not significant. 
+Furthermore, the width of fly reels is a significant predictor
+in this more refined model. 
+Since all variables are significant in this model and it
+has the highest $\bar{R}^2$, Model 1 is the recommended model.
+
+
+\input{../Tables/reg_interactions}
+
+
+In terms of the production decision, 
+there exists a substantial premium for fly reels made in the USA
+but this premium is half as large for sealed reels, 
+however, this reduced premium is still smaller than the 
+additional value for a sealed reel.  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
