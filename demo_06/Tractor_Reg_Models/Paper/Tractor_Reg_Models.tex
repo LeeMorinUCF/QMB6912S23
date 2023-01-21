@@ -194,7 +194,9 @@ for \$2,000 if it is a John Deere,
 which is clearly more reasonable. 
 This more sensible interpretation supports 
 the strategy of modeling the 
-logarithm of the tractor price. 
+logarithm of the tractor price, 
+even if the pricing difference is not statistically significant 
+in this preliminary model. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -217,59 +219,26 @@ The coefficients for seasonal indicators,
 engine hours and manual transmission are not significant.
 The John Deere indicator is not significant
 but since it is a key empirical question, 
-I include it, regardless. 
-The second column shows the model without the seasonal indicators. 
-We see an improvement in significance of
-some variables with minimal loss of predictive ability. 
+so I include it, regardless. 
+I removed the indicator for manual transmission
+and left in the seasonal indicators;
+this specification appears in the second column. 
+The next column shows the model without the seasonal indicators. 
+Sometimes we see an improvement in significance of
+some variables with minimal loss of predictive ability
+after removing the first few variables. 
 %Before making any further changes, 
 %I will improve the specification of the model
 %by considering nonlinear specifications. 
-Removing the variables in the other order, 
-I removed the indicator for manual transmission
-and left in the seasonal indicators;
-this specification appears in the next column. 
-In the last column, I remove the indicator for manual transmission. 
+In the fourth column, I remove the variable for the engine hours. 
 % All these changes have a similar effect on the quality of the model. 
-Interestingly, the coefficient for the value of the John Deere brand
-becomes insignificant when the model is trimmed down. 
-Still, the coefficient is consistently in the neighborhood of 15--16\%, 
+The coefficient for the value of the John Deere brand
+became insignificant as the model was trimmed down. 
+Still, the coefficient is consistently in the neighborhood of 16--18\%, 
 which gives an indication of the value of the brand name, if only innaccurately. 
 We can revisit this question after improving the quality of the model. 
-
-
-%\clearpage
-%\subsection{Quadratic Specification for Horsepower}
-%
-%Now suppose that 
-%a used tractor dealer reports that overpowered used tractors are hard to sell, since they consume more fuel. 
-%This implies that tractor prices often increase with horsepower, up to a point, but beyond that they decrease. 
-%To incorporate this advice, I created and included a variable for squared horsepower. 
-%
-%If we expect a decreasing relationship for high values of horsepower, 
-%this would be characterized by 
-%a positive coefficient on the horsepower variable and
-%a negative coefficient on the squared horsepower variable. 
-%
-%The results of this regression specification are shown in 
-%Table \ref{tab:reg_sq_horse}. 
-%% 
-%\input{../Tables/reg_sq_horse}
-%% 
-%The squared horsepower variable has a coefficient of $-2.081e-05$, which is nearly ten times as large as the standard error of $2.199e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
-%I conclude that the log of the sale price does decline for large values of horsepower. 
-
-
-%With the squared horsepower variable, the $\bar{R}^2$ has increased substantially to $0.764$, indicating that it is a much stronger model. 
-%The $F$-statistic is even larger than before, indicating that it is still a better candidate than the simple average log sale price. 
-%The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
-%This new model is much improved over the previous models with a linear specification for horsepower.
-%
-%This improved model affords an opportunity
-%to reconsider other variables in the previous models.
-%Models 2 and 3 both include an indicator that the
-%tractor has an enclosed cab, 
-%which is also statistically significant. 
-%The seasonal indicators in Model 2 are not statistically significant under this specification neither. 
+For now, the best model for the full sample of tractors
+is the fully-reduced Model 5.
 
 \clearpage
 \subsection{Seasonality of the Pricing of Tractors}
@@ -277,9 +246,11 @@ We can revisit this question after improving the quality of the model.
 In the variable redulction exercise 
 of Table \ref{tab:reg_reduction},
 the seasonal indicators were not statistically significant individually.
-It is possible, however, that jointly, they 
-offer an improvement in prediction. 
-This can be tested with an $F$-test
+%It is possible, however, that jointly, they 
+%offer an improvement in prediction. 
+A valid approach is to test the joint hypothesis 
+of the three exclusions together with an $F$-test.
+This is a more statistically rigorous way
 to test the joint hypothesis that the time of year has no effect on the sale of tractors. 
 %
 The null hypothesis is the joint hypothesis that all coefficients on spring, summer and winter are equal to zero. 
@@ -292,7 +263,7 @@ The constrained model is the one that excludes seasonal indicators and it has a 
 The $F$-statistic has a value of 
 
 $$ 
-\frac{(RSS_M - RSS)/M}{RSS/(N - K - 1)} = \frac{(67.17639 - 66.40924)/3}{RSS/263} = 1.020406. 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(67.17639 - 66.40924)/3}{RSS/263} = 1.024257. 
 $$
 
 since $N = 276$ observations, $K = 10$ variables and $M = 3$ restrictions, one for each seasonal indicator excluded. 
@@ -307,39 +278,45 @@ both indicate that tractor prices do not follow a seasonal pattern.
 \clearpage
 \subsection{Interaction Terms}
 
-\subsubsection{Durability of Engine Types}
 
-Finally, I consider another modification to your model. 
-Diesel engines tend to be more durable than gasoline engines. 
-This raises the question of whether an additional hour of use affects the value of a diesel tractor differently than for a gasoline tractor. 
-This is tested in Model 1 of Table \ref{tab:reg_interactions}. 
+%\subsubsection{Durability of Engine Types}
+%
+%Finally, I consider another modification to your model. 
+%Diesel engines tend to be more durable than gasoline engines. 
+%This raises the question of whether an additional hour of use affects the value of a diesel tractor differently than for a gasoline tractor. 
+%This is tested in Model 1 of Table \ref{tab:reg_interactions}. 
+%
+%	This hypothesis is a test of the \emph{interaction} of the diesel indicator and the slope on engine hours. 
+%      Given the above result, this test should be conducted with the model that excludes the seasonal indicators. 
+%The coefficient on \texttt{enghours:diesel} is $5.882e-06$ with a standard error of $2.922e-05$, resulting in a $t$-statistic of $0.201$. 
+%Since this is a very low value, we cannot reject the null hypothesis that an additional hour of use affects the value of a diesel tractor the same as that for a gasoline tractor. 
+%Note that this conclusion does not change if you test a one-sided hypothesis.  
+%
+%Furthermore, the $\bar{R}^2$ statistic decreases with the inclusion of this variable. 
+%The $F$-statistic is high and statistically significant, indicating that this model is better than the simple average but so is the model without this new variable. 
+%Finally, the estimates of the other coefficients change very little when this variable is omitted. 
+%The theory may be sound but there is nothing else to support the inclusion of this new variable. 
 
-	This hypothesis is a test of the \emph{interaction} of the diesel indicator and the slope on engine hours. 
-      Given the above result, this test should be conducted with the model that excludes the seasonal indicators. 
-The coefficient on \texttt{enghours:diesel} is $5.882e-06$ with a standard error of $2.922e-05$, resulting in a $t$-statistic of $0.201$. 
-Since this is a very low value, we cannot reject the null hypothesis that an additional hour of use affects the value of a diesel tractor the same as that for a gasoline tractor. 
-Note that this conclusion does not change if you test a one-sided hypothesis.  
+\subsubsection{Differences in Parameters by Brand}
 
-Furthermore, the $\bar{R}^2$ statistic decreases with the inclusion of this variable. 
-The $F$-statistic is high and statistically significant, indicating that this model is better than the simple average but so is the model without this new variable. 
-Finally, the estimates of the other coefficients change very little when this variable is omitted. 
-The theory may be sound but there is nothing else to support the inclusion of this new variable. 
-
-% \clearpage
-\pagebreak
-\subsubsection{Differences in Depreciation by Brand}
-
-The remaining columns of Table \ref{tab:reg_interactions}
+The columns of Table \ref{tab:reg_interactions}
 show the results of tests for interactions
 between the John Deere indicator variable
-on the effects of age, engine hours and horsepower. 
+on the effects of horsepower, engine hours, age
+and whether the tractor has a manual transmission. 
 There seems to be no evidence for relationships that differ by
 brand name. 
-In this table, we have investigated several 
-individual types of differences by brand. 
 
 \input{../Tables/reg_interactions}
 
+
+\clearpage
+\pagebreak
+\subsubsection{Separate Models by Brand}
+
+In Table \ref{tab:reg_interactions}, 
+we investigated several 
+individual types of differences by brand. 
 To test for many possible differences in 
 models by brand of tractor, 
 Table \ref{tab:reg_johndeere}
@@ -348,15 +325,17 @@ by brand of tractor.
 %
 Model 1 shows the estimates for 
 the full sample,
-Model 2 shows the estimates from the full model for 
+Models 2, 3 and 4 show the estimates from two models for 
 John Deere tractors
-and Model 4 
-represents all other brands. 
+and Models 5 and 6 
+represent all other brands. 
 % 
-Models 3 and 5 show the estimates from a reduced version of each model, 
+Models 3 and 5 show the estimates from 
+the best, reduced version of each model, 
 in which all coefficients are statistically significant. 
 % 
-The coefficients appear similar across the two subsamples.
+The coefficients appear similar across the two subsamples, 
+when the coefficients are significant.
 Notable differences include the statistical significance for 
 the indicators for four-wheel drive, 
 manual transmission and an enclosed cab. 
@@ -369,9 +348,18 @@ John Deere tractors.
 
 We can also test for all of the differences at the same time
 by using an $F$-test. 
-In this case, the full, unrestricted model has $K = 2\times9 = 18$ parameters, one for each variable in two models. 
-The test that all of the coefficients are the same has $M = 9 - 1 = 8$
-restrictions. 
+We do so using a comparison between the best models
+for each subsample and the best model for the full sample.
+In this case, the full, unrestricted model has 
+% $K = 2\times9 = 18$
+$K = 4 + 8 = 12$
+parameters, 
+one for each variable in the two models, including the intercepts. 
+The test that all of the coefficients are the same has 
+% $M = 9 - 1 = 8$
+$M = 12 - 5 = 7$
+restrictions, 
+since the reduced model on the full sample has 5 parameters. 
 The one restriction fewer accounts for the John Deere indicator
 in the full model, 
 which allows for two separate intercepts. 
@@ -379,7 +367,7 @@ which allows for two separate intercepts.
 The $F$-statistic has a value of 
 
 $$ 
-\frac{(RSS_M - RSS)/M}{RSS/(N - K - 1)} = \frac{(48.23357 - 12.65947)/3}{41.1432/263} = 121.3017. 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(68.97084 - 48.38915)/7}{48.38915/264} = 16.04128. 
 $$
 
 %This is also a very low value for the $F$-statistic. 
@@ -388,9 +376,12 @@ $$
 %and conclude that the John Deere indicator
 %should be the only brand difference left in the model. 
 This is a very high value for the $F$-statistic. 
-There is no evidence to reject the null that all 
+This is evidence to reject the null that all 
 coefficients are equal across both samples 
-and conclude that...% the John Deere indicator
+and conclude that 
+several parameters should be estimated separately
+depending on whether the tractor was made by John Deere .
+% the John Deere indicator
 % should be the only brand difference left in the model. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
