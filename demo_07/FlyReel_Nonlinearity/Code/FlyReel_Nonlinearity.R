@@ -11,17 +11,17 @@
 # College of Business
 # University of Central Florida
 #
-# March 15, 2022
+# January 21, 2021
 #
 ##################################################
 #
 # Sample code for the problem sets in the course QMB 6912,
 # Capstone Project in Business Analytics, for the PMSM-BA
 # program.
-# FlyReel_Reg_Models gives examples of OLS regression models
+# FlyReel_Nonlinearity gives examples of OLS regression models
 #   by considering a number of different model specifications.
 # In this example, the model specification choices
-#   have a parametric form.
+#   use a parametric form to account to account for the nonlinearity.
 #
 # Dependencies:
 #   Libraries xtable and texreg
@@ -40,7 +40,7 @@
 rm(list=ls(all=TRUE))
 
 # Set working directory, if running interactively.
-# wd_path <- '~/GitHub/QMB6912S23/demo_06/FlyReel_Reg_Models'
+# wd_path <- '~/GitHub/QMB6912S23/demo_07/FlyReel_Nonlinearity'
 # setwd(wd_path)
 
 
@@ -87,6 +87,12 @@ print(summary(flyreels))
 # Generating Variables
 ##################################################
 
+
+# Create logarithm of dependent variable.
+flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
+
+
+
 # Set categorical variables as factors.
 cat_var_list <- colnames(flyreels)[lapply(flyreels, class) == "character"]
 for (var_name in cat_var_list) {
@@ -98,16 +104,6 @@ print('FlyReels Dataset with Categorical Factors:')
 print(summary(flyreels))
 
 
-
-# Create a density variable.
-colnames(flyreels)
-flyreels[, 'Volume'] <- pi * (flyreels[, 'Diameter']/2)^2 * flyreels[, 'Width']
-flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
-
-# Create logarithm of dependent variable.
-flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
-
-
 # Replace Country Indicator with made_in_USA Indicator.
 table(flyreels[, 'Country'], useNA = 'ifany')
 flyreels[, 'made_in_USA'] <- flyreels[, 'Country'] == 'USA'
@@ -116,197 +112,137 @@ table(flyreels[, 'Country'],
       flyreels[, 'made_in_USA'], useNA = 'ifany')
 
 
-
-
 ##################################################
-# Analyze Dependent Variable
+# Introduce nonlinear interactions.
 ##################################################
 
+# Perhaps the density of a reel matters more than the size.
+# That is, it is an interaction between the weight and the size
+# of the reel.
 
 
-# Kernel-smoothed pdf of the (un-transformed) price.
-density_price <- density(flyreels[, 'Price'])
-fig_file_name <- 'density_prices.pdf'
-out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-pdf(out_file_name)
-plot(density_price,
-     main = 'Kernel-Smoothed pdf of Fly Reel Prices',
-     xlab = 'Price',
-     col = 'blue',
-     lwd = 3)
-dev.off()
-
-
-# Kernel-smoothed pdf of the natural logarithm of price.
-density_log_price <- density(flyreels[, 'log_Price'])
-fig_file_name <- 'density_log_prices.pdf'
-out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-pdf(out_file_name)
-plot(density_log_price,
-     main = 'Kernel-Smoothed pdf of the Natural Log. of Fly Reel Prices',
-     xlab = 'Logarithm of Price',
-     col = 'blue',
-     lwd = 3)
-dev.off()
-
+# Create a density variable.
+colnames(flyreels)
+flyreels[, 'Volume'] <- pi * (flyreels[, 'Diameter']/2)^2 * flyreels[, 'Width']
+flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
 
 
 
 ##################################################
-# Box-Cox Transformation
-##################################################
-
-#--------------------------------------------------
-# Consider the model with different values
-# of the exponent parameter
-# for the Box-Cox transformation
-#--------------------------------------------------
-
-
-# Box-Cox transformation.
-Lambda_Price <- function(price, lambda) {
-
-  if (lambda == 0) {
-    return(log(price))
-  } else {
-    return((price^lambda - 1)/lambda)
-  }
-
-}
-
-
-# Create the likelihood function.
-log_like_uni <- function(price, lambda) {
-
-  n <- length(price)
-  lambda_price <- Lambda_Price(price, lambda)
-  mu_0_lambda <- mean(lambda_price)
-  sigma_2_lambda <- sum((lambda_price - mu_0_lambda)^2)/n
-
-  like <- - n/2*log(2*pi*sigma_2_lambda)
-  like <- like - 1/2/sigma_2_lambda*sum((lambda_price - mu_0_lambda)^2)
-  like <- like + (lambda - 1)*sum(log(price))
-
-  return(like)
-
-}
-
-# Calculate values of the log-likelihood function.
-lambda_grid <- seq(-1, 2.5, by = 0.001)
-like_grid <- 0*lambda_grid
-for (lambda_num in 1:length(lambda_grid)) {
-  like_grid[lambda_num] <- log_like_uni(price = flyreels[, 'Price'],
-                                        lambda = lambda_grid[lambda_num])
-}
-
-# Find the MLE, the unrestricted estimate.
-lambda_hat <- lambda_grid[which.max(like_grid)]
-like_MLE <- max(like_grid)
-
-
-
-# Generate new dependent variable with results from Problem Set 6.
-flyreels[, 'Trans_Price'] <- Lambda_Price(price = flyreels[, 'Price'],
-                                          lambda = lambda_hat)
-
-
-# Now plot the density of this transformed variable.
-
-# Kernel-smoothed pdf of the Box-Cox Transformation of price.
-density_trans_price <- density(flyreels[, 'Trans_Price'])
-fig_file_name <- 'density_trans_prices.pdf'
-out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-pdf(out_file_name)
-plot(density_trans_price,
-     main = 'Kernel-Smoothed pdf of the Box-Cox Transformation of Fly Reel Prices',
-     xlab = 'Logarithm of Price',
-     col = 'blue',
-     lwd = 3)
-dev.off()
-
-
-##################################################
-# Estimating Regression Models
-# by Transformation of the Dependent Variable
+# Revisiting previous variable reduction
 ##################################################
 
 
-#--------------------------------------------------
-# Regression on (Un-transformed) Fly Reel Prices
-#--------------------------------------------------
+# As a result of earlier analysis.
+# Set target variable as the log transformation
+# for remaining analysis.
+target_var <- 'log_Price'
 
-var_list <- c('Width', 'Diameter', 'Density',
+
+var_list <- c('Width', 
+              'Diameter', 
+              'Density',
+              'Weight',
               'Sealed', 'Machined', 'made_in_USA')
 
-target_var <- 'Price'
-lm_fmla <- as.formula(sprintf('%s ~ %s',
-                              target_var,
-                              paste(var_list, collapse = ' + ')))
-
-lm_model_1 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_1))
 
 #--------------------------------------------------
 # Regression on Logarithm of Fly Reel Prices
 #--------------------------------------------------
 
-target_var <- 'log_Price'
 lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_2 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_2))
+lm_model_log_all <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_all))
 
 
 #--------------------------------------------------
-# Regression on Box-Cox transformation of Fly Reel Prices
+# Reduced models
 #--------------------------------------------------
 
 
-target_var <- 'Trans_Price'
+# Notice that density, diameter and weight are highly
+# correlated because they are functionally related.
+# At least one should be excluded.
+
+# Drop width.
+var_list <- c(# 'Width', 
+  'Diameter', 
+  'Density',
+  'Weight',
+  'Sealed', 'Machined', 'made_in_USA')
+
 lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_3 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_3))
+lm_model_log_red_1 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_red_1))
 
 
+# Drop diameter.
+var_list <- c('Width', 
+  # 'Diameter', 
+  'Density',
+  'Weight',
+  'Sealed', 'Machined', 'made_in_USA')
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_log_red_2 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_red_2))
+
+# Drop weight.
+var_list <- c('Width', 
+  'Diameter',
+  'Density',
+  # 'Weight',
+  'Sealed', 'Machined', 'made_in_USA')
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_log_red_3 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_red_3))
 
 
+# Seems as though the weight variable can be excluded.
+# Drop both weight and width.
+var_list <- c(# 'Width', 
+              'Diameter',
+              'Density',
+              # 'Weight',
+              'Sealed', 'Machined', 'made_in_USA')
 
-#--------------------------------------------------
-# Print the output to a LaTeX file.
-#--------------------------------------------------
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_log_red_4 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_red_4))
 
 
-
-tab_file_name <- 'reg_by_dep_var.tex'
+tab_file_name <- 'reg_w_density.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_1,
-                lm_model_2,
-                lm_model_3),
+texreg(l = list(lm_model_log_all, 
+                lm_model_log_red_1, 
+                lm_model_log_red_2, 
+                lm_model_log_red_3,
+                lm_model_log_red_4),
        file = out_file_name,
-       label = 'tab:reg_by_dep_var',
-       caption = "Regression Models with Different Dependent Variables")
+       label = 'tab:reg_w_density',
+       caption = "Regression Models with Density Variable")
 
 
-# Although the model built on the original price levels
-# has statistically significant coefficients,
-# the two transformed models have a better fit,
-# with higher values of R-squared.
-# Since the difference between the latter two models is marginal,
-# it is better to model the logarithm of fly reel prices,
-# which has the added advantage of interpretability
-# of the coefficients,
-# which approximately represent percentage changes in fly reel prices.
 
 
-# Set target variable as the log transformation
-# for remaining analysis.
-target_var <- 'log_Price'
-
+# Might keep width since the significance is marginal 
+# and may become significant under a refined specification.
 
 
 ##################################################
@@ -344,9 +280,9 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_4 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == TRUE, ],
+lm_model_USA <- lm(data = flyreels[flyreels[, 'made_in_USA'] == TRUE, ],
                  formula = lm_fmla)
-print(summary(lm_model_4))
+print(summary(lm_model_USA))
 
 
 
@@ -362,9 +298,11 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_5 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == FALSE, ],
+lm_model_Asia <- lm(data = flyreels[flyreels[, 'made_in_USA'] == FALSE, ],
                  formula = lm_fmla)
-print(summary(lm_model_5))
+print(summary(lm_model_Asia))
+
+
 
 #--------------------------------------------------
 # Print the output to a LaTeX file.
@@ -374,8 +312,8 @@ print(summary(lm_model_5))
 
 tab_file_name <- 'reg_by_country.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_4,
-                lm_model_5),
+texreg(l = list(lm_model_USA,
+                lm_model_Asia),
        file = out_file_name,
        label = 'tab:reg_by_country',
        caption = "Regression Models by Country of Manufacture")
@@ -389,14 +327,14 @@ print("Test for separate coefficients by country of manufacture")
 #
 # The unconstrained RSS is calculated from the models
 # estimated separately by country of manufacture:
-RSS_unconstrained <- sum(lm_model_4$residuals^2) +
-  sum(lm_model_5$residuals^2)
+RSS_unconstrained <- sum(lm_model_USA$residuals^2) +
+  sum(lm_model_Asia$residuals^2)
 print("RSS_unconstrained:")
 print(RSS_unconstrained)
 #
 # The constrained RSS is calculated from the model
 # that includes only the made_in_USA indicator:
-RSS_constrained <- sum(lm_model_2$residuals^2)
+RSS_constrained <- sum(lm_model_log_red_3$residuals^2)
 print("RSS_constrained:")
 print(RSS_constrained)
 #
@@ -409,15 +347,25 @@ print(RSS_constrained)
 # Need sample size and number of variables.
 
 num_obs <- nrow(flyreels)
-num_vars <- 2*6
 
+# Check number of parameters in each model. 
+summary(lm_model_USA) # 5 parameters.
+summary(lm_model_Asia) # 6 parameters.
+# Usually these are the same:
+# num_vars <- 2*6
+# but, in this case, all American reels are machioned, 
+# so that model does not have a coefficient for machined.
+num_vars <- 5 + 6
 
+# To find the number of restrictions, count the parameters
+# in the model on the full sample.
+summary(lm_model_log_red_3) # 7 parameters.
 # A test of eight restrictions
 # (one for each variable minus the interaction).
-num_restr <- 6 - 1
+num_restr <- 11 - 7
 
 F_stat <- (RSS_constrained - RSS_unconstrained)/num_restr /
-  RSS_unconstrained*(num_obs - num_vars - 1)
+  RSS_unconstrained*(num_obs - num_vars)
 print("F-statistic:")
 print(F_stat)
 
@@ -476,8 +424,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_6 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_6))
+lm_model_int_1 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_1))
 
 
 #--------------------------------------------------
@@ -493,8 +441,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_7 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_7))
+lm_model_int_2 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_2))
 
 
 #--------------------------------------------------
@@ -510,8 +458,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_8 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_8))
+lm_model_int_3 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_3))
 
 
 
@@ -524,9 +472,9 @@ print(summary(lm_model_8))
 
 tab_file_name <- 'reg_interactions.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_6,
-                lm_model_7,
-                lm_model_8),
+texreg(l = list(lm_model_int_1,
+                lm_model_int_2,
+                lm_model_int_3),
        file = out_file_name,
        label = 'tab:reg_interactions',
        caption = "Regression Models with Interaction Terms by Country of Manufacture")
