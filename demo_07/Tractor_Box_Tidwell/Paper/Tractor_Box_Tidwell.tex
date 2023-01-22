@@ -67,7 +67,7 @@
 % 
 \section{Data Description}
 
-This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+This analysis follows the script \texttt{Tractor\_Box\_Tidwell.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
 The dataset includes the following variables.
 \begin{table}[h!]
 \begin{tabular}{l l l}
@@ -92,19 +92,19 @@ $winter_i$ & = & an indicator of whether tractor $i$ was sold between December a
 %
 
 I will revisit the recommended linear model
-from Problem Set \#7, 
-which included a quadratic specification for horsepower.
-This allowed for an increasing relationship 
-between price and horsepower, 
-for tractors with low horsepower, 
-but a decreasing relationship for the tractors with high horsepower. 
-I augmented this model in the demonstration for 
-Problem Set \#8 
-by considering semiparametric specifications
-within a Generalized Additive Model. 
-
-
-Then I will further investigate this nonlinear relationship
+from Problem Set \#6. %, 
+% which included a quadratic specification for horsepower.
+%This allowed for an increasing relationship 
+%between price and horsepower, 
+%for tractors with low horsepower, 
+%but a decreasing relationship for the tractors with high horsepower. 
+%I augmented this model in the demonstration for 
+%Problem Set \#8 
+%by considering semiparametric specifications
+%within a Generalized Additive Model. 
+%
+%
+In doing so, I will investigate nonlinear relationships
 by incorporating a nonlinear but parametric specification
 for the value of horsepower. 
 This parametric analysis will be performed
@@ -118,7 +118,7 @@ are best described with parametric nonlinear forms.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A natural staring point is the recommended linear model
-from Problem Set \#7. 
+from Problem Set \#6. 
 
 \subsection{Quadratic Specification for Horsepower}
 
