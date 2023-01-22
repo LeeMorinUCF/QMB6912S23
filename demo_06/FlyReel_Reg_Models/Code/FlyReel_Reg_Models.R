@@ -11,7 +11,7 @@
 # College of Business
 # University of Central Florida
 #
-# March 15, 2022
+# January 21, 2021
 #
 ##################################################
 #
@@ -87,6 +87,11 @@ print(summary(flyreels))
 # Generating Variables
 ##################################################
 
+# Calculate logarithm of dependent variable.
+flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
+
+
+
 # Set categorical variables as factors.
 cat_var_list <- colnames(flyreels)[lapply(flyreels, class) == "character"]
 for (var_name in cat_var_list) {
@@ -96,16 +101,6 @@ for (var_name in cat_var_list) {
 # Initial inspection.
 print('FlyReels Dataset with Categorical Factors:')
 print(summary(flyreels))
-
-
-
-# Create a density variable.
-colnames(flyreels)
-flyreels[, 'Volume'] <- pi * (flyreels[, 'Diameter']/2)^2 * flyreels[, 'Width']
-flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
-
-# Create logarithm of dependent variable.
-flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
 
 
 # Replace Country Indicator with made_in_USA Indicator.
@@ -164,7 +159,7 @@ dev.off()
 
 
 # Box-Cox transformation.
-Lambda_Price <- function(price, lambda) {
+BoxCox_Trans <- function(price, lambda) {
 
   if (lambda == 0) {
     return(log(price))
@@ -179,12 +174,12 @@ Lambda_Price <- function(price, lambda) {
 log_like_uni <- function(price, lambda) {
 
   n <- length(price)
-  lambda_price <- Lambda_Price(price, lambda)
-  mu_0_lambda <- mean(lambda_price)
-  sigma_2_lambda <- sum((lambda_price - mu_0_lambda)^2)/n
+  BoxCox_Trans <- BoxCox_Trans(price, lambda)
+  mu_0_lambda <- mean(BoxCox_Trans)
+  sigma_2_lambda <- sum((BoxCox_Trans - mu_0_lambda)^2)/n
 
   like <- - n/2*log(2*pi*sigma_2_lambda)
-  like <- like - 1/2/sigma_2_lambda*sum((lambda_price - mu_0_lambda)^2)
+  like <- like - 1/2/sigma_2_lambda*sum((BoxCox_Trans - mu_0_lambda)^2)
   like <- like + (lambda - 1)*sum(log(price))
 
   return(like)
@@ -206,7 +201,7 @@ like_MLE <- max(like_grid)
 
 
 # Generate new dependent variable with results from Problem Set 6.
-flyreels[, 'Trans_Price'] <- Lambda_Price(price = flyreels[, 'Price'],
+flyreels[, 'Trans_Price'] <- BoxCox_Trans(price = flyreels[, 'Price'],
                                           lambda = lambda_hat)
 
 
@@ -235,7 +230,7 @@ dev.off()
 # Regression on (Un-transformed) Fly Reel Prices
 #--------------------------------------------------
 
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c('Width', 'Diameter', 'Weight',
               'Sealed', 'Machined', 'made_in_USA')
 
 target_var <- 'Price'
@@ -243,8 +238,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_1 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_1))
+lm_model_price <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_price))
 
 #--------------------------------------------------
 # Regression on Logarithm of Fly Reel Prices
@@ -255,8 +250,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_2 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_2))
+lm_model_log <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log))
 
 
 #--------------------------------------------------
@@ -269,8 +264,8 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_3 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_3))
+lm_model_trans <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_trans))
 
 
 
@@ -284,9 +279,9 @@ print(summary(lm_model_3))
 
 tab_file_name <- 'reg_by_dep_var.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_1,
-                lm_model_2,
-                lm_model_3),
+texreg(l = list(lm_model_price,
+                lm_model_log,
+                lm_model_trans),
        file = out_file_name,
        label = 'tab:reg_by_dep_var',
        caption = "Regression Models with Different Dependent Variables")
@@ -308,6 +303,23 @@ texreg(l = list(lm_model_1,
 target_var <- 'log_Price'
 
 
+#--------------------------------------------------
+# Estimate a reduced model excluding the insignificant variables.
+#--------------------------------------------------
+
+var_list <- c(# 'Width', 
+              # 'Diameter', 
+              'Weight',
+              'Sealed', 'Machined', 'made_in_USA')
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_log_red_1 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_log_red_1))
+
+
 
 ##################################################
 # Estimating Regression Models
@@ -321,7 +333,7 @@ target_var <- 'log_Price'
 
 # New variable list without made_in_USA indicator
 # since it is redundant in separate samples.
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c('Width', 'Diameter', 'Weight',
               'Sealed', 'Machined')
 
 # Consider relationships of variables with
@@ -335,25 +347,40 @@ table(flyreels[, 'Sealed'],
 
 # New variable list without made_in_USA indicator
 # since it is redundant in separate samples,
-# but Machined is included for reels made in asia.
-var_list <- c('Width', 'Diameter', 'Density',
+# but Machined is included for reels made in Asia.
+var_list <- c('Width', 'Diameter', 'Weight',
               'Sealed')
-
 
 lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_4 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == TRUE, ],
+lm_model_USA <- lm(data = flyreels[flyreels[, 'made_in_USA'] == TRUE, ],
                  formula = lm_fmla)
-print(summary(lm_model_4))
+print(summary(lm_model_USA))
+
+
+# Estimate a reduced model on the made_in_USA sample.
+var_list <- c(# 'Width', # 'Diameter', 
+              'Weight',
+              'Sealed')
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_USA_red_1 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == TRUE, ],
+                   formula = lm_fmla)
+print(summary(lm_model_USA_red_1))
 
 
 
-# Above variable list without made_in_USA indicator
+
+
+# The above variable lists exclude the made_in_USA indicator
 # since it is redundant in separate samples,
 # but Machined is included for reels made in Asia.
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c('Width', 'Diameter', 'Weight',
               'Sealed', 'Machined')
 
 
@@ -362,9 +389,31 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_5 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == FALSE, ],
+lm_model_Asia <- lm(data = flyreels[flyreels[, 'made_in_USA'] == FALSE, ],
                  formula = lm_fmla)
-print(summary(lm_model_5))
+print(summary(lm_model_Asia))
+
+
+# Estimate a reduced model on the sample of reels made in Asia.
+var_list <- c(# 'Width', 
+              # 'Diameter', 
+              'Weight',
+              'Sealed', 'Machined')
+
+
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_Asia_red_1 <- lm(data = flyreels[flyreels[, 'made_in_USA'] == FALSE, ],
+                    formula = lm_fmla)
+print(summary(lm_model_Asia_red_1))
+
+
+
+
+
 
 #--------------------------------------------------
 # Print the output to a LaTeX file.
@@ -374,8 +423,11 @@ print(summary(lm_model_5))
 
 tab_file_name <- 'reg_by_country.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_4,
-                lm_model_5),
+texreg(l = list(lm_model_log_red_1, 
+                lm_model_USA,
+                lm_model_USA_red_1,
+                lm_model_Asia,
+                lm_model_Asia_red_1),
        file = out_file_name,
        label = 'tab:reg_by_country',
        caption = "Regression Models by Country of Manufacture")
@@ -389,14 +441,14 @@ print("Test for separate coefficients by country of manufacture")
 #
 # The unconstrained RSS is calculated from the models
 # estimated separately by country of manufacture:
-RSS_unconstrained <- sum(lm_model_4$residuals^2) +
-  sum(lm_model_5$residuals^2)
+RSS_unconstrained <- sum(lm_model_USA_red_1$residuals^2) +
+  sum(lm_model_Asia_red_1$residuals^2)
 print("RSS_unconstrained:")
 print(RSS_unconstrained)
 #
 # The constrained RSS is calculated from the model
 # that includes only the made_in_USA indicator:
-RSS_constrained <- sum(lm_model_2$residuals^2)
+RSS_constrained <- sum(lm_model_log_red_1$residuals^2)
 print("RSS_constrained:")
 print(RSS_constrained)
 #
@@ -409,15 +461,15 @@ print(RSS_constrained)
 # Need sample size and number of variables.
 
 num_obs <- nrow(flyreels)
-num_vars <- 2*6
+num_vars <- 2*4 # 4 coefficients in each model.
 
 
-# A test of eight restrictions
+# A test of three restrictions
 # (one for each variable minus the interaction).
-num_restr <- 6 - 1
+num_restr <- 4 - 1
 
 F_stat <- (RSS_constrained - RSS_unconstrained)/num_restr /
-  RSS_unconstrained*(num_obs - num_vars - 1)
+  RSS_unconstrained*(num_obs - num_vars)
 print("F-statistic:")
 print(F_stat)
 
@@ -466,7 +518,8 @@ print(F_critical_10)
 #--------------------------------------------------
 
 # Specify list of variables with interactions.
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c(# 'Width', 'Diameter', 
+              'Weight',
               'Sealed', 'Machined', 'made_in_USA',
               'made_in_USA*Sealed')
 # Notice that we keep the made_in_USA indicator
@@ -476,42 +529,45 @@ lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_6 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_6))
+lm_model_int_1 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_1))
 
 
 #--------------------------------------------------
-# Interaction with Density and made_in_USA
+# Interaction with Weight and made_in_USA
 #--------------------------------------------------
+
 
 # Specify list of variables with interactions.
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c(# 'Width', 'Diameter',
+              'Weight',
               'Sealed', 'Machined', 'made_in_USA',
-              'made_in_USA*Density')
+              'made_in_USA*Weight')
 
 lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_7 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_7))
+lm_model_int_2 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_2))
 
 
 #--------------------------------------------------
-# Interactions with made_in_USA with Sealed and Density.
+# Interactions with made_in_USA with Sealed and Weight.
 #--------------------------------------------------
 
 # Specify list of variables with interactions.
-var_list <- c('Width', 'Diameter', 'Density',
+var_list <- c(# 'Width', 'Diameter',
+              'Weight',
               'Sealed', 'Machined', 'made_in_USA',
-              'made_in_USA*Sealed', 'made_in_USA*Density')
+              'made_in_USA*Sealed', 'made_in_USA*Weight')
 
 lm_fmla <- as.formula(sprintf('%s ~ %s',
                               target_var,
                               paste(var_list, collapse = ' + ')))
 
-lm_model_8 <- lm(data = flyreels, formula = lm_fmla)
-print(summary(lm_model_8))
+lm_model_int_3 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_3))
 
 
 
@@ -524,17 +580,41 @@ print(summary(lm_model_8))
 
 tab_file_name <- 'reg_interactions.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_6,
-                lm_model_7,
-                lm_model_8),
+texreg(l = list(lm_model_log_red_1, 
+                lm_model_int_1,
+                lm_model_int_2,
+                lm_model_int_3),
        file = out_file_name,
        label = 'tab:reg_interactions',
        caption = "Regression Models with Interaction Terms by Country of Manufacture")
 
 # The interaction with sealed and country of manufacture is significant.
-
 # Since all variables are significant in this model and it
 # has the highest R-squared, this is the recommended model.
+
+
+#--------------------------------------------------
+# Sensitivity Analysis
+# Revisit excluded variables with recommended model.
+#--------------------------------------------------
+
+
+# Specify list of variables with interactions.
+var_list <- c('Width', 
+  # 'Diameter',
+  'Weight',
+  'Sealed', 'Machined', 'made_in_USA',
+  'made_in_USA*Sealed')
+
+lm_fmla <- as.formula(sprintf('%s ~ %s',
+                              target_var,
+                              paste(var_list, collapse = ' + ')))
+
+lm_model_int_4 <- lm(data = flyreels, formula = lm_fmla)
+print(summary(lm_model_int_4))
+
+
+
 
 ##################################################
 # End
