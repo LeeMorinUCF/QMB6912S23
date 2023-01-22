@@ -18,7 +18,7 @@
 # FlyReel_Box_Tidwell gives examples of additive
 #   regression models augmented with a number of
 #   different nonlinear model specifications,
-#   including Box-Tidwell transformations.
+#   using Box-Tidwell transformations.
 #
 # Dependencies:
 #   Libraries xtable and texreg
@@ -125,7 +125,7 @@ flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
 # Linear Regression Model
 ##################################################
 
-# In Problem Set #6 I recommended the following
+# In a previous exercise I recommended the following
 # linear regression model.
 
 #--------------------------------------------------
