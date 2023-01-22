@@ -98,7 +98,6 @@ dev.off()
 
 tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
 
-# Now plot the histogram for log of saleprice:
 
 # Now plot the histogram for log of saleprice:
 fig_file_name <- 'hist_log_price.pdf'

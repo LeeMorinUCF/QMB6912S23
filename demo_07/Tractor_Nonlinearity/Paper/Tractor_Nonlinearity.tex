@@ -55,7 +55,7 @@
 \centerline{\bf QMB 6911}
 \centerline{\bf Capstone Project in Business Analytics}
 \vskip 10pt
-\centerline{\bf Solutions:  Problem Set \#6}
+\centerline{\bf Solutions:  Problem Set \#7}
 \vskip 32pt
 \noindent
 
@@ -85,50 +85,40 @@ $winter_i$ & = & an indicator of whether tractor $i$ was sold between December a
 \end{table}
 %
 
-I will first estimate a model with our choices of functional form, and then consider exclusions of insignificant variables from the full model. 
+I will first estimate a model with nonlinear functional forms, and then consider exclusions of insignificant variables from the full model, with nonlinearity taken into account. 
 This approach allows for inclusion of possibly irrelevant variables and avoids excluding any relevant variables. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% Choosing the Dependent Variable
+% Example with a Categorical Numerical Variable
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-\pagebreak
-\section{Choosing the Dependent Variable}
-
-\subsection{Univariate Analysis}
-
-Figure \ref{fig:hist_price} shows  a histogram of tractor prices.
-The distribution is highly skewed to the right, 
-with most tractors selling for about \$10,000 or less,
-and very few tractors priced above \$50,000.
+% \pagebreak
+\section{Example with a Categorical Numerical Variable}
 
 
+Suppose for a moment that the horsepower variable were measured
+as a categorical variable.
+I collected the observations into bins of with 50 horsepower
+up to 250, with the rest in the last category.
+The results in Table \ref{tab:hp_cat}
+show the regression estimates with this categorical variable
+included in the regression instead of the continuous variable.
 
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/hist_price}
-  \caption{Histogram of Tractor Prices} \label{fig:hist_price}
-\end{figure}
+\input{../Tables/hp_cat}
 
+Notice that the 50-100-horsepower group is 40\% more valuable
+than 50 or less.
+The relationship levels off between 100 and 250 horsepower.
+Tractors with more than 250 horsepower are not statistically
+worth more than those with 0-50 horsepower, all else equal.
+This suggests a nonlinear relationship between horsepower and
+the tractor price. 
 
-
-\pagebreak
-As a comparison, Figure \ref{fig:hist_log_price} shows the histogram of the natural logarithm of
-price.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/hist_log_price}
-  \caption{Histogram of the Logarithm of Tractor Prices} \label{fig:hist_log_price}
-\end{figure}
-
-This is much better behaved. The distribution looks almost normal. 
-So far it looks as if the logarithm of the sale price
-is the more promising variable.
-Another approach to making this decision is
-to build the model and judge the validity of the results.
+Since we do, in fact, 
+have the horsepower variable
+measured as a continuous variable, we can do better.
 
 
 
@@ -136,87 +126,65 @@ to build the model and judge the validity of the results.
 % Linear Regression Models
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-
-\pagebreak
-\subsection{Initial Regression Models of Tractor Prices}
-
-\subsubsection{Predicting Price Levels}
-
-First, I will build a model of the price of a used tractor, 
-ignoring the above evidence that the distribution is highly skewed. 
-
-\input{../Tables/price_reg_1}
-
-The results in Table \ref{tab:price_reg_1}
-shows the effect of the variables on the dollar price of the
-used tractors. 
-
-From the coefficients in the table, 
-it appears that a John Deere tractor sells for 
-\$12,200 more than an equivalent tractor of another brand. 
-This prediction applies equally for tractors all across the spectrum, from the 
-To put a finer point on it, 
-a 16 horsepower lawn tractor that would otherwise sell for \$2,000 is expected to command \$14,200 if it is a John Deere.
-Clearly, this is an unreasonable expectation and
-a quick search on your browser will confirm that the John Deere premium is more modest. 
-
-
-\pagebreak
-\subsubsection{Predicting Logarithm of Prices}
-
-Next, I will build a model of the logarithm of the price 
-of a used tractor, 
-which is consistent with the univariate analysis we conducted earlier. 
-
-\input{../Tables/log_price_reg_2}
-
-The results in Table \ref{tab:log_price_reg_2}
-shows the effect of the variables on the logarithm of the dollar price of the used tractors. 
-This specification calculates coefficients that 
-approximately represent percentage changes in 
-tractor prices. 
-
-From the coefficients in the table, 
-it appears that a John Deere tractor sells for 
-17\% more than an equivalent tractor of another brand. 
-That is, a tractor worth \$1,700 would sell
-for \$2,000 if it is a John Deere, 
-which is clearly more reasonable. 
-This more sensible interpretation supports 
-the strategy of modeling the 
-logarithm of the tractor price. 
+%
+%\pagebreak
+%\subsection{Initial Regression Models of Tractor Prices}
+%
+%\subsubsection{Predicting Price Levels}
+%
+%First, I will build a model of the price of a used tractor, 
+%ignoring the previous variable-reduction exercise from
+%Problem Set 6. 
+%
+%% \input{../Tables/hp_cat}
+%
+%The results in Table \ref{tab:log_price_reg_2}
+%shows the effect of the variables on the logarithm of the dollar price of the used tractors. 
+%This specification calculates coefficients that 
+%approximately represent percentage changes in 
+%tractor prices. 
+%
+%From the coefficients in the table, 
+%it appears that a John Deere tractor sells for 
+%17\% more than an equivalent tractor of another brand. 
+%That is, a tractor worth \$1,700 would sell
+%for \$2,000 if it is a John Deere, 
+%which is clearly more reasonable. 
+%This more sensible interpretation supports 
+%the strategy of modeling the 
+%logarithm of the tractor price. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
-\section{Model Specification}
+% \clearpage
+\section{Nonlinear Model Specifications}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Initial Variable Reduction}
+%\subsection{Initial Variable Reduction}
+%
+%Next, I can refine the model by removing some explanatory variables that do not have string predictive value.
+%The first candidates are those with coefficients that are not statistically significant. 
+%The results in Table \ref{tab:reg_reduction}
+%
+%\input{../Tables/reg_reduction}
+%
+%The first column of Table \ref{tab:reg_reduction}
+%shows the results from the original model of
+%the logarithm of tractor prices in Table \ref{tab:log_price_reg_2}. 
+%The coefficients for seasonal indicators, 
+%engine hours and manual transmission are not significant.
+%The John Deere indicator is not significant
+%but since it is a key empirical question, 
+%I include it, regardless. 
+%The second column shows the model without the seasonal indicators. 
+%We see an improvement in significance of
+%some variables with minimal loss of predictive ability. 
+%In the last column, I remove the indicator for manual transmission, with a similar effect on the quality of the model. 
+%Before making any further changes, 
+%I will improve the specification of the model
+%by considering nonlinear specifications. 
 
-Next, I can refine the model by removing some explanatory variables that do not have string predictive value.
-The first candidates are those with coefficients that are not statistically significant. 
-The results in Table \ref{tab:reg_reduction}
-
-\input{../Tables/reg_reduction}
-
-The first column of Table \ref{tab:reg_reduction}
-shows the results from the original model of
-the logarithm of tractor prices in Table \ref{tab:log_price_reg_2}. 
-The coefficients for seasonal indicators, 
-engine hours and manual transmission are not significant.
-The John Deere indicator is not significant
-but since it is a key empirical question, 
-I include it, regardless. 
-The second column shows the model without the seasonal indicators. 
-We see an improvement in significance of
-some variables with minimal loss of predictive ability. 
-In the last column, I remove the indicator for manual transmission, with a similar effect on the quality of the model. 
-Before making any further changes, 
-I will improve the specification of the model
-by considering nonlinear specifications. 
-
-\clearpage
+% \clearpage
 \subsection{Quadratic Specification for Horsepower}
 
 Now suppose that 
@@ -234,27 +202,28 @@ Table \ref{tab:reg_sq_horse}.
 % 
 \input{../Tables/reg_sq_horse}
 % 
-The squared horsepower variable has a coefficient of $-2.081e-05$, which is nearly ten times as large as the standard error of $2.199e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
+The squared horsepower variable has a coefficient of $-1.409e-05$, which is around six times as large as the standard error of $2.261e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
 I conclude that the log of the sale price does decline for large values of horsepower. 
 
 
-With the squared horsepower variable, the $\bar{R}^2$ has increased substantially to $0.764$, indicating that it is a much stronger model. 
+With the squared horsepower variable, the $\bar{R}^2$ has increased substantially to $0.808$, indicating that it is a much stronger model. 
 The $F$-statistic is even larger than before, indicating that it is still a better candidate than the simple average log sale price. 
 The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
 This new model is much improved over the previous models with a linear specification for horsepower.
 
 This improved model affords an opportunity
 to reconsider other variables in the previous models.
-Models 2 and 3 both include an indicator that the
+these models all include an indicator that the
 tractor has an enclosed cab, 
 which is also statistically significant. 
-The seasonal indicators in Model 2 are not statistically significant under this specification neither. 
+The seasonal indicators in Models 1 and 2 are not statistically significant under this specification neither. 
+
 
 \clearpage
 \subsection{Seasonality with the Quadratic Specification for Horsepower}
 
 
-The seasonal indicators in Model 2 
+The seasonal indicators in Model 3 
 of Table \ref{tab:reg_sq_horse}
 are not statistically significant individually.
 It is possible, however, that jointly, they 
@@ -272,22 +241,28 @@ The constrained model is the one that excludes seasonal indicators and it has a 
 The $F$-statistic has a value of 
 
 $$ 
-\frac{(RSS_M - RSS)/M}{RSS/(N - K - 1)} = \frac{(42.15882 - 41.78944)/3}{RSS/263} = 0.7748937. 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(42.15882 - 41.78944)/3}{RSS/263} = 0.7748937. 
 $$
 
-since $N = 276$ observations, $K = 12$ variables and $M = 3$ restrictions, one for each seasonal indicator excluded. 
+since $N = 276$ observations, $K = 13$ 
+variables (including the intercept) 
+and $M = 3$ restrictions, one for each seasonal indicator excluded. 
 This is a low value compared to the critical value of $2.60$ for the $F$-statistic with $3$ degrees of freedom in the numerator and $263 (> 120)$ degrees of freedom in the denominator. 
 There is no evidence to reject the null that all seasonal indicators have coefficients of zero and conclude that the seasonal indicators should be left out of the model. 
 %
 The results of the test above indicate that tractor prices do not follow a seasonal pattern. 
 
 
+Since this restriction reduces our model until all coefficients
+are significant, we can consider adding higher-order 
+features to the model.
+
 \clearpage
 \subsection{Interaction Terms}
 
 \subsubsection{Durability of Engine Types}
 
-Finally, I consider another modification to your model. 
+Now consider a higher-order modification to the model. 
 Diesel engines tend to be more durable than gasoline engines. 
 This raises the question of whether an additional hour of use affects the value of a diesel tractor differently than for a gasoline tractor. 
 This is tested in Model 1 of Table \ref{tab:reg_interactions}. 
@@ -303,9 +278,11 @@ The $F$-statistic is high and statistically significant, indicating that this mo
 Finally, the estimates of the other coefficients change very little when this variable is omitted. 
 The theory may be sound but there is nothing else to support the inclusion of this new variable. 
 
+
+
 % \clearpage
-\pagebreak
-\subsubsection{Differences in Depreciation by Brand}
+% \pagebreak
+\subsubsection{Differences in Value of Characteristics by Brand}
 
 The remaining columns of Table \ref{tab:reg_interactions}
 show the results of tests for interactions
@@ -317,6 +294,11 @@ In this table, we have investigated several
 individual types of differences by brand. 
 
 \input{../Tables/reg_interactions}
+
+\clearpage
+\pagebreak
+\subsubsection{Separate Models by Brand}
+
 
 To test for many possible differences in 
 models by brand of tractor, 
@@ -337,13 +319,18 @@ in which all coefficients are statistically significant.
 The coefficients appear similar across the two subsamples.
 Notable differences include the statistical significance for 
 the indicators for four-wheel drive, 
-manual transmission and an enclosed cab. 
+manual transmission and the type of fuel. 
 These features seem to change the value of 
 other tractors, but perhaps these coefficients are not measured 
 accurately for the small sample of 39 
 John Deere tractors. 
+Notice the much-improved fit of the model for John Deere tractors, 
+at the expense of some performance for the larger sample
+of other tractors.
 
 \input{../Tables/reg_johndeere}
+
+
 
 We can also test for all of the differences at the same time
 by using an $F$-test. 
@@ -357,7 +344,7 @@ which allows for two separate intercepts.
 The $F$-statistic has a value of 
 
 $$ 
-\frac{(RSS_M - RSS)/M}{RSS/(N - K - 1)} = \frac{(42.15882 - 41.1432)/3}{41.1432/263} = 0.7929991. 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(42.15882 - 41.70574)/4}{41.70574/262} = 0.7115771. 
 $$
 
 This is also a very low value for the $F$-statistic. 
@@ -365,6 +352,9 @@ There is no evidence to reject the null that all
 coefficients are equal across both samples 
 and conclude that the John Deere indicator
 should be the only brand difference left in the model. 
+
+Notice the the conclusion has changed from our specification
+that excluded all forms of nonlinearity.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}

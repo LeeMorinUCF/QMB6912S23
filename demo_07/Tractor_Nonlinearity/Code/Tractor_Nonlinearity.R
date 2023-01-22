@@ -11,17 +11,17 @@
 # College of Business
 # University of Central Florida
 #
-# March 23, 2021
+# January 21, 2021
 #
 ##################################################
 #
 # Sample code for the problem sets in the course QMB 6912,
 # Capstone Project in Business Analytics, for the PMSM-BA
 # program.
-# Tractor_Reg_Models gives examples of OLS regression models
+# Tractor_Nonlinearity gives examples of OLS regression models
 #   by considering a number of different model specifications.
 # In this example, the model specification choices
-#   have a parametric form.
+#   use a parametric form to account to account for the nonlinearity.
 #
 # Dependencies:
 #   Libraries xtable and texreg
@@ -81,153 +81,213 @@ print(summary(tractor_sales))
 # Data Preparation
 ##################################################
 
-# First plot a histogram with the default options.
-fig_file_name <- 'hist_price.pdf'
-out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-pdf(out_file_name)
-hist(tractor_sales[, 'saleprice'],
-     main = 'Relative Histogram of Tractor Prices',
-     xlab = 'Price',
-     probability = TRUE,
-     col = 'red',
-     breaks = 25)
-dev.off()
 
-# Notice that there are some very large values.
-# Consider taking logs to bring outliers closer to the others.
 
+# Take logs to bring outliers closer to the others.
 tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
 
-# Now plot the histogram for log of saleprice:
 
-# Now plot the histogram for log of saleprice:
-fig_file_name <- 'hist_log_price.pdf'
-out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
-pdf(out_file_name)
-hist(tractor_sales[, 'log_saleprice'],
-     main = 'Histogram of the Logarithm of Tractor Prices',
-     xlab = 'Logarithm of Price',
-     probability = TRUE,
-     col = 'red',
-     breaks = 25)
-dev.off()
 
-# Much better behaved. Looks almost normal.
+# Create categories for the horsepower variable.
+summary(tractor_sales[, 'horsepower'])
+# Collect observations into groups with similar horsepower.
+tractor_sales[, 'hp_cat'] <- NA
+sel_obs <- tractor_sales[, 'horsepower'] < 50
+tractor_sales[sel_obs, 'hp_cat'] <- '0-50'
+sel_obs <- tractor_sales[, 'horsepower'] >= 50 & 
+  tractor_sales[, 'horsepower'] < 100
+tractor_sales[sel_obs, 'hp_cat'] <- '50-100'
+sel_obs <- tractor_sales[, 'horsepower'] >= 100 & 
+  tractor_sales[, 'horsepower'] < 150
+tractor_sales[sel_obs, 'hp_cat'] <- '100-150'
+sel_obs <- tractor_sales[, 'horsepower'] >= 150 & 
+  tractor_sales[, 'horsepower'] < 200
+tractor_sales[sel_obs, 'hp_cat'] <- '150-200'
+sel_obs <- tractor_sales[, 'horsepower'] >= 200 & 
+  tractor_sales[, 'horsepower'] < 250
+tractor_sales[sel_obs, 'hp_cat'] <- '200-250'
+sel_obs <- tractor_sales[, 'horsepower'] >= 250
+tractor_sales[sel_obs, 'hp_cat'] <- '250+'
 
-# So far it looks as if the log of saleprice
-# is the more promising variable.
-# Another approach to making this decision is
-# to build the model and judge the validity of the results.
+# Set it as a factor to keep the variables in order.
+
+tractor_sales[, 'hp_cat'] <- factor(tractor_sales[, 'hp_cat'], 
+                                    levels = c('0-50', '50-100', 
+                                               '100-150', '150-200', 
+                                               '200-250', '250+'))
+
+table(tractor_sales[, 'hp_cat'], useNA = 'ifany')  
+
+
+
+
+##################################################
+# Estimating a Regression Model
+# Best reduced model from a strictly linear specification.
+# Linear model for log of dollar sale price
+# Omit engine hours, transmission type,
+# seasonal indicators and John Deere indicator.
+##################################################
+
+
+# Estimate a regression model.
+lm_model_best_lin <- lm(data = tractor_sales,
+                     formula = log_saleprice ~ horsepower + age + 
+                       diesel + fwd)
+
+# Output the results to screen.
+print(summary(lm_model_best_lin))
+
+
+
+# Suppose for a moment that the horsepower variable were measured
+# as a categorical variable.
+
+
+
+# Estimate a regression model.
+lm_model_hp_cat <- lm(data = tractor_sales,
+                        formula = log_saleprice ~ 
+                          horsepower + 
+                          hp_cat + 
+                          age + 
+                          diesel + fwd)
+
+# Output the results to screen.
+print(summary(lm_model_hp_cat))
+
+
+# Notice that the 50-100-horsepower group is 40% more valuable
+# than 50 or less.
+# The relationship levels off between 100 and 250 horsepower.
+# Tractors with more than 250 horsepower are not statistically
+# worth more than those with 0-50 horsepower, all else equal.
+# This suggests a nonlinear relationship between horsepower and
+# the tractor price.
+
+
+# Since we have horsepower measured as a continuous variable, we can do better.
+
+
+
+# Print the output to a LaTeX file.
+tab_file_name <- 'hp_cat.tex'
+out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+texreg(list(lm_model_best_lin, 
+            lm_model_hp_cat),
+       file = out_file_name,
+       label = 'tab:hp_cat',
+       caption = "Dollar Value of Tractor Prices")
+
+
+
 
 
 ##################################################
 # Estimating a Regression Model
 # Model 1: Linear model for dollar sale price
+# All variables included (with linear specification).
 ##################################################
 
 # Estimate a regression model.
-lm_model_1 <- lm(data = tractor_sales,
-                  formula = saleprice ~ horsepower + age + enghours +
-                    diesel + fwd + manual + johndeere +
-                    spring + summer + winter)
-
-# Output the results to screen.
-print(summary(lm_model_1))
-
-# Print the output to a LaTeX file.
-tab_file_name <- 'price_reg_1.tex'
-out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(lm_model_1,
-       file = out_file_name,
-       label = 'tab:price_reg_1',
-       caption = "Dollar Value of Tractor Prices")
-
-
-##################################################
-# Estimating a Regression Model
-# Model 2: Linear model for log of dollar sale price
-##################################################
-
-# Estimate a regression model.
-lm_model_2 <- lm(data = tractor_sales,
-                      formula = log_saleprice ~ horsepower + age + enghours +
-                        diesel + fwd + manual + johndeere +
-                        spring + summer + winter)
-
-# Output the results to screen.
-print(summary(lm_model_2))
-
-
-# Print the output to a LaTeX file.
-tab_file_name <- 'log_price_reg_2.tex'
-out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(lm_model_2,
-       file = out_file_name,
-       digits = 5,
-       label = 'tab:log_price_reg_2',
-       caption = "Logarithm of Tractor Prices")
-
-
-
-##################################################
-# Compare the distribution of variables
-# across subsets by John Deere indicator.
-##################################################
-
-
-summary(tractor_sales[, 'saleprice'])
-
-# See what a difference the John Deere label is worth:
-summary(tractor_sales[tractor_sales[, 'johndeere'] == 1, 'saleprice'])
-summary(tractor_sales[tractor_sales[, 'johndeere'] == 0, 'saleprice'])
-
-
-##################################################
-# Estimating a Regression Model
-# Model 3: Linear model for log of dollar sale price
-# Omit seasonal indicators
-##################################################
-
-# Estimate a regression model.
-lm_model_3 <- lm(data = tractor_sales,
+lm_model_all_lin <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + age + enghours +
-                   diesel + fwd + manual + johndeere)
+                   diesel + fwd + manual + johndeere +
+                   spring + summer + winter + 
+                   cab)
 
 # Output the results to screen.
-print(summary(lm_model_3))
+print(summary(lm_model_all_lin))
 
 
-##################################################
-# Estimating a Regression Model
-# Model 4: Linear model for log of dollar sale price
-# Omit seasonal indicators and transmission type
-##################################################
-
-# Estimate a regression model.
-lm_model_4 <- lm(data = tractor_sales,
-                 formula = log_saleprice ~ horsepower + age + enghours +
-                   diesel + fwd + johndeere)
-
-# Output the results to screen.
-print(summary(lm_model_4))
 
 
-# Print the output to a LaTeX file.
-tab_file_name <- 'reg_reduction.tex'
-out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_2,
-                lm_model_3,
-                lm_model_4),
-       file = out_file_name,
-       digits = 4,
-       label = 'tab:reg_reduction',
-       caption = "Models for the Log. of Tractor Prices")
+
+# ##################################################
+# # Estimating a Regression Model
+# # Model 2: Linear model for log of dollar sale price
+# ##################################################
+# 
+# # Estimate a regression model.
+# lm_model_2 <- lm(data = tractor_sales,
+#                       formula = log_saleprice ~ horsepower + age + enghours +
+#                         diesel + fwd + manual + johndeere +
+#                         spring + summer + winter)
+# 
+# # Output the results to screen.
+# print(summary(lm_model_2))
+# 
+# 
+# # Print the output to a LaTeX file.
+# tab_file_name <- 'log_price_reg_2.tex'
+# out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+# texreg(lm_model_2,
+#        file = out_file_name,
+#        digits = 5,
+#        label = 'tab:log_price_reg_2',
+#        caption = "Logarithm of Tractor Prices")
+# 
+# 
+# 
+# ##################################################
+# # Compare the distribution of variables
+# # across subsets by John Deere indicator.
+# ##################################################
+# 
+# 
+# summary(tractor_sales[, 'saleprice'])
+# 
+# # See what a difference the John Deere label is worth:
+# summary(tractor_sales[tractor_sales[, 'johndeere'] == 1, 'saleprice'])
+# summary(tractor_sales[tractor_sales[, 'johndeere'] == 0, 'saleprice'])
+# 
+# 
+# ##################################################
+# # Estimating a Regression Model
+# # Model 3: Linear model for log of dollar sale price
+# # Omit seasonal indicators
+# ##################################################
+# 
+# # Estimate a regression model.
+# lm_model_3 <- lm(data = tractor_sales,
+#                  formula = log_saleprice ~ horsepower + age + enghours +
+#                    diesel + fwd + manual + johndeere)
+# 
+# # Output the results to screen.
+# print(summary(lm_model_3))
+# 
+# 
+# ##################################################
+# # Estimating a Regression Model
+# # Model 4: Linear model for log of dollar sale price
+# # Omit seasonal indicators and transmission type
+# ##################################################
+# 
+# # Estimate a regression model.
+# lm_model_4 <- lm(data = tractor_sales,
+#                  formula = log_saleprice ~ horsepower + age + enghours +
+#                    diesel + fwd + johndeere)
+# 
+# # Output the results to screen.
+# print(summary(lm_model_4))
+# 
+# 
+# # Print the output to a LaTeX file.
+# tab_file_name <- 'reg_reduction.tex'
+# out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+# texreg(l = list(lm_model_2,
+#                 lm_model_3,
+#                 lm_model_4),
+#        file = out_file_name,
+#        digits = 4,
+#        label = 'tab:reg_reduction',
+#        caption = "Models for the Log. of Tractor Prices")
 
 
 
 ##################################################
 #
-# Exercise:
+# Introduce a Nonlinear Functional Form
 #
 # Consider a polynomial functional form for horsepower.
 # Idea: Horsepower improves performance up to a limit,
@@ -247,19 +307,6 @@ texreg(l = list(lm_model_2,
 tractor_sales[, 'squared_horsepower'] <- tractor_sales[, 'horsepower']^2
 
 
-# Estimate a regression model.
-lm_model_5 <- lm(data = tractor_sales,
-                 formula = log_saleprice ~ horsepower + squared_horsepower +
-                   age + enghours +
-                   diesel + fwd + johndeere)
-
-# Output the results to screen.
-print(summary(lm_model_5))
-
-
-
-
-
 
 ##################################################
 # Reconsider other variables dropped before
@@ -268,14 +315,14 @@ print(summary(lm_model_5))
 
 
 # Estimate the regression model.
-lm_model_6 <- lm(data = tractor_sales,
+lm_model_hp_all <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + squared_horsepower +
                    age + enghours +
                    diesel + fwd + manual + johndeere + cab +
                    spring + summer + winter)
 
 # Output the results to screen.
-print(summary(lm_model_6))
+print(summary(lm_model_hp_all))
 
 
 ##################################################
@@ -286,21 +333,21 @@ print(summary(lm_model_6))
 ##################################################
 
 # Estimate a regression model.
-lm_model_7 <- lm(data = tractor_sales,
+lm_model_hp_red_1 <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + squared_horsepower +
                    age + enghours +
                    diesel + fwd + manual + johndeere + cab)
 
 # Output the results to screen.
-print(summary(lm_model_7))
+print(summary(lm_model_hp_red_1))
 
 
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_sq_horse.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_5,
-                lm_model_6,
-                lm_model_7),
+texreg(l = list(lm_model_all_lin, 
+                lm_model_hp_all,
+                lm_model_hp_red_1),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_sq_horse',
@@ -316,13 +363,13 @@ print("Test for exclusion of seasonal indicators")
 #
 # The unconstrained RSS is calculated from the model
 # that includes seasonal indicators:
-RSS_unconstrained <- sum(lm_model_6$residuals^2)
+RSS_unconstrained <- sum(lm_model_hp_all$residuals^2)
 print("RSS_unconstrained:")
 print(RSS_unconstrained)
 #
 # The constrained RSS is calculated from the model
 # that excludes seasonal indicators:
-RSS_constrained <- sum(lm_model_7$residuals^2)
+RSS_constrained <- sum(lm_model_hp_red_1$residuals^2)
 print("RSS_constrained:")
 print(RSS_constrained)
 #
@@ -334,13 +381,13 @@ print(RSS_constrained)
 # Need sample size and number of variables.
 
 num_obs <- nrow(tractor_sales)
-num_vars <- 12
+num_vars <- 13 # including the intercept.
 
 # A test of three restrictions (one for each seasonal dummy).
 num_restr <- 3
 
 F_stat <- (RSS_constrained - RSS_unconstrained)/num_restr /
-  RSS_unconstrained*(num_obs - num_vars - 1)
+  RSS_unconstrained*(num_obs - num_vars)
 print("F-statistic:")
 print(F_stat)
 
@@ -352,18 +399,18 @@ print(F_stat)
 
 ##################################################
 # Estimating a Regression Model
-# Model 8: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Interact Slope Indicator for Diesel with Engine Hours
 ##################################################
 
 # Estimate a regression model.
-lm_model_8 <- lm(data = tractor_sales,
+lm_model_hp_int_1 <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + squared_horsepower +
                    age + enghours + diesel*enghours + # Note the added term.
                    diesel + fwd + manual + johndeere + cab)
 
 # Output the results to screen.
-print(summary(lm_model_8))
+print(summary(lm_model_hp_int_1))
 
 # Does an additional hour of use affect a diesel-powered tractor
 # differently than a gasoline-powered tractor?
@@ -379,14 +426,14 @@ print(summary(lm_model_8))
 
 ##################################################
 # Estimating a Regression Model
-# Model 9: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Interact Slope Indicator for Engine Hours
 # with John Deere Indicator
 ##################################################
 
 
 # Estimate a regression model.
-lm_model_9 <- lm(data = tractor_sales,
+lm_model_hp_int_2 <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + squared_horsepower +
                    age + enghours +
                    diesel + fwd + manual +
@@ -394,21 +441,21 @@ lm_model_9 <- lm(data = tractor_sales,
                    cab)
 
 # Output the results to screen.
-print(summary(lm_model_9))
+print(summary(lm_model_hp_int_2))
 
 # No evidence that John Deere tractors
 # wear out differently.
 
 ##################################################
 # Estimating a Regression Model
-# Model 10: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Interact Slope Indicator for Age
 # with John Deere Indicator
 ##################################################
 
 
 # Estimate a regression model.
-lm_model_10 <- lm(data = tractor_sales,
+lm_model_hp_int_3 <- lm(data = tractor_sales,
                  formula = log_saleprice ~ horsepower + squared_horsepower +
                    age + enghours +
                    diesel + fwd + manual +
@@ -416,7 +463,7 @@ lm_model_10 <- lm(data = tractor_sales,
                    cab)
 
 # Output the results to screen.
-print(summary(lm_model_10))
+print(summary(lm_model_hp_int_3))
 
 
 # No evidence that John Deere tractors
@@ -425,14 +472,14 @@ print(summary(lm_model_10))
 
 ##################################################
 # Estimating a Regression Model
-# Model 11: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Interact Slope Indicator for Age
 # with John Deere Indicator
 ##################################################
 
 
 # Estimate a regression model.
-lm_model_11 <- lm(data = tractor_sales,
+lm_model_hp_int_4 <- lm(data = tractor_sales,
                   formula = log_saleprice ~ horsepower + squared_horsepower +
                     age + enghours +
                     diesel + fwd + manual +
@@ -440,16 +487,16 @@ lm_model_11 <- lm(data = tractor_sales,
                     cab)
 
 # Output the results to screen.
-print(summary(lm_model_11))
+print(summary(lm_model_hp_int_4))
 
 
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_interactions.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_8,
-                lm_model_9,
-                lm_model_10,
-                lm_model_11),
+texreg(l = list(lm_model_hp_int_1,
+                lm_model_hp_int_2,
+                lm_model_hp_int_3,
+                lm_model_hp_int_4),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_interactions',
@@ -460,23 +507,23 @@ texreg(l = list(lm_model_8,
 
 ##################################################
 # Estimating a Regression Model
-# Models 12-13: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Separate Model for John Deere Tractors
 ##################################################
 
 
 # Estimate the full regression model.
-lm_model_12 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 1, ],
+lm_model_hp_JD_1 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 1, ],
                   formula = log_saleprice ~ horsepower + squared_horsepower +
                     age + enghours +
                     diesel + fwd + manual +
                     cab)
 
 # Output the results to screen.
-print(summary(lm_model_12))
+print(summary(lm_model_hp_JD_1))
 
 # Estimate a reduced regression model.
-lm_model_13 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 1, ],
+lm_model_hp_JD_2 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 1, ],
                   formula = log_saleprice ~
                     horsepower + squared_horsepower +
                     age + enghours +
@@ -486,29 +533,29 @@ lm_model_13 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 1, ],
                     cab)
 
 # Output the results to screen.
-print(summary(lm_model_13))
+print(summary(lm_model_hp_JD_2))
 
 
 ##################################################
 # Estimating a Regression Model
-# Models 14-15: Linear model for log of dollar sale price
+# Linear model for log of dollar sale price
 # Separate Model for Tractors other than John Deere
 ##################################################
 
 
 # Estimate the full regression model.
-lm_model_14 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 0, ],
+lm_model_hp_other_1 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 0, ],
                   formula = log_saleprice ~ horsepower + squared_horsepower +
                     age + enghours +
                     diesel + fwd + manual +
                     cab)
 
 # Output the results to screen.
-print(summary(lm_model_14))
+print(summary(lm_model_hp_other_1))
 
 
 # Estimate a reduced regression model.
-lm_model_15 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 0, ],
+lm_model_hp_other_2 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 0, ],
                   formula = log_saleprice ~
                     horsepower + squared_horsepower +
                     age + enghours +
@@ -517,18 +564,18 @@ lm_model_15 <- lm(data = tractor_sales[tractor_sales[, 'johndeere'] == 0, ],
                     cab)
 
 # Output the results to screen.
-print(summary(lm_model_15))
+print(summary(lm_model_hp_other_2))
 
 
 
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_johndeere.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_7,
-                lm_model_12,
-                lm_model_13,
-                lm_model_14,
-                lm_model_15),
+texreg(l = list(lm_model_hp_red_1,
+                lm_model_hp_JD_1,
+                lm_model_hp_JD_2,
+                lm_model_hp_other_1,
+                lm_model_hp_other_2),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_johndeere',
@@ -543,33 +590,41 @@ print("Test for separate coefficients by brand")
 #
 # The unconstrained RSS is calculated from the models
 # estimated separately by brand:
-RSS_unconstrained <- sum(lm_model_12$residuals^2) +
-  sum(lm_model_13$residuals^2)
+RSS_unconstrained <- sum(lm_model_hp_JD_2$residuals^2) +
+  sum(lm_model_hp_other_2$residuals^2)
 print("RSS_unconstrained:")
 print(RSS_unconstrained)
 #
 # The constrained RSS is calculated from the model
 # that includes only the John Deere indicator:
-RSS_constrained <- sum(lm_model_7$residuals^2)
+RSS_constrained <- sum(lm_model_hp_red_1$residuals^2)
 print("RSS_constrained:")
 print(RSS_constrained)
 #
 # Follow the approach for conducting the F-test.
-# Do used tractor prices follow a seasonal pattern?
+# Do used tractor prices follow a separate pricing rule by brand?
 #
 ##################################################
 
 # Need sample size and number of variables.
 
 num_obs <- nrow(tractor_sales)
-num_vars <- 2*9
+
+# Total number of variables in both models.
+summary(lm_model_hp_JD_2) # 6 parameters.
+summary(lm_model_hp_other_2) # 8 parameters.
+num_vars <- 14
+
+
+# Compare with the single model on the full sample.
+summary(lm_model_hp_red_1) # 10 parameters.
 
 # A test of eight restrictions
 # (one for each variable minus the interaction).
-num_restr <- 9 - 1
+num_restr <- 4
 
 F_stat <- (RSS_constrained - RSS_unconstrained)/num_restr /
-  RSS_unconstrained*(num_obs - num_vars - 1)
+  RSS_unconstrained*(num_obs - num_vars)
 print("F-statistic:")
 print(F_stat)
 
