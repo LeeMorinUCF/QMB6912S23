@@ -194,10 +194,10 @@ print(c('Calculating Box-Cox Transformation',
 
 # Note: "lambda" does not mean what it does in Python.
 # You can make functions on-the-fly with the "function" function in R.
-# For this reason, I call the function by a different name, Lambda_Price.
+# For this reason, I call the function by a different name, BoxCox_Trans.
 
 # Box-Cox transformation.
-Lambda_Price <- function(price, lambda) {
+BoxCox_Trans <- function(price, lambda) {
 
   if (lambda == 0) {
     return(log(price))
@@ -210,12 +210,12 @@ Lambda_Price <- function(price, lambda) {
 log_like_uni <- function(price, lambda) {
 
   n <- length(price)
-  lambda_price <- Lambda_Price(price, lambda)
-  mu_0_lambda <- mean(lambda_price)
-  sigma_2_lambda <- sum((lambda_price - mu_0_lambda)^2)/n
+  BoxCox_Trans <- BoxCox_Trans(price, lambda)
+  mu_0_lambda <- mean(BoxCox_Trans)
+  sigma_2_lambda <- sum((BoxCox_Trans - mu_0_lambda)^2)/n
 
   like <- - n/2*log(2*pi*sigma_2_lambda)
-  like <- like - 1/2/sigma_2_lambda*sum((lambda_price - mu_0_lambda)^2)
+  like <- like - 1/2/sigma_2_lambda*sum((BoxCox_Trans - mu_0_lambda)^2)
   like <- like + (lambda - 1)*sum(log(price))
 
   return(like)
@@ -392,7 +392,7 @@ dev.off()
 
 
 # Generate new dependent variable with results from estimates above.
-tractor_sales[, 'trans_saleprice'] <- Lambda_Price(price = tractor_sales[, 'saleprice'],
+tractor_sales[, 'trans_saleprice'] <- BoxCox_Trans(price = tractor_sales[, 'saleprice'],
                                           lambda = lambda_hat)
 
 # Plot normal QQ plot for Transformed tractor Prices.
