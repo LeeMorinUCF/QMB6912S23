@@ -38,6 +38,7 @@ rm(list=ls(all=TRUE))
 # wd_path <- '~/GitHub/QMB6912S23/demo_02/Tractor_Density'
 # setwd(wd_path)
 
+
 # Set data directory.
 data_dir <- 'Data'
 
@@ -81,7 +82,7 @@ print('Plotting relative histograms of saleprice.')
 ##################################################
 
 # First plot a histogram with the default options.
-fig_file_name <- 'hist_saleprice.eps'
+fig_file_name <- 'hist_saleprice.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 hist(tractor_sales[, 'saleprice'],
@@ -96,7 +97,7 @@ dev.off()
 tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
 
 # Now plot the histogram for log of saleprice:
-fig_file_name <- 'hist_log_saleprice.eps'
+fig_file_name <- 'hist_log_saleprice.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'],
@@ -111,7 +112,7 @@ dev.off()
 
 # A low number of breaks may give a smoother plot but
 # it may not be very informative.
-fig_file_name <- 'hist_log_saleprice_br5.eps'
+fig_file_name <- 'hist_log_saleprice_br5.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'], breaks = 5,
@@ -124,7 +125,7 @@ dev.off()
 # On the other extreme,
 # a high number of breaks gives a sparsely populated
 # and jagged plot.
-fig_file_name <- 'hist_log_saleprice_br50.eps'
+fig_file_name <- 'hist_log_saleprice_br50.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 hist(tractor_sales[, 'log_saleprice'], breaks = 50,
@@ -151,7 +152,7 @@ print('Plotting kernel-smoothed densities of saleprice.')
 price_density <- density(tractor_sales[, 'saleprice'])
 
 
-fig_file_name <- 'density_saleprice.eps'
+fig_file_name <- 'density_saleprice.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 plot(price_density,
@@ -169,7 +170,7 @@ price_density <- density(tractor_sales[, 'saleprice'],
                          bw = 10000)
 
 
-fig_file_name <- 'density_saleprice_bw10000.eps'
+fig_file_name <- 'density_saleprice_bw10000.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 plot(price_density,
@@ -187,7 +188,7 @@ price_density <- density(tractor_sales[, 'saleprice'],
                          bw = 1000)
 
 
-fig_file_name <- 'density_saleprice_bw1000.eps'
+fig_file_name <- 'density_saleprice_bw1000.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 plot(price_density,
@@ -210,7 +211,7 @@ log_price_density <- density(tractor_sales[, 'log_saleprice'],
                          bw = 0.20)
 
 
-fig_file_name <- 'density_log_saleprice_bw020.eps'
+fig_file_name <- 'density_log_saleprice_bw020.pdf'
 out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
 pdf(out_file_name)
 plot(log_price_density,
