@@ -67,7 +67,7 @@
 % 
 \section{Data Description}
 
-This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+This analysis follows the script \texttt{Tractor\_Box\_Tidwell.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
 The dataset includes the following variables.
 \begin{table}[h!]
 \begin{tabular}{l l l}
@@ -92,20 +92,15 @@ $winter_i$ & = & an indicator of whether tractor $i$ was sold between December a
 %
 
 I will revisit the recommended linear model
-from Problem Set \#7, 
-which included a quadratic specification for horsepower.
+from Problem Set \#6, 
+augmented with a quadratic specification for horsepower.
 This allowed for an increasing relationship 
 between price and horsepower, 
 for tractors with low horsepower, 
 but a decreasing relationship for the tractors with high horsepower. 
-I augmented this model in the demonstration for 
-Problem Set \#8 
-by considering semiparametric specifications
-within a Generalized Additive Model. 
-
-
-Then I will further investigate this nonlinear relationship
-by incorporating a nonlinear but parametric specification
+%
+In doing so, I will further investigate nonlinear relationships
+by incorporating another nonlinear but parametric specification
 for the value of horsepower. 
 This parametric analysis will be performed
 using the Box-Tidwell framework
@@ -118,11 +113,12 @@ are best described with parametric nonlinear forms.
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 A natural staring point is the recommended linear model
-from Problem Set \#7. 
+from Problem Set \#6, augmented with 
+the quadratic specification for horsepower. 
 
 \subsection{Quadratic Specification for Horsepower}
 
-In the demo for Problem Set \#7, 
+In the demo for Problem Set \#6, 
 we considered the advice of
 a used tractor dealer who reported that overpowered used tractors are hard to sell, since they consume more fuel. 
 This implies that tractor prices often increase with horsepower, up to a point, but beyond that they decrease. 
@@ -154,235 +150,13 @@ as we did for Problem Set \#8.
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\clearpage
+% \clearpage
 \section{Nonlinear Specifications}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
-% \clearpage
-\subsection{Nonparametric Specification for Horsepower}
-
-
-The specification in 
-Table \ref{tab:reg_sq_horse}
-assumes a quadratic functional form for
-the relationship between price and horsepower. 
-To consider the horsepower variable alone, 
-while accounting for the effects of other variables, 
-one can fit a nonparametric model to the residuals 
-from a model of tractor prices, 
-after regressing tractor prices on the other variables. 
-This leaves only the variation in tractor prices that is not explained by the other variables. 
-Going one step further, perform the same transformation to the horsepower variable:
-take the residuals from a model of horsepower, 
-after regressing horsepower on the other variables. 
-This allows a model that would fit exactly the same as if it were estimated within a full model with all variables included. 
-
-I first conducted FWL regressions 
-to reduce the problem to two dimensions. 
-The results are not shown here, 
-since the comparison only verifies 
-the conclusion of the FWL theorem. 
-
-
-% \clearpage
-To illustrate the fit of the model, 
-\ref{fig:dev_vs_horse_dev} 
-shows a scatter plot 
-of the residual log prices on 
-residuals from the regression for horsepower:
-the ``excess horsepower'' compared to what would be 
-expected given the other characteristics of a tractor. 
-The observations are shown in blue
-and the fitted values are shown in red.
-The quadratic function is clear from this perspective, 
-except that we observe variation in the fitted values results from the 
-two-dimensional nature of the horsepower variable
-when we consider the quadratic form.
-
-I next considered a nonparametric specification for 
-the relationship between prices and horsepower.
-Figure \ref{fig:dev_np_vs_horse_dev} 
-overlays the nonparametric estimate (shown in green) 
-compared to the linear model.
-The pattern has more variation in slope but 
-closely follows the prediction from the quadratic model. 
-So far, it appears that the quadratic form
-is close enough.
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_horse_dev}
-  \caption{Nonparametric Model for Tractor Prices: Excess Horsepower} \label{fig:dev_np_vs_horse_dev}
-\end{figure}
-
- 
-
-
-\clearpage
-\subsection{Nonparametric Specification for Age}
-
-As above, first conduct FWL regressions 
-to reduce the problem to two dimensions. 
-% 
-To illustrate the fit of the model, 
-Figure \ref{fig:dev_np_vs_age_dev} 
-shows a scatter plot 
-of the residual log prices on 
-the residuals from the regression for age:
-the ``excess age'' of a tractor compared to what would be 
-expected given the other characteristics of the tractor. 
-% 
-The observations are shown in blue
-and the fitted values are shown in red.
-
-Next we considered a nonparametric specification for 
-the relationship between prices and age.
-% 
-Figure \ref{fig:dev_np_vs_age_dev} 
-overlays the nonparametric estimate (shown in green) 
-with the linear model.
-The pattern has more variation in slope but 
-closely follows the prediction from the linear model. 
-Although the nonparametric estimate varies around the linear estimate,
-it appears that the linear form
-is a close enough approximation without the added complexity.
-Next, I will revisit the remaining continuous variable.
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_age_dev}
-  \caption{Nonparametric Model for Tractor Prices: Excess Age} \label{fig:dev_np_vs_age_dev}
-\end{figure}
-
-
-
-
-
-\clearpage
-\subsection{Nonparametric Specification for Engine Hours}
-
-As above, first conduct FWL regressions 
-to reduce the problem to two dimensions. 
-%
-To illustrate the fit of the model, 
-Figure \ref{fig:dev_np_vs_eng_dev}
-shows a scatter plot 
-of the residual log prices on 
-residuals from the regression for engine hours:
-the ``excess engine hours'' of a tractor compared to what would be 
-expected given the other characteristics of the tractor. 
-The observations are shown in blue
-and the fitted values are shown in red.
-As with age, the linear fit follows a straight line,
-since we have a single variable with no
-quadratic transformation.
-% 
-I moved directly to the nonparametric specification for 
-the relationship between prices and engine hours.
-Figure \ref{fig:dev_np_vs_eng_dev} 
-overlays the nonparametric estimate, shown in green. 
-The pattern has more variation in slope but 
-closely follows the prediction from the linear model. 
-Although the nonparametric estimate varies around the linear estimate,
-it appears that the linear form
-is also a close enough approximation, 
-just as was found for the age variable.
-
-
-\begin{figure}[h!]
-  \centering
-  \includegraphics[scale = 0.5, keepaspectratio=true]{../Figures/dev_np_vs_eng_dev}
-  \caption{Nonparametric Model for Tractor Prices: Excess Engine Hours} \label{fig:dev_np_vs_eng_dev}
-\end{figure}
-
- 
-
-\pagebreak
-\section{Semiparametric Estimates}
-
-As I was building the above nonparametric models, 
-I stored the predictions and will now use them as variables in 
-linear models. 
-Table \ref{tab:reg_semipar} 
-shows the estimates from a set of models. 
-Model 1 is the benchmark linear model in 
-Table \ref{tab:reg_sq_horse}. 
-Model 2 is a semi-parametric model
-with a nonparametric fit on horsepower
-substituted in for the horsepower variables.
-Models 3 and 4 are semi-parametric models
-with nonparametric fits on age and engine hours, respectively.
-Model 5 is a maximally semiparametric model, 
-with nonparametric fits for all continuous variables. 
-For each of the single-variable semiparametric models, 
-the coefficients are near one
-and the fits are similar to the linear model. 
-Even with maximal flexibility, the fit of Model 5
-is not much better than the benchmark linear model. 
-Across all models, the adjusted $\bar{R}^2$ values are all hovering around 0.80. 
-All things considered, these are excellent models
-and the linear model is sufficient.
-
-\input{../Tables/reg_semipar}
-
-
-
-
-
-\pagebreak
-\section{Generalized Additive Model}
-
-\subsection{Linear Model}
-
-As an example of the output from the GAM specification, 
-I first estimated the model with no nonlinear terms, 
-which is essentially a linear regression. 
-
-\input{../Tables/reg_GAM_lin}
-
-\pagebreak
-\subsection{Semiparametric Model}
-
-
-Further investigating the results of the full semiparametric specification
-in Model 5 of Table \ref{tab:reg_semipar},
-I estimated the model with all three continuous variables specified as nonparametric functions. 
-The result was that 
-almost all the variables---both linear and nonlinear---were 
-statistically significant. 
-The only exception was a loss in significance of the diesel indicator. 
-
-
-\input{../Tables/reg_GAM_full}
-
-On the other hand, 
-the adjusted R-squared has not increased very much, 
-from 0.799 to 0.819 under this specification, 
-which may not justify the added complexity of the model.
-Perhaps more importantly, the coefficients on the 
-linear terms are very similar across models, 
-indicating that the models support similar conclusions relating to any business decision involving
-the John Deere premium. 
-With this second model, we have even more support for those conclusions
-and are certain that the conclusions are not 
-coincidental results of the
-functional form decisions for previous models.
-
-
-Perhaps as a middle ground, we can estimate a model with a 
-nonparametric specification for the horsepower variable alone, 
-since it seems to have a nonlinear relationship with value in either case. 
-This retains most of the predictive value of the maximally 
-semiparametric model and accommodates the 
-nonlinear relationship with value of horsepower. 
-
-\input{../Tables/reg_GAM_hp}
-
-
-\pagebreak
-\section{The Box--Tidwell Transformation}
+%\pagebreak
+\subsection{The Box--Tidwell Transformation}
 
 The Box--Tidwell function tests for non-linear relationships
 to the mean of the dependent variable.
@@ -392,7 +166,7 @@ transformation, except that the transformation is taken
 on the explanatory variables.
 
 
-\subsection{Transformation of Horsepower}
+\subsubsection{Transformation of Horsepower}
 
 
 Performing the transformation on the horsepower variable
@@ -419,7 +193,7 @@ Next I consider the possibility of a changing relationship
 for the next continuous variable. 
 
 
-\subsection{Transformation of Age}
+\subsubsection{Transformation of Age}
 
 
 \input{../Tables/bt_age}
@@ -430,7 +204,7 @@ and age: the percentage depreciation rate is constant.
 Next, I will consider the possibility of nonlinearity 
 in depreciation from hours of use. 
 
-\subsection{Transformation of Engine Hours}
+\subsubsection{Transformation of Engine Hours}
 
 
 \input{../Tables/bt_eng}
@@ -446,7 +220,7 @@ I will next estimate a model
 with nonlinearity in all three continuous variables.
 
 
-\subsection{Transformation of All Three Continuous Variables}
+\subsubsection{Transformation of All Three Continuous Variables}
 
 
 \input{../Tables/bt_full}
@@ -460,19 +234,18 @@ Now consider the full set of such models in a table for a final comparison.
 \pagebreak
 \section{Final Comparison of Candidate Models}
 
-I created one more variable \texttt{horsepower\_bt}
+I created a variable \texttt{horsepower\_bt}
 by raising horsepower to the optimal exponent 
 $\hat{\lambda} = 0.1143693$. 
 Then, I included this variable in the place of 
 the horsepower variables a the linear regression model.
 % 
-Table \ref{tab:reg_sq_horse_sp_bt} collects the results
+Table \ref{tab:reg_sq_horse_bt} collects the results
 of the set of models from the three forms of nonlinearity.
 Model 1 is the linear regression model with 
 a quadratic form for horsepower. 
-Model 2 is the semiparametric model with
-a nonparametric form for horsepower. 
-Model 3 has the same specification as the other two, 
+Model 2 
+has the same specification as the other one, 
 except that the horsepower variable is transformed using the optimal
 exponent for the Box-Tidwell transformation. 
 % 
@@ -484,8 +257,12 @@ which has a simpler interpretation.
 In either case, we conclude that John Deere tractors are worth
 approximately thirty percent more valuable
 than an equivalent tractor of another brand. 
+Compare this with the lower premium of 17\%, 
+which was not even statistically significant, 
+when we estimated a simpler, linear specification
+in which we ignored the nonlinearity in the model. 
 
-\input{../Tables/reg_sq_horse_sp_bt}
+\input{../Tables/reg_sq_horse_bt}
 
 
 

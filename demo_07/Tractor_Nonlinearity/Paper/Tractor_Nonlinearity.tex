@@ -1,0 +1,361 @@
+\documentclass[11pt]{paper}
+\usepackage{palatino}
+\usepackage{amsfonts,amsmath,amssymb}
+% \usepackage{graphicx}
+
+\usepackage{listings}
+\usepackage{textcomp}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=R,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+
+
+\ifx\pdftexversion\undefined
+    \usepackage[dvips]{graphicx}
+\else
+    \usepackage[pdftex]{graphicx}
+    \usepackage{epstopdf}
+    \epstopdfsetup{suffix=}
+\fi
+
+\usepackage{subfig}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Problem Set 7
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagestyle{empty}
+{\noindent\bf Spring 2023 \hfill Firstname M.~Lastname}
+\vskip 16pt
+\centerline{\bf University of Central Florida}
+\centerline{\bf College of Business}
+\vskip 16pt
+\centerline{\bf QMB 6911}
+\centerline{\bf Capstone Project in Business Analytics}
+\vskip 10pt
+\centerline{\bf Solutions:  Problem Set \#7}
+\vskip 32pt
+\noindent
+
+\section{Data Description}
+
+This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+The dataset includes the following variables.
+\begin{table}[h!]
+\begin{tabular}{l l l}
+
+$saleprice_i$ & = & the price paid for tractor $i$ in dollars \\
+% 
+$horsepower_i$ & = & the horsepower of tractor $i$ \\
+$age_i$ & = & the number of years since tractor $i$ was manufactured  \\
+$enghours_i$ & = & the number of hours of use recorded for tractor $i$  \\
+$diesel_i$ & = & an indicator of whether tractor $i$ runs on diesel fuel \\ %, $0$ otherwise \\
+$fwd_i$ & = & an indicator of whether tractor $i$ has four-wheel drive \\ %, $0$ otherwise \\
+$manual_i$ & = & an indicator of whether tractor $i$ has a manual transmission \\ %, $0$ otherwise \\
+$johndeere_i$ & = & an indicator of whether tractor $i$ is manufactured by John Deere \\ %, $0$ otherwise \\
+$cab_i$ & = & an indicator of whether tractor $i$ has an enclosed cab \\ %, $0$ otherwise \\
+% 
+$spring_i$ & = & an indicator of whether tractor $i$ was sold in April or May \\ %, $0$ otherwise \\
+$summer_i$ & = & an indicator of whether tractor $i$ was sold between June and September \\ %, $0$ otherwise \\
+$winter_i$ & = & an indicator of whether tractor $i$ was sold between December and March \\ %, $0$ otherwise \\
+
+\end{tabular}
+\end{table}
+%
+
+I will first estimate a model with nonlinear functional forms, and then consider exclusions of insignificant variables from the full model, with nonlinearity taken into account. 
+This approach allows for inclusion of possibly irrelevant variables and avoids excluding any relevant variables. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Example with a Categorical Numerical Variable
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \pagebreak
+\section{Example with a Categorical Numerical Variable}
+
+
+Suppose for a moment that the horsepower variable were measured
+as a categorical variable.
+I collected the observations into bins of with 50 horsepower
+up to 250, with the rest in the last category.
+The results in Table \ref{tab:hp_cat}
+show the regression estimates with this categorical variable
+included in the regression instead of the continuous variable.
+
+\input{../Tables/hp_cat}
+
+Notice that the 50-100-horsepower group is 40\% more valuable
+than 50 or less.
+The relationship levels off between 100 and 250 horsepower.
+Tractors with more than 250 horsepower are not statistically
+worth more than those with 0-50 horsepower, all else equal.
+This suggests a nonlinear relationship between horsepower and
+the tractor price. 
+
+Since we do, in fact, 
+have the horsepower variable
+measured as a continuous variable, we can do better.
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Linear Regression Models
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%
+%\pagebreak
+%\subsection{Initial Regression Models of Tractor Prices}
+%
+%\subsubsection{Predicting Price Levels}
+%
+%First, I will build a model of the price of a used tractor, 
+%ignoring the previous variable-reduction exercise from
+%Problem Set 6. 
+%
+%% \input{../Tables/hp_cat}
+%
+%The results in Table \ref{tab:log_price_reg_2}
+%shows the effect of the variables on the logarithm of the dollar price of the used tractors. 
+%This specification calculates coefficients that 
+%approximately represent percentage changes in 
+%tractor prices. 
+%
+%From the coefficients in the table, 
+%it appears that a John Deere tractor sells for 
+%17\% more than an equivalent tractor of another brand. 
+%That is, a tractor worth \$1,700 would sell
+%for \$2,000 if it is a John Deere, 
+%which is clearly more reasonable. 
+%This more sensible interpretation supports 
+%the strategy of modeling the 
+%logarithm of the tractor price. 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% \clearpage
+\section{Nonlinear Model Specifications}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\subsection{Initial Variable Reduction}
+%
+%Next, I can refine the model by removing some explanatory variables that do not have string predictive value.
+%The first candidates are those with coefficients that are not statistically significant. 
+%The results in Table \ref{tab:reg_reduction}
+%
+%\input{../Tables/reg_reduction}
+%
+%The first column of Table \ref{tab:reg_reduction}
+%shows the results from the original model of
+%the logarithm of tractor prices in Table \ref{tab:log_price_reg_2}. 
+%The coefficients for seasonal indicators, 
+%engine hours and manual transmission are not significant.
+%The John Deere indicator is not significant
+%but since it is a key empirical question, 
+%I include it, regardless. 
+%The second column shows the model without the seasonal indicators. 
+%We see an improvement in significance of
+%some variables with minimal loss of predictive ability. 
+%In the last column, I remove the indicator for manual transmission, with a similar effect on the quality of the model. 
+%Before making any further changes, 
+%I will improve the specification of the model
+%by considering nonlinear specifications. 
+
+% \clearpage
+\subsection{Quadratic Specification for Horsepower}
+
+Now suppose that 
+a used tractor dealer reports that overpowered used tractors are hard to sell, since they consume more fuel. 
+This implies that tractor prices often increase with horsepower, up to a point, but beyond that they decrease. 
+To incorporate this advice, I created and included a variable for squared horsepower. 
+
+If we expect a decreasing relationship for high values of horsepower, 
+this would be characterized by 
+a positive coefficient on the horsepower variable and
+a negative coefficient on the squared horsepower variable. 
+
+The results of this regression specification are shown in 
+Table \ref{tab:reg_sq_horse}. 
+% 
+\input{../Tables/reg_sq_horse}
+% 
+The squared horsepower variable has a coefficient of $-1.409e-05$, which is around six times as large as the standard error of $2.261e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
+I conclude that the log of the sale price does decline for large values of horsepower. 
+
+
+With the squared horsepower variable, the $\bar{R}^2$ has increased substantially to $0.808$, indicating that it is a much stronger model. 
+The $F$-statistic is even larger than before, indicating that it is still a better candidate than the simple average log sale price. 
+The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
+This new model is much improved over the previous models with a linear specification for horsepower.
+
+This improved model affords an opportunity
+to reconsider other variables in the previous models.
+these models all include an indicator that the
+tractor has an enclosed cab, 
+which is also statistically significant. 
+The seasonal indicators in Models 1 and 2 are not statistically significant under this specification neither. 
+
+
+\clearpage
+\subsection{Seasonality with the Quadratic Specification for Horsepower}
+
+
+The seasonal indicators in Model 3 
+of Table \ref{tab:reg_sq_horse}
+are not statistically significant individually.
+It is possible, however, that jointly, they 
+offer an improvement in prediction. 
+This can be tested with an $F$-test
+to test the joint hypothesis that the time of year has no effect on the sale of tractors. 
+%
+The null hypothesis is the joint hypothesis that all coefficients on spring, summer and winter are equal to zero. 
+The alternative hypothesis is that one of these coefficients is nonzero. 
+% 
+
+From the script \texttt{Tractor\_Reg\_Models.R}, the Residual Sum of Squares from the unconstrained model (the model which includes the seasonal indicators) is $41.78944$. 
+The constrained model is the one that excludes seasonal indicators and it has a Residual Sum of Squares of $42.15882$.
+
+The $F$-statistic has a value of 
+
+$$ 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(42.15882 - 41.78944)/3}{RSS/263} = 0.7748937. 
+$$
+
+since $N = 276$ observations, $K = 13$ 
+variables (including the intercept) 
+and $M = 3$ restrictions, one for each seasonal indicator excluded. 
+This is a low value compared to the critical value of $2.60$ for the $F$-statistic with $3$ degrees of freedom in the numerator and $263 (> 120)$ degrees of freedom in the denominator. 
+There is no evidence to reject the null that all seasonal indicators have coefficients of zero and conclude that the seasonal indicators should be left out of the model. 
+%
+The results of the test above indicate that tractor prices do not follow a seasonal pattern. 
+
+
+Since this restriction reduces our model until all coefficients
+are significant, we can consider adding higher-order 
+features to the model.
+
+\clearpage
+\subsection{Interaction Terms}
+
+\subsubsection{Durability of Engine Types}
+
+Now consider a higher-order modification to the model. 
+Diesel engines tend to be more durable than gasoline engines. 
+This raises the question of whether an additional hour of use affects the value of a diesel tractor differently than for a gasoline tractor. 
+This is tested in Model 1 of Table \ref{tab:reg_interactions}. 
+
+	This hypothesis is a test of the \emph{interaction} of the diesel indicator and the slope on engine hours. 
+      Given the above result, this test should be conducted with the model that excludes the seasonal indicators. 
+The coefficient on \texttt{enghours:diesel} is $4.116e-06$ with a standard error of $2.736e-05$, resulting in a $t$-statistic of $0.150$. 
+Since this is a very low value, we cannot reject the null hypothesis that an additional hour of use affects the value of a diesel tractor the same as that for a gasoline tractor. 
+Note that this conclusion does not change if you test a one-sided hypothesis.  
+
+Furthermore, the $\bar{R}^2$ statistic decreases with the inclusion of this variable. 
+The $F$-statistic is high and statistically significant, indicating that this model is better than the simple average but so is the model without this new variable. 
+Finally, the estimates of the other coefficients change very little when this variable is omitted. 
+The theory may be sound but there is nothing else to support the inclusion of this new variable. 
+
+
+
+% \clearpage
+% \pagebreak
+\subsubsection{Differences in Value of Characteristics by Brand}
+
+The remaining columns of Table \ref{tab:reg_interactions}
+show the results of tests for interactions
+between the John Deere indicator variable
+on the effects of age, engine hours and horsepower. 
+There seems to be no evidence for relationships that differ by
+brand name. 
+In this table, we have investigated several 
+individual types of differences by brand. 
+
+\input{../Tables/reg_interactions}
+
+\clearpage
+\pagebreak
+\subsubsection{Separate Models by Brand}
+
+
+To test for many possible differences in 
+models by brand of tractor, 
+Table \ref{tab:reg_johndeere}
+shows the estimates for two separate models
+by brand of tractor.
+%
+Model 1 shows the estimates for 
+the full sample,
+Model 2 shows the estimates from the full model for 
+John Deere tractors
+and Model 4 
+represents all other brands. 
+% 
+Models 3 and 5 show the estimates from a reduced version of each model, 
+in which all coefficients are statistically significant. 
+% 
+The coefficients appear similar across the two subsamples.
+Notable differences include the statistical significance for 
+the indicators for four-wheel drive, 
+manual transmission and the type of fuel. 
+These features seem to change the value of 
+other tractors, but perhaps these coefficients are not measured 
+accurately for the small sample of 39 
+John Deere tractors. 
+Notice the much-improved fit of the model for John Deere tractors, 
+at the expense of some performance for the larger sample
+of other tractors.
+
+\input{../Tables/reg_johndeere}
+
+
+
+We can also test for all of the differences at the same time
+by using an $F$-test. 
+In this case, the full, unrestricted model has $K = 2\times9 = 18$ parameters, one for each variable in two models. 
+The test that all of the coefficients are the same has $M = 9 - 1 = 8$
+restrictions. 
+The one restriction fewer accounts for the John Deere indicator
+in the full model, 
+which allows for two separate intercepts. 
+% 
+The $F$-statistic has a value of 
+
+$$ 
+\frac{(RSS_M - RSS)/M}{RSS/(N - K)} = \frac{(42.15882 - 41.70574)/4}{41.70574/262} = 0.7115771. 
+$$
+
+This is also a very low value for the $F$-statistic. 
+There is no evidence to reject the null that all 
+coefficients are equal across both samples 
+and conclude that the John Deere indicator
+should be the only brand difference left in the model. 
+
+Notice the the conclusion has changed from our specification
+that excluded all forms of nonlinearity.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
