@@ -96,10 +96,6 @@ print(summary(flyreels))
 
 
 
-# Create a density variable.
-colnames(flyreels)
-flyreels[, 'Volume'] <- pi * (flyreels[, 'Diameter']/2)^2 * flyreels[, 'Width']
-flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
 
 # Create logarithm of dependent variable.
 flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
@@ -427,8 +423,13 @@ dev.off()
 # added complexity is warranted when other variables are added to the model.
 
 
+
+#--------------------------------------------------
 # Add variables to regression equation.
-# Now modeling the residuals.
+# Now we are checking the residuals for normality.
+#--------------------------------------------------
+
+# Start with the most important variable.
 bc_grid_MASS <- MASS::boxcox(Price ~ Country,
                              data = flyreels,
                              lambda = lambda_grid)
@@ -445,6 +446,34 @@ plot(bc_grid_MASS$x, bc_grid_MASS$y,
 lines(x = c(max_lambda_MASS, max_lambda_MASS),
       y = c(min(bc_grid_MASS$y), max(bc_grid_MASS$y)),
       lty = 'dashed')
+
+
+# Add other variables.
+bc_grid_MASS <- MASS::boxcox(# Price ~ Country + Sealed + Machined,
+                             # Price ~ Country + Sealed + Machined,
+                             Price ~ Country + Sealed + Machined + 
+                               Weight + Diameter + Width,
+                             data = flyreels,
+                             lambda = lambda_grid)
+# Find the MLE.
+max_lambda_MASS <- bc_grid_MASS$x[which.max(bc_grid_MASS$y)]
+
+# Plot from the model object.
+plot(bc_grid_MASS$x, bc_grid_MASS$y,
+     type = 'l',
+     main = 'Log-likelihood Function (from MASS package)',
+     xlab = 'Lambda',
+     ylab = 'Log-likelihood',
+     col = 'blue', lwd = 3)
+lines(x = c(max_lambda_MASS, max_lambda_MASS),
+      y = c(min(bc_grid_MASS$y), max(bc_grid_MASS$y)),
+      lty = 'dashed')
+
+# Here, one could make the case to take logs,
+# based on the optimal transformation,
+# even though the problem of skewness is not so severe.
+# Once we move to a more realistic model, the residuals are
+# skewed in a way that warrants taking logs.
 
 
 

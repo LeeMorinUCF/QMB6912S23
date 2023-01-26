@@ -414,6 +414,41 @@ dev.off()
 
 
 
+#--------------------------------------------------
+# Add variables to regression equation.
+# Now we are checking the residuals for normality.
+#--------------------------------------------------
+
+bc_grid_MASS <- MASS::boxcox(saleprice ~ horsepower + 
+                               age + enghours + 
+                               diesel + fwd + manual + cab + 
+                               johndeere,
+                             data = tractor_sales,
+                             lambda = lambda_grid)
+# Find the MLE.
+max_lambda_MASS <- bc_grid_MASS$x[which.max(bc_grid_MASS$y)]
+
+# Plot from the model object.
+plot(bc_grid_MASS$x, bc_grid_MASS$y,
+     type = 'l',
+     main = 'Log-likelihood Function (from MASS package)',
+     xlab = 'Lambda',
+     ylab = 'Log-likelihood',
+     col = 'blue', lwd = 3)
+lines(x = c(max_lambda_MASS, max_lambda_MASS),
+      y = c(min(bc_grid_MASS$y), max(bc_grid_MASS$y)),
+      lty = 'dashed')
+# The optimum is very close to zero. 
+# Even with variables, it makes sense to take logs of the prices.
+
+# If, contrary to what happened above, the optimum moved to 
+# one (i.e. no transformation), then it still does not mean that 
+# the prices should be modeled as is. 
+# One might try that but should also build a double-log model, 
+# in which we predict log. prices with logs of other 
+# explanatory variables that are also highly skewed.
+
+
 
 ##################################################
 # End
