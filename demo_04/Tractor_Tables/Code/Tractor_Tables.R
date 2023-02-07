@@ -250,10 +250,13 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 
+##################################################
+# Analyze Correlation.
+##################################################
 
 
 #--------------------------------------------------
-print('Correlation Matrix')
+print('Correlation Matrix for Numeric Variables')
 #--------------------------------------------------
 
 tab_var_list <- colnames(tractor_sales)[c(1:7, 9)]
@@ -266,7 +269,7 @@ tab_var_list <- colnames(tractor_sales)[c(1:7, 9)]
 tractor_sales[, 'log_saleprice'] <- log(tractor_sales[, 'saleprice'])
 tab_var_list <- colnames(tractor_sales)[c(14, 2:4)]
 
-# Select values for output.
+# Calculate covariance matrix.
 out_tab <- cor(tractor_sales[, tab_var_list])
 colnames(out_tab) <- c('Log. of Price', 'Horsepower', 'Age', 'Engine Hours')
 rownames(out_tab) <- c('Log. of Price', 'Horsepower', 'Age', 'Engine Hours')
@@ -281,6 +284,12 @@ out_xtable <- xtable(out_tab[, ],
 tab_file_name <- sprintf('correlation_num.tex')
 tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 cat(print(out_xtable), file = tab_file_name, append = FALSE)
+
+
+
+#--------------------------------------------------
+print('Correlation Matrix for Categorical Variables')
+#--------------------------------------------------
 
 
 # Investigate relationship between prices and indicator variables.

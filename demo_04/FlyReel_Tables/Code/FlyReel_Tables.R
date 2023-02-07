@@ -188,6 +188,29 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 
+##################################################
+# Analyze Correlation.
+##################################################
+
+corr_var_list <- c('Price', 'Weight', 'Diameter', 'Width')
+
+# Calculate covariance matrix.
+out_tab <- cor(flyreels[, corr_var_list])
+colnames(out_tab) <- corr_var_list
+rownames(out_tab) <- corr_var_list
+print(out_tab)
+
+
+out_xtable <- xtable(out_tab[, ],
+                     digits = 3,
+                     label = 'tab:correlation_num',
+                     caption = 'Correlation Matrix of Prices and Numeric Variables')
+
+tab_file_name <- sprintf('correlation_num.tex')
+tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+cat(print(out_xtable), file = tab_file_name, append = FALSE)
+
+
 
 ##################################################
 # End

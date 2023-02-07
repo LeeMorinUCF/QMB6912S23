@@ -38,12 +38,10 @@ library(mgcv)
 
 # Set working directory.
 # The '<-' operator denotes right-to-left assignment.
-# wd_path <- '/path/to/your/folder'
-# "~/Teaching/QMB6358_Fall_2021/GitRepo/QMB6358F21/demo_07_data_in_R"
 
-wd_path <- '~/GitHub/QMB6912S22/demo_02/Asparagus'
-setwd(wd_path)
-getwd()
+# wd_path <- '~/GitHub/QMB6912S23/demo_04/Asparagus'
+# setwd(wd_path)
+# getwd()
 
 
 ################################################################################

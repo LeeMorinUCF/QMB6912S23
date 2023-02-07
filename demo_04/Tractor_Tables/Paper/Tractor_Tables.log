@@ -1,7 +1,7 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  7 FEB 2023 15:58
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  7 FEB 2023 16:01
 entering extended mode
-**./FlyReels_Tables.tex
-(FlyReels_Tables.tex
+**./Tractor_Tables.tex
+(Tractor_Tables.tex
 LaTeX2e <2020-10-01> patch level 4
 L3 programming layer <2021-05-11>
 (C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
@@ -31,8 +31,8 @@ pdftex.def
 File: l3backend-pdftex.def 2021-05-07 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count187
 \l__pdf_internal_box=\box47
-) (FlyReels_Tables.aux)
-\openout1 = `FlyReels_Tables.aux'.
+) (Tractor_Tables.aux)
+\openout1 = `Tractor_Tables.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
@@ -49,36 +49,39 @@ LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 5.
 LaTeX Font Info:    ... okay on input line 5.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <10.95> on input line 35.
+(Font)              <10.95> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 35.
+(Font)              <8> on input line 29.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 35.
+(Font)              <6> on input line 29.
  [1
 
 {C:/Users/le279259/AppData/Local/MiKTeX/pdftex/config/pdftex.map}] (../Tables/s
-umm_by_country.tex) [2]
-(../Tables/country_by_brand.tex) [3] (../Tables/design_by_brand.tex) [4]
-(../Tables/correlation_num.tex) [5] (FlyReels_Tables.aux) ) 
+umm_by_make.tex) [2]
+(../Tables/ind_by_make.tex) [3] (../Tables/season_sold_by_make.tex) [4]
+(../Tables/correlation_num.tex) (../Tables/correlation_ind.tex) [5]
+(Tractor_Tables.aux) ) 
 Here is how much of TeX's memory you used:
- 471 strings out of 479163
- 10163 string characters out of 2852567
- 303241 words of memory out of 3000000
- 18145 multiletter control sequences out of 15000+600000
+ 478 strings out of 479163
+ 10477 string characters out of 2852567
+ 301239 words of memory out of 3000000
+ 18149 multiletter control sequences out of 15000+600000
  407555 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 32i,8n,38p,197b,217s stack positions out of 5000i,500n,10000p,200000b,80000s
-<C:/Users/le279259/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/User
-s/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.
-pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmr10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr8.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts
-/type1/public/amsfonts/cm/cmss10.pfb><C:/Users/le279259/AppData/Local/Programs/
-MiKTeX/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on FlyReels_Tables.pdf (5 pages, 91391 bytes).
+ 32i,9n,38p,203b,190s stack positions out of 5000i,500n,10000p,200000b,80000s
+<C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/ty
+pe1/public/amsfonts/cm/cmbx10.pfb><C:/Users/le279259/AppData/Local/Programs/MiK
+TeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/le279259/AppData/Local/
+Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/le279259/Ap
+pData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/
+le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb
+><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/c
+m/cmr8.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/
+amsfonts/cm/cmss10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/t
+ype1/public/amsfonts/cm/cmtt10.pfb>
+Output written on Tractor_Tables.pdf (5 pages, 106487 bytes).
 PDF statistics:
- 42 PDF objects out of 1000 (max. 8388607)
+ 50 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -36,7 +36,7 @@ Min. Price    "129.0"  "331.6"  "600.0"
 Mean Price    " 34.99" "280.22" "839.00"
 Max. Price    " 200.0" " 484.9" "1095.0"
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
-% Thu Jan 27 21:16:18 2022
+% Tue Feb 07 15:58:03 2023
 \begin{table}[ht]
 \centering
 \begin{tabular}{rlll}
@@ -163,7 +163,7 @@ Tibor                 4     0     0   4        3      1    0        4
 Waterworks-Lamson    32     0     8  24        0     32    8       24
 Totals              248    27    86 135       94    154   31      217
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
-% Thu Jan 27 21:16:18 2022
+% Tue Feb 07 15:58:03 2023
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}
@@ -196,7 +196,7 @@ Totals              248    27    86 135       94    154   31      217
 \end{table}
 [1] "Reel Design by Brand of Fly Reel"
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
-% Thu Jan 27 21:16:18 2022
+% Tue Feb 07 15:58:03 2023
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrrr}
@@ -226,4 +226,26 @@ Totals              248    27    86 135       94    154   31      217
 \end{tabular}
 \caption{Reel Design by Brand of Fly Reel} 
 \label{tab:design_by_brand}
+\end{table}
+             Price    Weight  Diameter     Width
+Price    1.0000000 0.5461964 0.4983049 0.2538467
+Weight   0.5461964 1.0000000 0.8334891 0.6869892
+Diameter 0.4983049 0.8334891 1.0000000 0.6426836
+Width    0.2538467 0.6869892 0.6426836 1.0000000
+% latex table generated in R 4.0.5 by xtable 1.8-4 package
+% Tue Feb 07 15:58:03 2023
+\begin{table}[ht]
+\centering
+\begin{tabular}{rrrrr}
+  \hline
+ & Price & Weight & Diameter & Width \\ 
+  \hline
+Price & 1.000 & 0.546 & 0.498 & 0.254 \\ 
+  Weight & 0.546 & 1.000 & 0.833 & 0.687 \\ 
+  Diameter & 0.498 & 0.833 & 1.000 & 0.643 \\ 
+  Width & 0.254 & 0.687 & 0.643 & 1.000 \\ 
+   \hline
+\end{tabular}
+\caption{Correlation Matrix of Prices and Numeric Variables} 
+\label{tab:correlation_num}
 \end{table}
