@@ -91,9 +91,14 @@ for (var_name in colnames(flyreels)[lapply(flyreels, class) == 'numeric']) {
   col_names <- sprintf('%s %s', c('Min.', 'Mean', 'Max.'), var_name)
   # country_sum[, col_names] <- tapply(flyreels$Price, flyreels$Country,
   #                                    function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
-  country_sum[, col_names] <- tapply(flyreels[, var_name], flyreels$Country,
-                                     function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
-
+  # country_sum[, col_names] <- tapply(flyreels[, var_name], flyreels$Country,
+  #                                    function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
+  sub_tab <- tapply(flyreels[, var_name], flyreels$Country,
+                    function(x) format(summary(x), scientific = FALSE)[c(1,4,6)])
+  for (row in 1:length(sub_tab)) {
+    country_sum[row, col_names] <- unlist(sub_tab[row])
+  }
+  
 }
 
 # Select values for output.
@@ -194,7 +199,7 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 corr_var_list <- c('Price', 'Weight', 'Diameter', 'Width')
 
-# Calculate covariance matrix.
+# Calculate correlation matrix.
 out_tab <- cor(flyreels[, corr_var_list])
 colnames(out_tab) <- corr_var_list
 rownames(out_tab) <- corr_var_list
