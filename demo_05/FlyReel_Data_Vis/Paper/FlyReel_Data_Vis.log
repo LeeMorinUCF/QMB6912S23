@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  17 FEB 2022 11:04
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  15 FEB 2023 13:44
 entering extended mode
 **./FlyReel_Data_Vis.tex
 (FlyReel_Data_Vis.tex
@@ -270,7 +270,7 @@ line 134.
 
 Package epstopdf Info: Source file: <../Figures/slpom_with_sealed_mach.eps>
 (epstopdf)             Output file: <../Figures/slpom_with_sealed_mach.pdf>
-(epstopdf)                    date: 2022-02-17 11:04:16
+(epstopdf)                    date: 2023-02-15 13:44:16
 (epstopdf)                    size: 220376 bytes
 (epstopdf)             Command: <miktex-epstopdf-unrestricted ../Figures/slpom_
 with_sealed_mach.eps>
@@ -306,7 +306,7 @@ ine 167.
 (FlyReel_Data_Vis.aux) ) 
 Here is how much of TeX's memory you used:
  2996 strings out of 479163
- 46152 string characters out of 2852567
+ 46336 string characters out of 2852567
  328512 words of memory out of 3000000
  20573 multiletter control sequences out of 15000+600000
  408653 words of font info for 38 fonts, out of 8000000 for 9000
@@ -316,7 +316,7 @@ Here is how much of TeX's memory you used:
 enc/dvips/base/8r.enc}<C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/urw/palatino/uplb8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fo
 nts/type1/urw/palatino/uplr8a.pfb>
-Output written on FlyReel_Data_Vis.pdf (8 pages, 927603 bytes).
+Output written on FlyReel_Data_Vis.pdf (8 pages, 927846 bytes).
 PDF statistics:
  83 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

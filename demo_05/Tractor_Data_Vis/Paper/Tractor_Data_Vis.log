@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  17 FEB 2022 11:38
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  15 FEB 2023 13:32
 entering extended mode
 **./Tractor_Data_Vis.tex
 (Tractor_Data_Vis.tex
@@ -243,17 +243,6 @@ LaTeX Font Info:    Trying to load font information for OT1+pcr on input line 7
 (C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ot1pcr.fd
 File: ot1pcr.fd 2001/06/04 font definitions for OT1/pcr.
 )
-Overfull \hbox (38.4882pt too wide) in paragraph at lines 71--77
-\OT1/ppl/m/n/10.95 which an-a-lyzes the prices of fly reels, the de-pen-dent va
-ri-able in the \OT1/pcr/m/n/10.95 TRACTOR7.csv
- []
-
-
-Overfull \hbox (0.35942pt too wide) in paragraph at lines 71--77
-\OT1/ppl/m/n/10.95 dataset. The out-put in-cludes sev-eral plots of the de-pen-
-dent vari-able against
- []
-
 [1
 
 {C:/Users/le279259/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
@@ -273,7 +262,7 @@ Package pdftex.def Info: ../Figures/dens_by_brand.pdf  used on input line 147.
 <../Figures/dens_by_season.pdf, id=31, 505.89pt x 505.89pt>
 File: ../Figures/dens_by_season.pdf Graphic file (type pdf)
 <use ../Figures/dens_by_season.pdf>
-Package pdftex.def Info: ../Figures/dens_by_season.pdf  used on input line 196.
+Package pdftex.def Info: ../Figures/dens_by_season.pdf  used on input line 198.
 
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
@@ -297,7 +286,7 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 File: ../Figures/brand_and_season_sales.pdf Graphic file (type pdf)
 <use ../Figures/brand_and_season_sales.pdf>
 Package pdftex.def Info: ../Figures/brand_and_season_sales.pdf  used on input l
-ine 234.
+ine 236.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
@@ -309,14 +298,14 @@ Underfull \vbox (badness 10000) has occurred while \output is active []
 <../Figures/scatter_matrix.pdf, id=58, 505.89pt x 505.89pt>
 File: ../Figures/scatter_matrix.pdf Graphic file (type pdf)
 <use ../Figures/scatter_matrix.pdf>
-Package pdftex.def Info: ../Figures/scatter_matrix.pdf  used on input line 290.
+Package pdftex.def Info: ../Figures/scatter_matrix.pdf  used on input line 292.
 
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [9 <../Figures/scatter_matrix.pdf>]
-Overfull \hbox (1.7978pt too wide) in paragraph at lines 297--297
+Overfull \hbox (1.7978pt too wide) in paragraph at lines 299--299
 []\OT1/ppl/b/n/14.4 Relationship be-tween Prices, Horse-power and Age 
  []
 
@@ -324,12 +313,12 @@ Overfull \hbox (1.7978pt too wide) in paragraph at lines 297--297
 <../Figures/bubble_plot.pdf, id=71, 505.89pt x 505.89pt>
 File: ../Figures/bubble_plot.pdf Graphic file (type pdf)
 <use ../Figures/bubble_plot.pdf>
-Package pdftex.def Info: ../Figures/bubble_plot.pdf  used on input line 351.
+Package pdftex.def Info: ../Figures/bubble_plot.pdf  used on input line 353.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
  [11 <../Figures/bubble_plot.pdf>] (Tractor_Data_Vis.aux) ) 
 Here is how much of TeX's memory you used:
  5351 strings out of 479163
- 74124 string characters out of 2852567
+ 74446 string characters out of 2852567
  574319 words of memory out of 3000000
  22913 multiletter control sequences out of 15000+600000
  414458 words of font info for 60 fonts, out of 8000000 for 9000
@@ -340,7 +329,7 @@ ppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/Users/le279259/App
 Data/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/Users/le27925
 9/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/l
 e279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb>
-Output written on Tractor_Data_Vis.pdf (11 pages, 307282 bytes).
+Output written on Tractor_Data_Vis.pdf (11 pages, 307103 bytes).
 PDF statistics:
  93 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -39,7 +39,7 @@ pdf
   Summer          6    58
   Winter         10    37
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
-% Thu Feb 17 11:38:25 2022
+% Wed Feb 15 13:32:33 2023
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrr}
@@ -69,7 +69,7 @@ Horsepower       0.64850242 1.00000000  0.03884978   0.37778287
 Age             -0.44054234 0.03884978  1.00000000   0.55903832
 Engine Hours    -0.04583549 0.37778287  0.55903832   1.00000000
 % latex table generated in R 4.0.5 by xtable 1.8-4 package
-% Thu Feb 17 11:38:25 2022
+% Wed Feb 15 13:32:34 2023
 \begin{table}[ht]
 \centering
 \begin{tabular}{rrrrr}

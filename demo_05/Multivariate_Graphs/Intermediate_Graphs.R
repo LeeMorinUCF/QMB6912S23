@@ -23,8 +23,10 @@
 # It is a good habit to clear the workspace.
 rm(list=ls(all=TRUE))
 
-# Pause on each graph.
-par(ask = TRUE)
+# Pause on each graph?
+# par(ask = TRUE)
+# Turn this feature off?
+# par(ask = FALSE)
 
 # Save current graphical parameters.
 opar <- par(no.readonly = TRUE)
@@ -44,7 +46,7 @@ opar <- par(no.readonly = TRUE)
 # This is a continuation of graphing methods from
 # Chapter 6 of R in Action by Robert I. Kabacoff,
 # called "Basic Graphs" and we move on to Chapter 11
-# calle "Intermediate Graphs".
+# called "Intermediate Graphs".
 
 
 # --Section 6.5--
@@ -112,7 +114,7 @@ dotchart(mtcars$mpg, labels = row.names(mtcars),
          cex = 0.7,
          main = "Gas Milage for Car Models",
          xlab = "Miles Per Gallon")
-
+  
 
 # Listing 6.11 - sorted colored grouped dot chart
 
@@ -192,7 +194,7 @@ scatterplotMatrix(~ mpg + disp + drat + wt, data=mtcars, spread=FALSE,
 
 # And because, when graphing in R, enough is never enough,
 # you can color code the plots by a specified category,
-# in this cae separated by number of cylinders.
+# in this case, separated by number of cylinders.
 scatterplotMatrix(~ mpg + disp + drat + wt | cyl, data=mtcars, spread=FALSE,
     main="Scatterplot Matrix via car package", diagonal="histogram")
 
@@ -356,7 +358,7 @@ text(wt, mpg, rownames(mtcars), cex=0.6)
 detach(mtcars)
 par(opar)
 
-# Listing 11.3 - Creating side by side scatter and line plots
+# Listing 11.3 - Creating side-by-side scatter and line plots
 
 # The dataset Oranges contains observations of the
 # circumference and ages for a sample of five orange trees.
@@ -466,7 +468,7 @@ col.corrgram <- function(ncol){
 
 corrgram(mtcars, order=TRUE, lower.panel=panel.shade,
     upper.panel=panel.pie, text.panel=panel.txt,
-    main="A Corrgram (or Horse) of a Different Color")
+    main="A Corrgram of a Different Color")
 
 # Plot them and decide for yourself.
 

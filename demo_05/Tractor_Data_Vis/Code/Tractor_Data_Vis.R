@@ -331,7 +331,7 @@ print('Plotting relationship between prices, horsepower and age')
 ##################################################
 
 # Calculate the radius of the bubbles
-# so that the area represents horsepowwer.
+# so that the area represents horsepower.
 r <- sqrt(tractor_sales[, 'horsepower']/pi)
 
 # Plot the bubble plot.

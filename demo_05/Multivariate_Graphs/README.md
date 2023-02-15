@@ -5,7 +5,7 @@
 This demonstration is a continuation of graphing methods from
 Chapter 6 of R in Action by Robert I. Kabacoff,
 called "Basic Graphs" and we move on to Chapter 11
-calle "Intermediate Graphs".
+called "Intermediate Graphs".
 
 ## --Section 6.5--
 
@@ -89,7 +89,7 @@ dotchart(mtcars$mpg, labels = row.names(mtcars),
 
 A dot chart can be augmented by
 using colors to represent categories
-and sorting the data by gas mileage
+and by sorting the data by gas mileage
 to create a better visualization.
 
 ```R
@@ -161,7 +161,7 @@ scatterplotMatrix(~ mpg + disp + drat + wt, data=mtcars, spread=FALSE,
 
 And because, when graphing in R, enough is never enough,
 you can color code the plots by a specified category,
-in this cae separated by number of cylinders.
+in this case, separated by number of cylinders.
 ```R
 scatterplotMatrix(~ mpg + disp + drat + wt | cyl, data=mtcars, spread=FALSE,
     main="Scatterplot Matrix via car package", diagonal="histogram")
@@ -363,7 +363,7 @@ par(opar)
 <img src="Images/bubble_plot.png" width="500"/>
 
 
-## Listing 11.3 - Creating side by side scatter and line plots
+## Listing 11.3 - Creating side-by-side scatter and line plots
 
 The dataset ```Oranges``` contains observations of the
 circumference and ages for a sample of five orange trees.

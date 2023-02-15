@@ -293,9 +293,18 @@ table(flyreels$Brand,
 
 
 # Select the relevant columns and calculate average prices.
+# Note that the function call to aggregate may depend on 
+# your version of R.
+# Version that works in my RStudio:
+# x <- aggregate(x = Price ~ Brand + Country,
+#                data = flyreels[, c('Price', 'Brand', 'Country')],
+#                FUN = mean)
+
+# Version that works in my GitBash:
 x <- aggregate(formula = Price ~ Brand + Country,
                data = flyreels[, c('Price', 'Brand', 'Country')],
                FUN = mean)
+
 
 # Sort the data.
 x <- x[order(x$Price), ]
