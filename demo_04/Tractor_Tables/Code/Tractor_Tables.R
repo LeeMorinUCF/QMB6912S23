@@ -250,6 +250,57 @@ cat(print(out_xtable), file = tab_file_name, append = FALSE)
 
 
 
+
+##################################################
+# Summarize average prices across categorical variables.
+##################################################
+
+
+#--------------------------------------------------
+print('Season Sold by Make of Tractor')
+#--------------------------------------------------
+
+
+avg_price_seasons_1 <- aggregate(x = tractor_sales[, 'saleprice'], 
+                               # data = tractor_sales, 
+                               FUN = mean, 
+                               by = list(Season = tractor_sales[, 'season_sold'], 
+                                         Brand = tractor_sales[, 'johndeere']))
+print(avg_price_seasons_1)
+
+
+
+avg_price_seasons_2 <- aggregate(x = saleprice ~ season_sold + johndeere, 
+                                 data = tractor_sales,
+                                 FUN = mean)
+
+
+out_tab <- cbind(avg_price_seasons_2[avg_price_seasons_2[, 'johndeere'] == 1, 'saleprice'], 
+                 avg_price_seasons_2[avg_price_seasons_2[, 'johndeere'] == 0, 'saleprice'])
+
+# out_tab is a matrix.
+class(out_tab)
+# Change to a data.frame.
+out_tab <- data.frame(out_tab)
+
+
+rownames(out_tab) <- avg_price_seasons_2[1:4, 'season_sold']
+colnames(out_tab) <- c('John Deere', 'Other')
+
+
+
+# Output another set of columns to another TeX file.
+out_xtable <- xtable(out_tab[, ],
+                     digits = 0, label = 'tab:avg_price_by_season_sold',
+                     caption = 'Average Price of Tractors by Season Sold')
+
+tab_file_name <- sprintf('avg_price_by_season_sold.tex')
+tab_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+cat(print(out_xtable), file = tab_file_name, append = FALSE)
+
+
+
+
 ##################################################
 # Analyze Correlation.
 ##################################################
