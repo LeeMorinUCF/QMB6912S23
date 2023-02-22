@@ -495,6 +495,7 @@ for (i in types){
     plottitle <- paste("type=", i)
     plot(x,y,type=i, col="red", lwd=2, cex=1, main=plottitle)
 }
+par(opar)
 
 
 
