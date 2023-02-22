@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  15 MAR 2022 12:25
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (MiKTeX 21.3) (preloaded format=pdflatex 2021.5.23)  22 FEB 2023 15:12
 entering extended mode
 **./Tractor_Reg_Models.tex
 (Tractor_Reg_Models.tex
@@ -348,7 +348,7 @@ Overfull \hbox (92.95135pt too wide) in paragraph at lines 67--85
 
 {C:/Users/le279259/AppData/Local/MiKTeX/pdftex/config/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for TS1+ppl on input line 1
-04.
+12.
 
 (C:\Users\le279259\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
@@ -356,68 +356,74 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 <../Figures/hist_price.pdf, id=11, 505.89pt x 505.89pt>
 File: ../Figures/hist_price.pdf Graphic file (type pdf)
 <use ../Figures/hist_price.pdf>
-Package pdftex.def Info: ../Figures/hist_price.pdf  used on input line 111.
+Package pdftex.def Info: ../Figures/hist_price.pdf  used on input line 120.
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
 
 [2 <../Figures/hist_price.pdf>]
 <../Figures/hist_log_price.pdf, id=22, 505.89pt x 505.89pt>
 File: ../Figures/hist_log_price.pdf Graphic file (type pdf)
 <use ../Figures/hist_log_price.pdf>
-Package pdftex.def Info: ../Figures/hist_log_price.pdf  used on input line 123.
+Package pdftex.def Info: ../Figures/hist_log_price.pdf  used on input line 132.
 
 (pdftex.def)             Requested size: 252.94437pt x 252.94437pt.
  [3 <../Figures/hist_log_price.pdf>]
-(../Tables/price_reg_1.tex) [4] [5] (../Tables/log_price_reg_2.tex) [6]
-[7] (../Tables/reg_reduction.tex) [8
-
-] [9] (../Tables/reg_sq_horse.tex)
-Overfull \hbox (1.7353pt too wide) in paragraph at lines 237--239
-[]\OT1/ppl/m/n/10.95 The squared horse-power vari-able has a co-ef-fi-cient of 
-$\OMS/cmsy/m/n/10.95  \OT1/cmr/m/n/10.95 2\OML/cmm/m/it/10.95 :\OT1/cmr/m/n/10.
-95 081\OML/cmm/m/it/10.95 e \OMS/cmsy/m/n/10.95   \OT1/cmr/m/n/10.95 05$\OT1/pp
-l/m/n/10.95 , which
- []
-
-[10
-
-] [11] [12
-
-] [13
-
-] (../Tables/reg_interactions.tex
-Overfull \hbox (39.03818pt too wide) in paragraph at lines 4--43
+(../Tables/reg_price_w_log.tex) [4] [5] (../Tables/reg_reduction.tex
+Overfull \hbox (30.74423pt too wide) in paragraph at lines 4--37
  [] 
  []
 
-) (../Tables/reg_johndeere.tex) [14] [15] [16] (Tractor_Reg_Models.aux) ) 
+) [6
+
+] [7] [8
+
+] (../Tables/reg_interactions.tex
+Overfull \hbox (39.03818pt too wide) in paragraph at lines 4--41
+ [] 
+ []
+
+) [9
+
+] [10] (../Tables/reg_johndeere.tex
+Overfull \hbox (64.77672pt too wide) in paragraph at lines 5--33
+ [] 
+ []
+
+) [11
+
+] [12] (Tractor_Reg_Models.aux) ) 
 Here is how much of TeX's memory you used:
- 6113 strings out of 479163
- 97521 string characters out of 2852567
- 547773 words of memory out of 3000000
+ 6111 strings out of 479163
+ 97477 string characters out of 2852567
+ 544773 words of memory out of 3000000
  23606 multiletter control sequences out of 15000+600000
- 420109 words of font info for 68 fonts, out of 8000000 for 9000
+ 422793 words of font info for 76 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 69i,11n,79p,292b,370s stack positions out of 5000i,500n,10000p,200000b,80000s
-{C:/Us
-ers/le279259/AppData/Local/Programs/MiKTeX/fonts/enc/dvips/base/8r.enc}<C:/User
-s/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.
+ 69i,11n,79p,292b,377s stack positions out of 5000i,500n,10000p,200000b,80000s
+{C:/Users/le279259/AppData/Local/Programs/MiKT
+eX/fonts/enc/dvips/base/8r.enc}<C:/Users/le279259/AppData/Local/Programs/MiKTeX
+/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/le279259/AppData/Local/Pro
+grams/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi6.pfb><C:/Users/le279259/AppDat
+a/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi8.pfb><C:/Users/le27
+9259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi9.pfb><C:
+/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cm
+r10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/ams
+fonts/cm/cmr6.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/
+public/amsfonts/cm/cmr8.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fo
+nts/type1/public/amsfonts/cm/cmr9.pfb><C:/Users/le279259/AppData/Local/Programs
+/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/le279259/AppData/Lo
+cal/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy5.pfb><C:/Users/le279259
+/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Use
+rs/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.
 pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfont
-s/cm/cmmi8.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/pub
-lic/amsfonts/cm/cmr10.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/font
-s/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/le279259/AppData/Local/Programs/M
-iKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/le279259/AppData/Loca
-l/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy6.pfb><C:/Users/le279259/A
-ppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users
-/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/courier/ucrr8a.pfb><C:/
-Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhvb8a.pf
-b><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/helvetic/uhv
-r8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/palati
-no/uplb8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw/
-palatino/uplr8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type
-1/urw/palatino/uplri8a.pfb>
-Output written on Tractor_Reg_Models.pdf (16 pages, 172473 bytes).
+s/cm/cmsy9.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type1/urw
+/courier/ucrr8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/fonts/type
+1/urw/helvetic/uhvb8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTeX/font
+s/type1/urw/helvetic/uhvr8a.pfb><C:/Users/le279259/AppData/Local/Programs/MiKTe
+X/fonts/type1/urw/palatino/uplb8a.pfb><C:/Users/le279259/AppData/Local/Programs
+/MiKTeX/fonts/type1/urw/palatino/uplr8a.pfb>
+Output written on Tractor_Reg_Models.pdf (12 pages, 206611 bytes).
 PDF statistics:
- 121 PDF objects out of 1000 (max. 8388607)
+ 128 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
