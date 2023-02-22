@@ -37,8 +37,14 @@
  3rd Qu.:1.250   3rd Qu.: 525.00                                  
  Max.   :1.688   Max.   :1095.00                                  
                                                                   
-[1] "Name"     "Brand"    "Weight"   "Diameter" "Width"    "Price"    "Sealed"  
-[8] "Country"  "Machined"
+   log_Price    
+ Min.   :3.555  
+ 1st Qu.:5.476  
+ Median :5.886  
+ Mean   :5.811  
+ 3rd Qu.:6.263  
+ Max.   :6.999  
+                
 
 China Korea   USA 
    27    86   135 
@@ -59,23 +65,47 @@ lm(formula = lm_fmla, data = flyreels)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--322.80  -80.46   -5.07   65.99  439.79 
+-277.72  -86.00  -11.72   68.06  417.58 
 
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)    
-(Intercept)     -1056.01     105.51 -10.009  < 2e-16 ***
-Width             158.71      63.32   2.507 0.012850 *  
-Diameter          174.36      20.59   8.468 2.47e-15 ***
-Density           596.81      89.17   6.693 1.52e-10 ***
-SealedYes         144.31      20.43   7.065 1.71e-11 ***
-MachinedYes       114.40      30.43   3.760 0.000214 ***
-made_in_USATRUE   202.10      19.86  10.177  < 2e-16 ***
+(Intercept)      -62.633     83.913  -0.746  0.45615    
+Width           -157.488     63.682  -2.473  0.01409 *  
+Diameter          -4.971     27.254  -0.182  0.85542    
+Weight            55.690      7.059   7.889 1.06e-13 ***
+SealedYes        145.823     19.774   7.374 2.64e-12 ***
+MachinedYes       98.968     29.721   3.330  0.00101 ** 
+made_in_USATRUE  201.070     19.259  10.440  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 132.1 on 241 degrees of freedom
-Multiple R-squared:  0.6428,	Adjusted R-squared:  0.634 
-F-statistic:  72.3 on 6 and 241 DF,  p-value: < 2.2e-16
+Residual standard error: 128.2 on 241 degrees of freedom
+Multiple R-squared:  0.6634,	Adjusted R-squared:  0.655 
+F-statistic: 79.16 on 6 and 241 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.01598 -0.21456 -0.01156  0.21990  0.90595 
+
+Coefficients:
+                Estimate Std. Error t value Pr(>|t|)    
+(Intercept)      4.04898    0.21353  18.962  < 2e-16 ***
+Width           -0.31440    0.16205  -1.940   0.0535 .  
+Diameter         0.05850    0.06935   0.844   0.3998    
+Weight           0.10662    0.01796   5.936 1.01e-08 ***
+SealedYes        0.42278    0.05032   8.402 3.83e-15 ***
+MachinedYes      0.72747    0.07563   9.619  < 2e-16 ***
+made_in_USATRUE  0.51383    0.04901  10.485  < 2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3262 on 241 degrees of freedom
+Multiple R-squared:  0.7459,	Adjusted R-squared:  0.7396 
+F-statistic: 117.9 on 6 and 241 DF,  p-value: < 2.2e-16
 
 
 Call:
@@ -83,47 +113,45 @@ lm(formula = lm_fmla, data = flyreels)
 
 Residuals:
     Min      1Q  Median      3Q     Max 
--0.9979 -0.2191 -0.0024  0.2010  0.9402 
+-9.0426 -2.8208 -0.0394  2.3608 10.4303 
 
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)    
-(Intercept)      2.09477    0.26368   7.944 7.45e-14 ***
-Width            0.30260    0.15824   1.912    0.057 .  
-Diameter         0.40460    0.05145   7.863 1.25e-13 ***
-Density          1.19872    0.22284   5.379 1.77e-07 ***
-SealedYes        0.42239    0.05105   8.275 8.81e-15 ***
-MachinedYes      0.75544    0.07604   9.935  < 2e-16 ***
-made_in_USATRUE  0.51673    0.04963  10.412  < 2e-16 ***
+(Intercept)       8.5110     2.5735   3.307  0.00109 ** 
+Width            -4.5775     1.9530  -2.344  0.01990 *  
+Diameter          0.3228     0.8359   0.386  0.69966    
+Weight            1.5612     0.2165   7.211 7.14e-12 ***
+SealedYes         5.0173     0.6065   8.273 8.90e-15 ***
+MachinedYes       6.1078     0.9115   6.701 1.45e-10 ***
+made_in_USATRUE   6.4693     0.5907  10.953  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.33 on 241 degrees of freedom
-Multiple R-squared:   0.74,	Adjusted R-squared:  0.7335 
-F-statistic: 114.3 on 6 and 241 DF,  p-value: < 2.2e-16
+Residual standard error: 3.932 on 241 degrees of freedom
+Multiple R-squared:  0.7225,	Adjusted R-squared:  0.7156 
+F-statistic: 104.6 on 6 and 241 DF,  p-value: < 2.2e-16
 
 
 Call:
 lm(formula = lm_fmla, data = flyreels)
 
 Residuals:
-    Min      1Q  Median      3Q     Max 
--10.280  -2.816   0.008   2.383  10.951 
+     Min       1Q   Median       3Q      Max 
+-0.99110 -0.20965 -0.02509  0.21316  0.94760 
 
 Coefficients:
                 Estimate Std. Error t value Pr(>|t|)    
-(Intercept)     -19.7686     3.2064  -6.165 2.94e-09 ***
-Width             4.3826     1.9242   2.278   0.0236 *  
-Diameter          5.3729     0.6257   8.587 1.12e-15 ***
-Density          17.1935     2.7097   6.345 1.09e-09 ***
-SealedYes         4.9957     0.6207   8.048 3.83e-14 ***
-MachinedYes       6.5274     0.9247   7.059 1.78e-11 ***
-made_in_USATRUE   6.5059     0.6035  10.780  < 2e-16 ***
+(Intercept)      3.94043    0.08072  48.816  < 2e-16 ***
+Weight           0.10096    0.00939  10.751  < 2e-16 ***
+SealedYes        0.41610    0.04781   8.703 4.98e-16 ***
+MachinedYes      0.76264    0.07364  10.357  < 2e-16 ***
+made_in_USATRUE  0.51772    0.04909  10.546  < 2e-16 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 4.013 on 241 degrees of freedom
-Multiple R-squared:  0.7109,	Adjusted R-squared:  0.7037 
-F-statistic: 98.79 on 6 and 241 DF,  p-value: < 2.2e-16
+Residual standard error: 0.3276 on 243 degrees of freedom
+Multiple R-squared:  0.7416,	Adjusted R-squared:  0.7373 
+F-statistic: 174.3 on 4 and 243 DF,  p-value: < 2.2e-16
 
      
       FALSE TRUE
@@ -140,21 +168,42 @@ lm(formula = lm_fmla, data = flyreels[flyreels[, "made_in_USA"] ==
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.76668 -0.22447  0.03491  0.19074  0.66501 
+-0.68410 -0.20353  0.02593  0.20465  0.67467 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  3.35410    0.29741  11.278  < 2e-16 ***
-Width        0.27786    0.22085   1.258    0.211    
-Diameter     0.43792    0.06844   6.398 2.61e-09 ***
-Density      1.13056    0.25274   4.473 1.66e-05 ***
-SealedYes    0.31599    0.05762   5.484 2.09e-07 ***
+(Intercept)  5.19227    0.25773  20.147  < 2e-16 ***
+Width       -0.31613    0.22524  -1.404    0.163    
+Diameter     0.10468    0.09015   1.161    0.248    
+Weight       0.10273    0.02116   4.855 3.40e-06 ***
+SealedYes    0.31854    0.05689   5.599 1.23e-07 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3028 on 130 degrees of freedom
-Multiple R-squared:  0.5376,	Adjusted R-squared:  0.5234 
-F-statistic: 37.79 on 4 and 130 DF,  p-value: < 2.2e-16
+Residual standard error: 0.2993 on 130 degrees of freedom
+Multiple R-squared:  0.5483,	Adjusted R-squared:  0.5344 
+F-statistic: 39.45 on 4 and 130 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels[flyreels[, "made_in_USA"] == 
+    TRUE, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.70838 -0.21822  0.01977  0.22219  0.72340 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  5.23650    0.07716  67.868  < 2e-16 ***
+Weight       0.10659    0.01137   9.374 2.57e-16 ***
+SealedYes    0.31557    0.05290   5.966 2.10e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3 on 132 degrees of freedom
+Multiple R-squared:  0.539,	Adjusted R-squared:  0.5321 
+F-statistic: 77.18 on 2 and 132 DF,  p-value: < 2.2e-16
 
 
 Call:
@@ -163,61 +212,128 @@ lm(formula = lm_fmla, data = flyreels[flyreels[, "made_in_USA"] ==
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.89952 -0.17913 -0.04603  0.16680  1.01949 
+-0.92256 -0.20628 -0.02302  0.17360  0.98209 
+
+Coefficients:
+             Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  4.133347   0.322804  12.805  < 2e-16 ***
+Width       -0.271815   0.234728  -1.158 0.249441    
+Diameter    -0.007228   0.107221  -0.067 0.946383    
+Weight       0.111910   0.030881   3.624 0.000446 ***
+SealedYes    0.645919   0.094994   6.800 6.21e-10 ***
+MachinedYes  0.623219   0.091769   6.791 6.47e-10 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3487 on 107 degrees of freedom
+Multiple R-squared:  0.7512,	Adjusted R-squared:  0.7396 
+F-statistic: 64.62 on 5 and 107 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels[flyreels[, "made_in_USA"] == 
+    FALSE, ])
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.91305 -0.18722 -0.03948  0.16391  1.01441 
 
 Coefficients:
             Estimate Std. Error t value Pr(>|t|)    
-(Intercept)  2.02649    0.46960   4.315 3.57e-05 ***
-Width        0.38590    0.23002   1.678  0.09632 .  
-Diameter     0.35893    0.07841   4.578 1.27e-05 ***
-Density      1.32229    0.40922   3.231  0.00164 ** 
-SealedYes    0.64979    0.09659   6.728 8.80e-10 ***
-MachinedYes  0.65001    0.09173   7.086 1.53e-10 ***
+(Intercept)  3.90735    0.11049  35.365  < 2e-16 ***
+Weight       0.09346    0.01523   6.138 1.38e-08 ***
+SealedYes    0.63527    0.09069   7.005 2.14e-10 ***
+MachinedYes  0.65282    0.08785   7.431 2.57e-11 ***
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3526 on 107 degrees of freedom
-Multiple R-squared:  0.7455,	Adjusted R-squared:  0.7336 
-F-statistic:  62.7 on 5 and 107 DF,  p-value: < 2.2e-16
+Residual standard error: 0.3476 on 109 degrees of freedom
+Multiple R-squared:  0.7481,	Adjusted R-squared:  0.7412 
+F-statistic: 107.9 on 3 and 109 DF,  p-value: < 2.2e-16
 
 [1] "Test for separate coefficients by country of manufacture"
 [1] "RSS_unconstrained:"
-[1] 25.2235
+[1] 25.05317
 [1] "RSS_constrained:"
-[1] 26.24962
+[1] 26.08593
 [1] "F-statistic:"
-[1] 1.912007
+[1] 3.297812
 [1] "Critical value of F-statistic:"
 [1] "at the 1% level"
-[1] 3.095966
+[1] 3.864581
 [1] "at the 5% level"
-[1] 2.252455
+[1] 2.642371
 [1] "at the 10% level"
-[1] 1.871939
+[1] 2.10684
 
 Call:
 lm(formula = lm_fmla, data = flyreels)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.92122 -0.20015  0.00169  0.19014  1.01551 
+-0.91596 -0.20170 -0.01265  0.19043  1.02276 
+
+Coefficients:
+                           Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                3.865202   0.083035  46.549  < 2e-16 ***
+Weight                     0.100971   0.009231  10.938  < 2e-16 ***
+SealedYes                  0.627861   0.083360   7.532 9.91e-13 ***
+MachinedYes                0.649250   0.081234   7.992 5.41e-14 ***
+made_in_USATRUE            0.755477   0.091128   8.290 7.85e-15 ***
+SealedYes:made_in_USATRUE -0.306706   0.099719  -3.076  0.00234 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3221 on 242 degrees of freedom
+Multiple R-squared:  0.7513,	Adjusted R-squared:  0.7462 
+F-statistic: 146.2 on 5 and 242 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.99115 -0.20874 -0.02369  0.21139  0.94547 
+
+Coefficients:
+                       Estimate Std. Error t value Pr(>|t|)    
+(Intercept)            3.948819   0.103482   38.16  < 2e-16 ***
+Weight                 0.099566   0.014244    6.99 2.66e-11 ***
+SealedYes              0.415815   0.047958    8.67 6.32e-16 ***
+MachinedYes            0.764189   0.074741   10.22  < 2e-16 ***
+made_in_USATRUE        0.501211   0.136208    3.68 0.000288 ***
+Weight:made_in_USATRUE 0.002431   0.018699    0.13 0.896688    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3283 on 242 degrees of freedom
+Multiple R-squared:  0.7416,	Adjusted R-squared:  0.7363 
+F-statistic: 138.9 on 5 and 242 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.91305 -0.19201 -0.01781  0.18560  1.01441 
 
 Coefficients:
                           Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
-Width                      0.33575    0.15622   2.149  0.03262 *  
-Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
-Density                    1.21296    0.21948   5.527 8.49e-08 ***
-SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
-MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
-made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
-SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+(Intercept)                3.90735    0.10248  38.129  < 2e-16 ***
+Weight                     0.09346    0.01412   6.618 2.34e-10 ***
+SealedYes                  0.63527    0.08411   7.553 8.80e-13 ***
+MachinedYes                0.65282    0.08148   8.012 4.83e-14 ***
+made_in_USATRUE            0.67634    0.14487   4.669 5.03e-06 ***
+SealedYes:made_in_USATRUE -0.31970    0.10152  -3.149  0.00184 ** 
+Weight:made_in_USATRUE     0.01313    0.01868   0.703  0.48260    
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.325 on 240 degrees of freedom
-Multiple R-squared:  0.7489,	Adjusted R-squared:  0.7416 
-F-statistic: 102.3 on 7 and 240 DF,  p-value: < 2.2e-16
+Residual standard error: 0.3224 on 241 degrees of freedom
+Multiple R-squared:  0.7518,	Adjusted R-squared:  0.7457 
+F-statistic: 121.7 on 6 and 241 DF,  p-value: < 2.2e-16
 
 
 Call:
@@ -225,48 +341,21 @@ lm(formula = lm_fmla, data = flyreels)
 
 Residuals:
      Min       1Q   Median       3Q      Max 
--0.99973 -0.22110 -0.00299  0.19446  0.94188 
-
-Coefficients:
-                        Estimate Std. Error t value Pr(>|t|)    
-(Intercept)              2.13153    0.30159   7.068 1.70e-11 ***
-Width                    0.29933    0.15907   1.882 0.061084 .  
-Diameter                 0.40351    0.05174   7.799 1.90e-13 ***
-Density                  1.13955    0.32351   3.522 0.000512 ***
-SealedYes                0.42356    0.05135   8.248 1.06e-14 ***
-MachinedYes              0.75477    0.07623   9.901  < 2e-16 ***
-made_in_USATRUE          0.47017    0.19083   2.464 0.014452 *  
-Density:made_in_USATRUE  0.09378    0.37107   0.253 0.800687    
----
-Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
-
-Residual standard error: 0.3307 on 240 degrees of freedom
-Multiple R-squared:   0.74,	Adjusted R-squared:  0.7325 
-F-statistic: 97.61 on 7 and 240 DF,  p-value: < 2.2e-16
-
-
-Call:
-lm(formula = lm_fmla, data = flyreels)
-
-Residuals:
-     Min       1Q   Median       3Q      Max 
--0.90844 -0.20268  0.00957  0.18061  1.01703 
+-0.92665 -0.21237 -0.01531  0.20025  0.98457 
 
 Coefficients:
                           Estimate Std. Error t value Pr(>|t|)    
-(Intercept)                1.88792    0.30752   6.139 3.43e-09 ***
-Width                      0.34893    0.15734   2.218 0.027516 *  
-Diameter                   0.39827    0.05092   7.822 1.67e-13 ***
-Density                    1.39835    0.32965   4.242 3.17e-05 ***
-SealedYes                  0.64226    0.08855   7.253 5.64e-12 ***
-MachinedYes                0.64180    0.08387   7.652 4.85e-13 ***
-made_in_USATRUE            0.91203    0.23839   3.826 0.000166 ***
-SealedYes:made_in_USATRUE -0.32196    0.10707  -3.007 0.002919 ** 
-Density:made_in_USATRUE   -0.29179    0.38687  -0.754 0.451449    
+(Intercept)                4.08455    0.15197  26.877  < 2e-16 ***
+Width                     -0.27141    0.15776  -1.720  0.08664 .  
+Weight                     0.11595    0.01266   9.156  < 2e-16 ***
+SealedYes                  0.63856    0.08326   7.670 4.24e-13 ***
+MachinedYes                0.62099    0.08256   7.522 1.07e-12 ***
+made_in_USATRUE            0.74823    0.09086   8.235 1.14e-14 ***
+SealedYes:made_in_USATRUE -0.29849    0.09943  -3.002  0.00296 ** 
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
 
-Residual standard error: 0.3253 on 239 degrees of freedom
-Multiple R-squared:  0.7495,	Adjusted R-squared:  0.7411 
-F-statistic:  89.4 on 8 and 239 DF,  p-value: < 2.2e-16
+Residual standard error: 0.3208 on 241 degrees of freedom
+Multiple R-squared:  0.7543,	Adjusted R-squared:  0.7482 
+F-statistic: 123.3 on 6 and 241 DF,  p-value: < 2.2e-16
 
