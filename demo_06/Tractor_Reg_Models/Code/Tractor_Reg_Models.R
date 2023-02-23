@@ -156,6 +156,7 @@ out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 texreg(list(lm_model_price_all, lm_model_log_all),
        file = out_file_name,
        digits = 5,
+       custom.model.names = c('Prices', 'Log. Prices'),
        label = 'tab:reg_price_w_log',
        caption = "Linear and Logarithmic Models of Tractor Prices")
 

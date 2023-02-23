@@ -282,6 +282,7 @@ out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 texreg(l = list(lm_model_price,
                 lm_model_log,
                 lm_model_trans),
+       custom.model.names = c('Price', 'Log. Price', 'Box-Cox'),
        file = out_file_name,
        label = 'tab:reg_by_dep_var',
        caption = "Regression Models with Different Dependent Variables")
@@ -428,6 +429,8 @@ texreg(l = list(lm_model_log_red_1,
                 lm_model_USA_red_1,
                 lm_model_Asia,
                 lm_model_Asia_red_1),
+       custom.model.names = c('USA 1', 'USA 2', 'USA 3', 
+                              'Asia 1', 'Asia 2'),
        file = out_file_name,
        label = 'tab:reg_by_country',
        caption = "Regression Models by Country of Manufacture")
