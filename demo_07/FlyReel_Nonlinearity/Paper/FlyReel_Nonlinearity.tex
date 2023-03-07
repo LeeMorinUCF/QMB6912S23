@@ -110,8 +110,9 @@ and the coefficient may become significant under a refined specification.
 Table \ref{tab:reg_by_country} shows the results of 
 a series of regression models 
 on different samples by country of manufacture.
-Model 1 shows the results for the sample of fly reels made in the USA
-and Model 2 shows the remaining fly reels made in China or Korea.
+Model 1 shows the results for the entire sample of fly reels. 
+Model 2 shows the results for the sample of fly reels made in the USA
+and Model 3 shows the remaining fly reels made in China or Korea.
 
 \input{../Tables/reg_by_country}
 
@@ -128,13 +129,20 @@ indicator for the country of manufacture
 (the restricted model)
 with a separate model for each country.
 In this case, the full, unrestricted model has 
-$K = 2\times6 = 12$ parameters, one for each variable in two models. 
+$K = 2\times6 - 1 = 11$ parameters, one for each variable in two models. 
+Note that one variable does not appear in the model for American fly reels because all American reels are machined, 
+so that the value of machining cannot be measured for American fly reels with this sample.
+The reduced model on one sample has 7 coefficients, 
+including the separate intercept for fly reels made in the USA.
 The test that all of the coefficients are the same has 
-$M = 6 - 1 = 5$
-restrictions. 
-The one restriction fewer accounts for the made-in-USA indicator
+$M = 11 - 7 = 4$
+or, calculated differently,
+$M = 7 - 2 - 1 = 4$
+restrictions, which also counts the reduction from the one variable not included in both models. 
+The two restrictions fewer account for the made-in-USA indicator
 in the full model, 
-which allows for two separate intercepts. 
+which allows for two separate intercepts, 
+but is not relevant in the separate models. 
 % 
 The $F$-statistic has a value of 
 

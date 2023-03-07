@@ -177,7 +177,7 @@ texreg(list(lm_model_best_lin,
             lm_model_hp_cat),
        file = out_file_name,
        label = 'tab:hp_cat',
-       caption = "Dollar Value of Tractor Prices")
+       caption = "Log. of Tractor Prices")
 
 
 
@@ -199,89 +199,6 @@ lm_model_all_lin <- lm(data = tractor_sales,
 # Output the results to screen.
 print(summary(lm_model_all_lin))
 
-
-
-
-
-# ##################################################
-# # Estimating a Regression Model
-# # Model 2: Linear model for log of dollar sale price
-# ##################################################
-# 
-# # Estimate a regression model.
-# lm_model_2 <- lm(data = tractor_sales,
-#                       formula = log_saleprice ~ horsepower + age + enghours +
-#                         diesel + fwd + manual + johndeere +
-#                         spring + summer + winter)
-# 
-# # Output the results to screen.
-# print(summary(lm_model_2))
-# 
-# 
-# # Print the output to a LaTeX file.
-# tab_file_name <- 'log_price_reg_2.tex'
-# out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-# texreg(lm_model_2,
-#        file = out_file_name,
-#        digits = 5,
-#        label = 'tab:log_price_reg_2',
-#        caption = "Logarithm of Tractor Prices")
-# 
-# 
-# 
-# ##################################################
-# # Compare the distribution of variables
-# # across subsets by John Deere indicator.
-# ##################################################
-# 
-# 
-# summary(tractor_sales[, 'saleprice'])
-# 
-# # See what a difference the John Deere label is worth:
-# summary(tractor_sales[tractor_sales[, 'johndeere'] == 1, 'saleprice'])
-# summary(tractor_sales[tractor_sales[, 'johndeere'] == 0, 'saleprice'])
-# 
-# 
-# ##################################################
-# # Estimating a Regression Model
-# # Model 3: Linear model for log of dollar sale price
-# # Omit seasonal indicators
-# ##################################################
-# 
-# # Estimate a regression model.
-# lm_model_3 <- lm(data = tractor_sales,
-#                  formula = log_saleprice ~ horsepower + age + enghours +
-#                    diesel + fwd + manual + johndeere)
-# 
-# # Output the results to screen.
-# print(summary(lm_model_3))
-# 
-# 
-# ##################################################
-# # Estimating a Regression Model
-# # Model 4: Linear model for log of dollar sale price
-# # Omit seasonal indicators and transmission type
-# ##################################################
-# 
-# # Estimate a regression model.
-# lm_model_4 <- lm(data = tractor_sales,
-#                  formula = log_saleprice ~ horsepower + age + enghours +
-#                    diesel + fwd + johndeere)
-# 
-# # Output the results to screen.
-# print(summary(lm_model_4))
-# 
-# 
-# # Print the output to a LaTeX file.
-# tab_file_name <- 'reg_reduction.tex'
-# out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-# texreg(l = list(lm_model_2,
-#                 lm_model_3,
-#                 lm_model_4),
-#        file = out_file_name,
-#        digits = 4,
-#        label = 'tab:reg_reduction',
-#        caption = "Models for the Log. of Tractor Prices")
 
 
 
@@ -500,7 +417,7 @@ texreg(l = list(lm_model_hp_int_1,
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_interactions',
-       caption = "Regression Models for Tractor Prices")
+       caption = "Regression Models for Tractor Prices with Interactions")
 
 
 
@@ -579,7 +496,7 @@ texreg(l = list(lm_model_hp_red_1,
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_johndeere',
-       caption = "Separate Models by Brand")
+       caption = "Separate Partially Nonlinear Models by Brand")
 
 
 ##################################################
@@ -621,7 +538,7 @@ summary(lm_model_hp_red_1) # 10 parameters.
 
 # A test of eight restrictions
 # (one for each variable minus the interaction).
-num_restr <- 4
+num_restr <- 14 - 10
 
 F_stat <- (RSS_constrained - RSS_unconstrained)/num_restr /
   RSS_unconstrained*(num_obs - num_vars)

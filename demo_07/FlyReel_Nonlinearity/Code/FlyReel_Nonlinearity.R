@@ -312,7 +312,8 @@ print(summary(lm_model_Asia))
 
 tab_file_name <- 'reg_by_country.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_model_USA,
+texreg(l = list(lm_model_log_red_3, 
+                lm_model_USA,
                 lm_model_Asia),
        file = out_file_name,
        label = 'tab:reg_by_country',

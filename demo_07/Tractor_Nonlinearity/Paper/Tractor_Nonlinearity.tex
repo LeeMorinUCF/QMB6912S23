@@ -61,7 +61,7 @@
 
 \section{Data Description}
 
-This analysis follows the script \texttt{Tractor\_Reg\_Model.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+This analysis follows the script \texttt{Tractor\_Nonlinearity.R} to produce a more accurate model for used tractor prices with the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
 The dataset includes the following variables.
 \begin{table}[h!]
 \begin{tabular}{l l l}
@@ -86,7 +86,7 @@ $winter_i$ & = & an indicator of whether tractor $i$ was sold between December a
 %
 
 I will first estimate a model with nonlinear functional forms, and then consider exclusions of insignificant variables from the full model, with nonlinearity taken into account. 
-This approach allows for inclusion of possibly irrelevant variables and avoids excluding any relevant variables. 
+This approach allows for inclusion of possibly relevant variables and avoids excluding any irrelevant variables. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -109,7 +109,7 @@ included in the regression instead of the continuous variable.
 \input{../Tables/hp_cat}
 
 Notice that the 50-100-horsepower group is 40\% more valuable
-than 50 or less.
+than those with 50 or less.
 The relationship levels off between 100 and 250 horsepower.
 Tractors with more than 250 horsepower are not statistically
 worth more than those with 0-50 horsepower, all else equal.
@@ -334,8 +334,13 @@ of other tractors.
 
 We can also test for all of the differences at the same time
 by using an $F$-test. 
-In this case, the full, unrestricted model has $K = 2\times9 = 18$ parameters, one for each variable in two models. 
-The test that all of the coefficients are the same has $M = 9 - 1 = 8$
+In the textbook case, when both models include all variables, 
+the full, unrestricted model has $K = 2\times10 = 20$ parameters, 
+one for each of the ten variables in two models. 
+In this case, with a reduced model for each subsample, 
+the full, unrestricted model has $K = 6 + 8 = 14$ parameters, 
+one for each variable in each of the two models. 
+The test that all of the coefficients are the same has $M = 14 - 10 = 4$
 restrictions. 
 The one restriction fewer accounts for the John Deere indicator
 in the full model, 
@@ -355,6 +360,14 @@ should be the only brand difference left in the model.
 
 Notice the the conclusion has changed from our specification
 that excluded all forms of nonlinearity.
+This can occur if the relationship is nonlinear and 
+each subsample has a different distribution of an explanatory variable, 
+with mass over different intervals, where the slope is different. 
+In this example, more of the John Deere tractors have high horsepower, 
+for which the added benefit is lower than that for tractors with lower horsepower. 
+The separate nonlinear models compensate for the lack of fit 
+of a linear model for modeling the nonlinear 
+relationship between prices and horsepower. 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
