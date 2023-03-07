@@ -118,7 +118,7 @@ the quadratic specification for horsepower.
 
 \subsection{Quadratic Specification for Horsepower}
 
-In the demo for Problem Set \#6, 
+In the previous demo for Problem Set \#7, 
 we considered the advice of
 a used tractor dealer who reported that overpowered used tractors are hard to sell, since they consume more fuel. 
 This implies that tractor prices often increase with horsepower, up to a point, but beyond that they decrease. 
@@ -134,19 +134,22 @@ a negative coefficient on the squared horsepower variable.
 The results of this regression specification are shown in 
 Table \ref{tab:reg_sq_horse}. 
 %
-The squared horsepower variable has a coefficient of $-2.081e-05$, which is nearly ten times as large as the standard error of $2.199e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
+The squared horsepower variable has a coefficient of $-1.404e-05$, which is nearly ten times as large as the standard error of $2.255e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
 I conclude that the log of the sale price does decline for large values of horsepower. 
 
 
-With the squared horsepower variable, the $\bar{R}^2$ is $0.764$, indicating that it is a much stronger model than the others we considered. 
+With the squared horsepower variable, the $\bar{R}^2$ is $0.806$, indicating that it is a much stronger model than the others we considered. 
 The $F$-statistic is large, indicating that it is a better candidate than the simple average log sale price. 
 The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
 This new model is much improved over the previous models with a linear specification for horsepower.
 Next, I will attempt to improve on this specification, 
 as we did for Problem Set \#8. 
 
-
-
+It is worth noting whether any material changes are observed when the quadratic form for horsepower
+is introduced into the model.
+Although many coefficients are similar, notice that 
+the coefficient for an enclosed cab is noticably lower, 
+indicating that the value of a cab was overestimated in the purely linear model. 
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -231,8 +234,42 @@ forms of nonlinearity for the value of horsepower.
 Now consider the full set of such models in a table for a final comparison.
 
 
+
 \pagebreak
-\section{Final Comparison of Candidate Models}
+\section{Linear Approximation of the Box--Tidwell Transformation}
+
+In their seminal article, Box and Tidwell (1962), 
+proposed a linear approximation to test for the presence of 
+a nonlinear relationship of the form of the Box--Tidwell transformation. 
+I created three variables 
+\texttt{bt\_hp\_log\_hp}, \texttt{bt\_age\_log\_age}, and \texttt{bt\_eng\_log\_eng}, 
+all of which were created by a transformation of the form $f(x) = x\cdot\log(x)$. 
+Table \ref{tab:reg_bt_lin} collects the results
+of the set of models from the nonlinear approximation to the models with the three forms of nonlinearity.
+Model 1 is the linear regression model with 
+the squared form of horsepower.
+Model 2 is the linear regression model with 
+the approximation of the transformation applied to horsepower. 
+Models 3 and 4 
+have the same specification as the other one, 
+except that the horsepower variable is replaced with
+the variables for age and engine hours. 
+The coefficient on \texttt{bt\_hp\_log\_hp}
+is statistically significant. 
+This implies, just as the Box-Tidwell statistic predicts, 
+a nonlinear relationship exists for the value of horsepower.
+Similarly, the coefficients on 
+\texttt{bt\_age\_log\_age} and \texttt{bt\_eng\_log\_eng}
+in Models 3 and 4, respectively, 
+are not statistically significant, 
+indicating that
+a linear relationship suffices for the decline in value from age and engine hours.
+
+\input{../Tables/reg_bt_lin}
+
+
+\pagebreak
+\section{Comparison of Candidate Models}
 
 I created a variable \texttt{horsepower\_bt}
 by raising horsepower to the optimal exponent 
@@ -245,12 +282,16 @@ of the set of models from the three forms of nonlinearity.
 Model 1 is the linear regression model with 
 a quadratic form for horsepower. 
 Model 2 
-has the same specification as the other one, 
+is the approximation to the Box-Tidwell transformation
+from Model 2 of Table \ref{tab:reg_bt_lin}. 
+Model 3
+has the same specification as the approximate transformation, 
 except that the horsepower variable is transformed using the optimal
 exponent for the Box-Tidwell transformation. 
 % 
 The last model has the highest R-squared
-among the ones we have estimated.
+among the ones we have estimated, 
+with only a slight improvement over the linear approximation.
 Again, the differences are marginal, so the practical recommendation
 is the model with the quadratic relationship for horsepower, 
 which has a simpler interpretation.

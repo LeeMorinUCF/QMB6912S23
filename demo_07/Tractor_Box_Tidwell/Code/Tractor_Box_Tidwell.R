@@ -102,25 +102,40 @@ tractor_sales[, 'squared_horsepower'] <- tractor_sales[, 'horsepower']^2
 # Linear Regression Model
 ##################################################
 
-# In a previous exercise I recommended the following model,
-# which included a quadratic form for horsepower.
-
-# Estimate a regression model.
-lm_7 <- lm(data = tractor_sales,
-           formula = log_saleprice ~
-             horsepower + squared_horsepower +
-             age +
-             enghours +
-             diesel + fwd + manual + johndeere + cab)
+# In a previous exercise I recommended a linear model.
+lm_hp_orig <- lm(data = tractor_sales,
+                 formula = log_saleprice ~
+                   horsepower +
+                   age +
+                   enghours +
+                   diesel + fwd + manual + johndeere + cab)
 
 # Output the results to screen.
-print(summary(lm_7))
+print(summary(lm_hp_orig))
+
+
+
+# Now we can augment this with the following model,
+# which includes a quadratic form for horsepower.
+
+# Estimate a regression model.
+lm_hp_squared <- lm(data = tractor_sales,
+           formula = log_saleprice ~
+             horsepower +
+             age +
+             enghours +
+             diesel + fwd + manual + johndeere + cab + 
+             squared_horsepower)
+
+# Output the results to screen.
+print(summary(lm_hp_squared))
 
 
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_sq_horse.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_7),
+texreg(l = list(lm_hp_orig, 
+                lm_hp_squared),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_sq_horse',
@@ -323,6 +338,87 @@ sink()
 cat("\\end{verbatim}", file = out_file_name, append = TRUE)
 
 
+
+
+##################################################
+# Linear Model to Detect the Box-Tidwell Transformation
+##################################################
+
+# One could estimate a linear model that tests 
+# an approximation of the nonlinear model with
+# a Box-Tidwell transformation.
+
+# To do so, one would need the following transformations
+# of the continuous variables.
+tractor_sales[, 'bt_hp_log_hp'] <- 
+  tractor_sales[, 'horsepower'] * log(tractor_sales[, 'horsepower'])
+tractor_sales[, 'bt_age_log_age'] <- 
+  tractor_sales[, 'age'] * log(tractor_sales[, 'age'])
+tractor_sales[, 'bt_eng_log_eng'] <- 
+  tractor_sales[, 'enghours'] * log(tractor_sales[, 'enghours'])
+
+# Estimate a regression model to approximate 
+# the Box-Tidwell transformation on horsepower.
+lm_bt_hp_lin <- lm(data = tractor_sales,
+                   formula = log_saleprice ~
+                     horsepower + 
+                     age +
+                     enghours +
+                     diesel + fwd + manual + johndeere + cab + 
+                     bt_hp_log_hp )
+
+# Output the results to screen.
+print(summary(lm_bt_hp_lin))
+
+# Just as the Box-Tidwell statistic predicts, 
+# a nonlinear relationship exists for the value of horsepower.
+
+# Estimate a regression model to approximate 
+# the Box-Tidwell transformation on age.
+lm_bt_age_lin <- lm(data = tractor_sales,
+                   formula = log_saleprice ~
+                     horsepower + 
+                     age +
+                     enghours +
+                     diesel + fwd + manual + johndeere + cab + 
+                     bt_age_log_age )
+
+# Output the results to screen.
+print(summary(lm_bt_age_lin))
+
+# Just as the Box-Tidwell statistic predicts, 
+# a linear relationship suffices for the decline in value from age.
+
+
+# Estimate a regression model to approximate 
+# the Box-Tidwell transformation on engine hours.
+lm_bt_eng_lin <- lm(data = tractor_sales,
+                   formula = log_saleprice ~
+                     horsepower + 
+                     age +
+                     enghours +
+                     diesel + fwd + manual + johndeere + cab + 
+                     bt_eng_log_eng )
+
+# Output the results to screen.
+print(summary(lm_bt_eng_lin))
+
+# Just as the Box-Tidwell statistic predicts, 
+# a linear relationship suffices for the decline in value from engine hours.
+
+
+# Print the output to a LaTeX file.
+tab_file_name <- 'reg_bt_lin.tex'
+out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
+texreg(l = list(lm_hp_squared,
+                lm_bt_hp_lin, 
+                lm_bt_age_lin, 
+                lm_bt_eng_lin),
+       digits = 5,
+       file = out_file_name,
+       label = 'tab:reg_bt_lin',
+       caption = "Linear Approximation of Box-Tidwell Transformations for Tractor Prices")
+
 ##################################################
 # Linear specification from the significant
 # exponent in the Box-Tidwell transformation.
@@ -337,18 +433,18 @@ bt_hp_lambda_hat <- 0.1143693
 # Create a variable horsepower_bt
 # to investigate nonlinear relationship of log sale price to horsepower.
 tractor_sales[, 'horsepower_bt'] <-
-   tractor_sales[, 'horsepower']^bt_hp_lambda_hat
+  tractor_sales[, 'horsepower']^bt_hp_lambda_hat
 
 # Estimate a regression model.
-lm_bt_hp <- lm(data = tractor_sales,
-               formula = log_saleprice ~
-                  horsepower_bt +
-                  age +
-                  enghours +
-                  diesel + fwd + manual + johndeere + cab)
+lm_bt_hp_exp <- lm(data = tractor_sales,
+                   formula = log_saleprice ~
+                     horsepower_bt +
+                     age +
+                     enghours +
+                     diesel + fwd + manual + johndeere + cab)
 
 # Output the results to screen.
-print(summary(lm_bt_hp))
+print(summary(lm_bt_hp_exp))
 
 # The performance is similar to the other models with
 # forms of nonlinearity for the value of horsepower.
@@ -357,8 +453,9 @@ print(summary(lm_bt_hp))
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_sq_horse_bt.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
-texreg(l = list(lm_7,
-                lm_bt_hp),
+texreg(l = list(lm_hp_squared,
+                lm_bt_hp_lin, 
+                lm_bt_hp_exp),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_sq_horse_bt',
