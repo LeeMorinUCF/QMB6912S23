@@ -132,7 +132,7 @@ flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
 # Interaction with Sealed and made_in_USA
 #--------------------------------------------------
 
-# As determined in Problem Sets 6 and 7,
+# As determined in Problem Set 3, and confirmed in Problem set 6,
 # set target variable as the log transformation
 # for remaining analysis.
 target_var <- 'log_Price'
