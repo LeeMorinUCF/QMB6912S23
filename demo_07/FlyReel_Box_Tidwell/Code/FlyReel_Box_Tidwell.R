@@ -2,7 +2,7 @@
 #
 # QMB 6912 Capstone Project in Business Analytics
 #
-# Examples of Model Specfications
+# Examples of Model Specifications
 # with the Box-Tidwell Transformation
 #
 # Lealand Morin, Ph.D.
