@@ -124,16 +124,23 @@ is characterized by
 a positive coefficient on the horsepower variable and
 a negative coefficient on the squared horsepower variable. 
 
-The results of this regression specification are shown in 
-Table \ref{tab:reg_sq_horse}. 
 % 
 \input{../Tables/reg_sq_horse}
 % 
-The squared horsepower variable has a coefficient of $-2.081e-05$, which is nearly ten times as large as the standard error of $2.199e-06$, which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
+
+The results of this regression specification are shown in 
+Table \ref{tab:reg_sq_horse}. 
+The squared horsepower variable has a coefficient of 
+% $-2.081e-05$,
+$-1.404\times10^{-5}$,  
+which is nearly ten times as large as the standard error of 
+% $2.199e-06$, 
+$2.255\times10^{-6}$, 
+which is very strong evidence against the null hypothesis of a positive or zero coefficient. 
 I conclude that the log of the sale price does decline for large values of horsepower. 
 
 
-With the squared horsepower variable, the $\bar{R}^2$ is $0.764$, indicating that it is a much stronger model than the others we considered. 
+With the squared horsepower variable, the $\bar{R}^2$ is $0.7993$, indicating that it is a much stronger model than the others we considered. 
 The $F$-statistic is large, indicating that it is a better candidate than the simple average log sale price. 
 The new squared horsepower variable is statistically significant and the theory behind it is sound, since above a certain point, added horsepower may not improve performance but will cost more to operate. 
 This new model is much improved over the previous models with a linear specification for horsepower.
@@ -175,7 +182,8 @@ Model 1 is the original model in
 Table \ref{tab:reg_sq_horse}. 
 Model 2 is a regression omitting the horsepower variables. 
 Model 3 is a regression to predict horsepower with the other explanatory variables in Model 2.
-Finally, Model 4 shows the coefficients for horsepower
+Model 4 is a regression to predict squared horsepower with the other explanatory variables in Model 2.
+Finally, Model 5 shows the coefficients for horsepower
 from a regression of the residuals of Model 2
 on the residuals from Model 3. 
 Notice that these coefficients match those in Model 1. 
