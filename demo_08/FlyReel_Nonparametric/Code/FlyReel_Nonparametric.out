@@ -1,0 +1,342 @@
+[1] "Summary of FlyReels Dataset:"
+     Name              Brand               Weight          Diameter    
+ Length:248         Length:248         Min.   : 2.100   Min.   :2.500  
+ Class :character   Class :character   1st Qu.: 4.800   1st Qu.:3.473  
+ Mode  :character   Mode  :character   Median : 6.144   Median :3.850  
+                                       Mean   : 6.564   Mean   :3.900  
+                                       3rd Qu.: 8.205   3rd Qu.:4.250  
+                                       Max.   :15.097   Max.   :5.500  
+     Width           Price            Sealed            Country         
+ Min.   :0.750   Min.   :  34.99   Length:248         Length:248        
+ 1st Qu.:0.970   1st Qu.: 239.00   Class :character   Class :character  
+ Median :1.080   Median : 360.00   Mode  :character   Mode  :character  
+ Mean   :1.098   Mean   : 397.24                                        
+ 3rd Qu.:1.250   3rd Qu.: 525.00                                        
+ Max.   :1.688   Max.   :1095.00                                        
+   Machined        
+ Length:248        
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+[1] "FlyReels Dataset with Categorical Factors:"
+         Name                   Brand         Weight          Diameter    
+  SDF 4/5  :  1   Waterworks-Lamson: 32   Min.   : 2.100   Min.   :2.500  
+  SDF 5/6  :  1   Ross             : 28   1st Qu.: 4.800   1st Qu.:3.473  
+  SDF 6/7  :  1   Allen            : 25   Median : 6.144   Median :3.850  
+  SDS 11/12:  1   Galvan           : 23   Mean   : 6.564   Mean   :3.900  
+  SDS 7/8  :  1   TFO              : 16   3rd Qu.: 8.205   3rd Qu.:4.250  
+  SDS 9/10 :  1   3-TAND           : 15   Max.   :15.097   Max.   :5.500  
+ (Other)   :242   (Other)          :109                                   
+     Width           Price         Sealed     Country    Machined 
+ Min.   :0.750   Min.   :  34.99   No : 94   China: 27   No : 31  
+ 1st Qu.:0.970   1st Qu.: 239.00   Yes:154   Korea: 86   Yes:217  
+ Median :1.080   Median : 360.00             USA  :135            
+ Mean   :1.098   Mean   : 397.24                                  
+ 3rd Qu.:1.250   3rd Qu.: 525.00                                  
+ Max.   :1.688   Max.   :1095.00                                  
+                                                                  
+[1] "Name"     "Brand"    "Weight"   "Diameter" "Width"    "Price"    "Sealed"  
+[8] "Country"  "Machined"
+
+China Korea   USA 
+   27    86   135 
+       
+        FALSE TRUE
+  China    27    0
+  Korea    86    0
+  USA       0  135
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
+Width                      0.33575    0.15622   2.149  0.03262 *  
+Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
+Density                    1.21296    0.21948   5.527 8.49e-08 ***
+SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
+MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
+made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
+SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.325 on 240 degrees of freedom
+Multiple R-squared:  0.7489,	Adjusted R-squared:  0.7416 
+F-statistic: 102.3 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)  
+width_resid   0.3357     0.1540    2.18   0.0302 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3203 on 247 degrees of freedom
+Multiple R-squared:  0.01888,	Adjusted R-squared:  0.01491 
+F-statistic: 4.754 on 1 and 247 DF,  p-value: 0.03018
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+               Estimate Std. Error t value Pr(>|t|)    
+diameter_resid  0.39567    0.05003   7.908 8.72e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3203 on 247 degrees of freedom
+Multiple R-squared:  0.202,	Adjusted R-squared:  0.1988 
+F-statistic: 62.54 on 1 and 247 DF,  p-value: 8.719e-14
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+              Estimate Std. Error t value Pr(>|t|)    
+density_resid   1.2130     0.2163   5.607 5.51e-08 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3203 on 247 degrees of freedom
+Multiple R-squared:  0.1129,	Adjusted R-squared:  0.1093 
+F-statistic: 31.43 on 1 and 247 DF,  p-value: 5.507e-08
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
+Width                      0.33575    0.15622   2.149  0.03262 *  
+Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
+Density                    1.21296    0.21948   5.527 8.49e-08 ***
+SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
+MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
+made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
+SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.325 on 240 degrees of freedom
+Multiple R-squared:  0.7489,	Adjusted R-squared:  0.7416 
+F-statistic: 102.3 on 7 and 240 DF,  p-value: < 2.2e-16
+
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+null device 
+          1 
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.92122 -0.20015  0.00169  0.19014  1.01551 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
+Width                      0.33575    0.15622   2.149  0.03262 *  
+Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
+Density                    1.21296    0.21948   5.527 8.49e-08 ***
+SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
+MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
+made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
+SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.325 on 240 degrees of freedom
+Multiple R-squared:  0.7489,	Adjusted R-squared:  0.7416 
+F-statistic: 102.3 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.01342 -0.19867  0.00494  0.20617  0.92757 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.34926    0.22596  10.397  < 2e-16 ***
+width_np                   1.11995    0.21565   5.193 4.41e-07 ***
+Diameter                   0.43144    0.04150  10.397  < 2e-16 ***
+Density                    1.07566    0.20093   5.353 2.02e-07 ***
+SealedYes                  0.61960    0.08246   7.514 1.13e-12 ***
+MachinedYes                0.58954    0.07933   7.432 1.88e-12 ***
+made_in_USATRUE            0.77354    0.08855   8.736 4.23e-16 ***
+SealedYes:made_in_USATRUE -0.29826    0.09642  -3.093  0.00221 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3111 on 240 degrees of freedom
+Multiple R-squared:  0.7699,	Adjusted R-squared:  0.7632 
+F-statistic: 114.7 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.88158 -0.20271  0.01739  0.18746  0.97930 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.98091    0.22704  13.130  < 2e-16 ***
+Width                      0.92791    0.12784   7.258 5.41e-12 ***
+diameter_np                1.00650    0.10926   9.212  < 2e-16 ***
+Density                    0.81613    0.20645   3.953 0.000102 ***
+SealedYes                  0.70050    0.08226   8.515 1.84e-15 ***
+MachinedYes                0.71659    0.07938   9.027  < 2e-16 ***
+made_in_USATRUE            0.79615    0.08879   8.967  < 2e-16 ***
+SealedYes:made_in_USATRUE -0.33376    0.09694  -3.443 0.000679 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3127 on 240 degrees of freedom
+Multiple R-squared:  0.7675,	Adjusted R-squared:  0.7608 
+F-statistic: 113.2 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-0.86341 -0.19657  0.00525  0.17245  0.83621 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                3.23438    0.15261  21.194  < 2e-16 ***
+Width                      0.03044    0.14082   0.216  0.82905    
+Diameter                   0.33658    0.04671   7.206 7.41e-12 ***
+density_np                 1.03923    0.12864   8.079 3.19e-14 ***
+SealedYes                  0.56858    0.08047   7.066 1.72e-11 ***
+MachinedYes                0.65070    0.07819   8.322 6.55e-15 ***
+made_in_USATRUE            0.70473    0.08692   8.108 2.64e-14 ***
+SealedYes:made_in_USATRUE -0.27253    0.09500  -2.869  0.00449 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.3059 on 240 degrees of freedom
+Multiple R-squared:  0.7775,	Adjusted R-squared:  0.771 
+F-statistic: 119.8 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Call:
+lm(formula = lm_fmla, data = flyreels)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-1.02228 -0.18331  0.03022  0.18559  1.00468 
+
+Coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                4.49531    0.05897  76.226  < 2e-16 ***
+width_np                   1.35512    0.20456   6.625 2.27e-10 ***
+diameter_np                1.00083    0.10411   9.613  < 2e-16 ***
+density_np                 0.76790    0.12582   6.103 4.14e-09 ***
+SealedYes                  0.69858    0.07509   9.303  < 2e-16 ***
+MachinedYes                0.61103    0.07386   8.273 9.07e-15 ***
+made_in_USATRUE            0.79326    0.08296   9.561  < 2e-16 ***
+SealedYes:made_in_USATRUE -0.31356    0.09038  -3.469 0.000618 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 0.2917 on 240 degrees of freedom
+Multiple R-squared:  0.7977,	Adjusted R-squared:  0.7918 
+F-statistic: 135.2 on 7 and 240 DF,  p-value: < 2.2e-16
+
+
+Family: gaussian 
+Link function: identity 
+
+Formula:
+log_Price ~ Width + Diameter + Density + Sealed + Machined + 
+    made_in_USA + made_in_USA * Sealed
+
+Parametric coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                2.00999    0.26125   7.694 3.69e-13 ***
+Width                      0.33575    0.15622   2.149  0.03262 *  
+Diameter                   0.39567    0.05076   7.795 1.95e-13 ***
+Density                    1.21296    0.21948   5.527 8.49e-08 ***
+SealedYes                  0.62731    0.08622   7.275 4.88e-12 ***
+MachinedYes                0.64934    0.08320   7.805 1.84e-13 ***
+made_in_USATRUE            0.74633    0.09247   8.071 3.35e-14 ***
+SealedYes:made_in_USATRUE -0.29519    0.10092  -2.925  0.00378 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+R-sq.(adj) =  0.742   Deviance explained = 74.9%
+GCV = 0.10913  Scale est. = 0.10561   n = 248
+
+Family: gaussian 
+Link function: identity 
+
+Formula:
+log_Price ~ s(Width) + s(Diameter) + s(Density) + Sealed + Machined + 
+    made_in_USA + made_in_USA * Sealed
+
+Parametric coefficients:
+                          Estimate Std. Error t value Pr(>|t|)    
+(Intercept)                4.52027    0.06539  69.123  < 2e-16 ***
+SealedYes                  0.64536    0.08257   7.816 1.95e-13 ***
+MachinedYes                0.62750    0.07980   7.863 1.45e-13 ***
+made_in_USATRUE            0.78661    0.08961   8.778 3.85e-16 ***
+SealedYes:made_in_USATRUE -0.31047    0.09742  -3.187  0.00164 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Approximate significance of smooth terms:
+              edf Ref.df      F  p-value    
+s(Width)    7.052  8.082  3.686 0.000411 ***
+s(Diameter) 3.490  4.409 16.859  < 2e-16 ***
+s(Density)  2.663  3.403  9.610 3.02e-06 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+R-sq.(adj) =  0.769   Deviance explained = 78.5%
+GCV = 0.10198  Scale est. = 0.094497  n = 248
