@@ -2,7 +2,7 @@
 #
 # QMB 6912 Capstone Project in Business Analytics
 #
-# Examples of Nonlinear Model Specfication
+# Examples of Nonlinear Model Specification
 #
 # Lealand Morin, Ph.D.
 # Assistant Professor
