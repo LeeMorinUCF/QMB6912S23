@@ -15,7 +15,7 @@
 #
 ##################################################
 #
-# sampleSelection_examples.R gives examples of
+# sampleSelection_examples2.R gives examples of
 #   regression models that adjust for sample selection.
 #
 # Dependencies:
@@ -107,7 +107,7 @@ tobit_2_ex1[, 'yo'] <- tobit_2_ex1[, 'yoX'] *
 
 
 
-# Note the observations set to zero.
+# Note the mass of observations set to zero.
 summary(tobit_2_ex1)
 
 # Inspect only the observed events.
@@ -183,7 +183,7 @@ summary(tobit_2_lm_1_full)
 # The slope is biased toward zero.
 
 
-# Although it is infeasible, as not all data are observed
+# Although it is unfeasible, as not all data are observed
 # If we had observed the full set of observations,
 # the linear model would be correctly specified.
 
@@ -192,7 +192,7 @@ tobit_2_lm_1_inf <- lm(formula = yoX ~ xo,
 
 summary(tobit_2_lm_1_inf)
 
-# Although infeasible, the intercept and slope coefficients
+# Although unfeasible, the intercept and slope coefficients
 # are close to zero and one (the true values).
 
 
@@ -411,7 +411,7 @@ lines(xo_grid,
 ##################################################
 
 # Next, we estimate a correctly specified
-# Tobit-2 model without the exclusion restriction.
+# Tobit-2 model with exclusion restriction.
 # This time we provide more variation
 # in the latent selection equation.
 
@@ -620,9 +620,9 @@ tobit_5_ex4[, 'yo2'] <- tobit_5_ex4[, 'xo2'] +
 # Generate dependent variable in the outcome equation.
 # (Leave only what is observed.)
 tobit_5_ex4[, 'yo1'] <- tobit_5_ex4[, 'yo1'] *
-  (tobit_5_ex4[, 'ys'] == 0)
+  (tobit_5_ex4[, 'ys'] <= 0)
 tobit_5_ex4[, 'yo2'] <- tobit_5_ex4[, 'yo2'] *
-  (tobit_5_ex4[, 'ys'] == 1)
+  (tobit_5_ex4[, 'ys'] > 0)
 # Not required, since the likelihood function
 # uses only the observations for the corresponding
 # model based on whether ys is TRUE or FALSE.
@@ -766,9 +766,9 @@ tobit_5_ex5[, 'yo2'] <- tobit_5_ex5[, 'xs'] +
 # Generate dependent variable in the outcome equation.
 # (Leave only what is observed.)
 tobit_5_ex5[, 'yo1'] <- tobit_5_ex5[, 'yo1'] *
-  (tobit_5_ex5[, 'ys'] == 0)
+  (tobit_5_ex5[, 'ys'] <= 0)
 tobit_5_ex5[, 'yo2'] <- tobit_5_ex5[, 'yo2'] *
-  (tobit_5_ex5[, 'ys'] == 1)
+  (tobit_5_ex5[, 'ys'] > 0)
 # Not required, since the likelihood function
 # uses only the observations for the corresponding
 # model based on whether ys is TRUE or FALSE.
