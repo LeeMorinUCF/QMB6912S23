@@ -117,44 +117,11 @@ print(summary(lm_model_7))
 
 
 
-# ##################################################
-# # Expand the size of the dataset
-# # to simplify estimation of sample selection model
-# ##################################################
-#
-# # A sample selection model requires a larger sample
-# # than a simple linear regression model.
-# # To avoid numerical difficulties with the estimation,
-# # I will increase the sample to illustrate the
-# # estimation technique.
-#
-# tractor_sales_2 <- rbind(tractor_sales,
-#                          tractor_sales,
-#                          tractor_sales,
-#                          tractor_sales)
-#
-# # Estimate a regression model.
-# lm_model_7_2 <- lm(data = tractor_sales_2,
-#                    formula = log_saleprice ~
-#                       horsepower + squared_horsepower +
-#                       age +
-#                       enghours +
-#                       diesel + fwd + manual + johndeere + cab)
-#
-# # Output the results to screen.
-# print(summary(lm_model_7_2))
-#
-# # Compare to the estimates from the original sample.
-# print(summary(lm_model_7))
-
-
 
 # Print the output to a LaTeX file.
 tab_file_name <- 'reg_sq_horse.tex'
 out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 texreg(l = list(lm_model_7),
-       # l = list(lm_model_7,
-       #          lm_model_7_2),
        digits = 5,
        file = out_file_name,
        label = 'tab:reg_sq_horse',
@@ -401,7 +368,7 @@ summary(tobit_5_sel_1$lm1)
 
 # Summary for linear model for second observation equation
 # (John Deere tractors).
-summary(tobit_5_sel_2$lm2)
+summary(tobit_5_sel_1$lm2)
 
 
 
@@ -578,19 +545,19 @@ summary(tobit_5_sel_4$lm2)
 
 
 
+# To print out results of the linear model,
+# if included in the paper.
 
-
-#
 # # Print the output to a LaTeX file.
-# tab_file_name <- 'bt_full.tex'
+# tab_file_name <- 'selection_linear.tex'
 # out_file_name <- sprintf('%s/%s', tab_dir, tab_file_name)
 # cat("\\begin{verbatim}", file = out_file_name)
 # sink(out_file_name, append = TRUE)
-# print(bt_full)
+# print(summary(tobit_5_sel_4$lm1))
+# print(summary(tobit_5_sel_4$lm2))
 # sink()
 # cat("\\end{verbatim}", file = out_file_name, append = TRUE)
-#
-#
+
 
 ##################################################
 # End

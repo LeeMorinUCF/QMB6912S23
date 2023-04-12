@@ -105,22 +105,6 @@ flyreels[, 'Density'] <- flyreels[, 'Weight'] / flyreels[, 'Volume']
 # Create logarithm of dependent variable.
 flyreels[, 'log_Price'] <- log(flyreels[, 'Price'])
 
-# # Generate new dependent variable with results from Problem Set 6.
-# # First define the Box-Cox transformation.
-# Lambda_Price <- function(price, lambda) {
-#
-#   if (lambda == 0) {
-#     return(log(price))
-#   } else {
-#     return((price^lambda - 1)/lambda)
-#   }
-#
-# }
-#
-# # Recall the optimal exponent from the MLE.
-# lambda_hat <- 0.43
-# flyreels[, 'Trans_Price'] <- Lambda_Price(price = flyreels[, 'Price'],
-#                                           lambda = lambda_hat)
 
 
 # Replace Country Indicator with made_in_USA Indicator.
