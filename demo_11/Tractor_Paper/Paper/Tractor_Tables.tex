@@ -1,0 +1,158 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%\documentclass[11pt]{article}
+%\usepackage{fullpage}
+%\begin{document}
+%
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%{\noindent\bf Spring 2023 \hfill First Last}
+%\vskip 16pt
+%\centerline{\bf University of Central Florida}
+%\centerline{\bf College of Business }
+%\vskip 16pt
+%\centerline{\bf QMB 6912}
+%\centerline{\bf Capstone Project in Business Analytics}
+%\vskip 10pt
+%\centerline{\bf Problem Set \#4}
+%\vskip 32pt
+%\noindent
+%% 
+%\section{Data Description}
+%
+%This analysis follows the script \texttt{Tractor\_Tables.R}. 
+%The script tabulates various statistics from the variables that may be used to estimate a model for used tractor prices.  
+%It uses the data from \texttt{TRACTOR7.csv} in the \texttt{Data} folder. 
+%The dataset includes the following variables.
+%\begin{table}[h!]
+%\begin{tabular}{l l l}
+%
+%$saleprice_i$ & = & the price paid for tractor $i$ in dollars \\
+%% 
+%$horsepower_i$ & = & the horsepower of tractor $i$ \\
+%$age_i$ & = & the number of years since tractor $i$ was manufactured  \\
+%$enghours_i$ & = & the number of hours of use recorded for tractor $i$  \\
+%$diesel_i$ & = & an indicator of whether tractor $i$ runs on diesel fuel \\ %, $0$ otherwise \\
+%$fwd_i$ & = & an indicator of whether tractor $i$ has four-wheel drive \\ %, $0$ otherwise \\
+%$manual_i$ & = & an indicator of whether tractor $i$ has a manual transmission \\ %, $0$ otherwise \\
+%$johndeere_i$ & = & an indicator of whether tractor $i$ is manufactured by John Deere \\ %, $0$ otherwise \\
+%$cab_i$ & = & an indicator of whether tractor $i$ has an enclosed cab \\ %, $0$ otherwise \\
+%% 
+%$spring_i$ & = & an indicator of whether tractor $i$ was sold in April or May \\ %, $0$ otherwise \\
+%$summer_i$ & = & an indicator of whether tractor $i$ was sold between June and September \\ %, $0$ otherwise \\
+%$winter_i$ & = & an indicator of whether tractor $i$ was sold between December and March \\ %, $0$ otherwise \\
+%
+%\end{tabular}
+%\end{table}
+%%
+
+\bigskip
+\noindent
+I have downloaded the file {\tt TRACTOR7.csv}, 
+loaded the data described above into 
+\textsf{R}, 
+calculated the summary statistics for these data, 
+and finally, presented 
+these statistics in \LaTeX\ tables.
+These operations are all performed by the script 
+{\tt Tractor\_Tables.R} in the {\tt Code} folder. 
+The script uses an \textsf{R} package called {\tt xtable} 
+to automate the
+production of the tables from a data frames in \textsf{R}.)
+
+\medskip
+\noindent
+I analyze the data in subsets, according to the makes of tractors, 
+calculating the summary statistics for each subset and present these 
+statistics in the \LaTeX\ tables that follow.
+
+\vfill
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\pagebreak
+\section{Summary by Make of Tractors}
+
+Table \ref{tab:summ_by_make} 
+lists summary statistics for numeric variables
+in separate rows for subsamples defined by the make of tractors, 
+according to whether they were manufactured by John Deere. 
+
+\input{../Tables/summ_by_make}
+
+
+\pagebreak
+\section{Indicator Variables by Make of Tractors}
+
+Table \ref{tab:ind_by_make} lists the frequencies of observations of 
+each brand of tractor across a series of indicator variables, 
+which includes whether a tractor
+has a diesel engine, four-wheel-drive transmission, a manual transmission, 
+or an enclosed cab to protect the operator.
+
+\input{../Tables/ind_by_make}
+
+
+
+
+\pagebreak
+\section{Season Sold by Make of Tractor}
+
+Table \ref{tab:season_sold_by_make} lists the frequencies of observations of 
+sales of the brand categories of tractors 
+over the four seasons. 
+
+
+\input{../Tables/season_sold_by_make}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% \pagebreak
+\section{Average Price of Tractors by Season Sold}
+
+Table \ref{tab:avg_price_by_season_sold} lists the 
+average price of tractors sold
+over the four seasons. 
+
+\input{../Tables/avg_price_by_season_sold}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\pagebreak
+\section{Correlation Matrices}
+To plot the correlation between variables, 
+we use the logarithm of prices, which had a better-behaved distribution, 
+according to our results in Problem Set \#3.
+We separate the analysis into numerical and indicator variables 
+
+
+Table \ref{tab:correlation_num} shows the correlation 
+between the log.~of tractor prices
+and the numeric variables horsepower, age and engine hours.
+
+
+\input{../Tables/correlation_num}
+
+
+Table \ref{tab:correlation_ind} shows the correlation 
+between the log.~of tractor prices
+and the indicators for whether a tractor
+has a diesel engine, four-wheel-drive transmission, a manual transmission, 
+or an enclosed cab to protect the operator. 
+
+
+\input{../Tables/correlation_ind}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+% \end{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%

@@ -35,14 +35,14 @@ echo ""
 echo "Analyzing the data in R..."
 echo ""
 
-Rscript Code/Tractor_Price_Density.R > Code/Tractor_Price_Density.out
-Rscript Code/Tractor_Box_Cox.R > Code/Tractor_Box_Cox.out
-Rscript Code/Tractor_Tables.R > Code/Tractor_Tables.out
-Rscript Code/Tractor_Data_Vis.R > Code/Tractor_Data_Vis.out
-Rscript Code/Tractor_Reg_Models.R > Code/Tractor_Reg_Models.out
-Rscript Code/Tractor_Box_Tidwell.R > Code/Tractor_Box_Tidwell.out
-Rscript Code/Tractor_Nonparametric.R > Code/Tractor_Nonparametric.out
-Rscript Code/Tractor_SampleSelection.R > Code/Tractor_SampleSelection.out
+Rscript Code/FlyReel_Price_Density.R > Code/FlyReel_Price_Density.out
+Rscript Code/FlyReel_Box_Cox.R > Code/FlyReel_Box_Cox.out
+Rscript Code/FlyReel_Tables.R > Code/FlyReel_Tables.out
+Rscript Code/FlyReel_Data_Vis.R > Code/FlyReel_Data_Vis.out
+Rscript Code/FlyReel_Reg_Models.R > Code/FlyReel_Reg_Models.out
+Rscript Code/FlyReel_Box_Tidwell.R > Code/FlyReel_Box_Tidwell.out
+Rscript Code/FlyReel_Nonparametric.R > Code/FlyReel_Nonparametric.out
+Rscript Code/FlyReel_SampleSelection.R > Code/FlyReel_SampleSelection.out
 
 echo "#-------------------------------------------------"
 echo ""
@@ -64,10 +64,10 @@ echo ""
 cd Paper
 
 # We need options for extra permission in the VirtualBox machine.
-pdflatex -shell-escape Tractor_Paper.tex
+pdflatex -shell-escape FlyReel_Paper.tex
 
 # Run the command twice to obtain references in document.
-pdflatex -shell-escape Tractor_Paper.tex
+pdflatex -shell-escape FlyReel_Paper.tex
 
 echo ""
 
