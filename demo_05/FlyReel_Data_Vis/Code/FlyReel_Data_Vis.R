@@ -153,6 +153,43 @@ table(flyreels[, 'Country'], useNA = 'ifany')
 
 
 # The densities could be plotted separately.
+plot(density(flyreels[flyreels[, 'Country'] == 'USA', 'Price']),
+     col = 'blue',
+     lwd = 3,
+     xlim = c(0, 1200),
+     ylim = c(0, 0.0025))
+lines(density(flyreels[flyreels[, 'Country'] == 'China', 'Price']),
+      col = 'red',
+      lwd = 3)
+lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'Price']),
+      col = 'darkgreen',
+      lwd = 3)
+# This approach is useful because it clearly specifies
+# which is which.
+
+
+# Now plot them together with the sm package.
+# It appears as though it plots them in order of the values
+# of the Country indicator.
+fig_file_name <- 'dens_by_country.pdf'
+out_file_name <- sprintf('%s/%s', fig_dir, fig_file_name)
+pdf(out_file_name)
+sm.density.compare(flyreels[, 'Price'],
+                   flyreels[, 'Country'],
+                   xlab = "Fly Reel Prices",
+                   lwd = 3,
+                   col = c('red','darkgreen', 'blue'))
+title(main = 'Fly Reel Price by Country of Manufacture')
+legend('topright', c('USA', 'China', 'Korea'),
+       fill = c('blue', 'red','darkgreen'),
+       cex = 0.75)
+dev.off()
+
+
+
+
+# Recall, however, that the log. of prices was better behaved.
+# Create the same plot in logs instead.
 plot(density(flyreels[flyreels[, 'Country'] == 'USA', 'log_Price']),
      col = 'blue',
      lwd = 3,
@@ -161,8 +198,8 @@ lines(density(flyreels[flyreels[, 'Country'] == 'China', 'log_Price']),
       col = 'red',
       lwd = 3)
 lines(density(flyreels[flyreels[, 'Country'] == 'Korea', 'log_Price']),
-     col = 'darkgreen',
-     lwd = 3)
+      col = 'darkgreen',
+      lwd = 3)
 # This approach is useful because it clearly specifies
 # which is which.
 

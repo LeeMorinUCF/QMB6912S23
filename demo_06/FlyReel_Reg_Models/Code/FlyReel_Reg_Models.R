@@ -18,14 +18,13 @@
 # Sample code for the problem sets in the course QMB 6912,
 # Capstone Project in Business Analytics, for the PMSM-BA
 # program.
-# FlyReel_Reg_Models gives examples of OLS regression models
+# FlyReel_Reg_Models gives examples of linear regression models
 #   by considering a number of different model specifications.
 # In this example, the model specification choices
 #   have a parametric form.
 #
 # Dependencies:
-#   Libraries xtable and texreg
-#   to print tables of regression results.
+#   None.
 #
 #
 ##################################################
